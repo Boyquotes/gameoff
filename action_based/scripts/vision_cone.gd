@@ -11,6 +11,9 @@ extends Node2D
 
 var _vision_points: Array[Vector2]
 
+# TODO add render sprite
+# TODO add collision mesh
+# TODO export to submodule and asset library
 
 func _process(_delta: float) -> void:
 	_recalculate_vision()

@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://b61t3qt87a7o1"]
+
+[ext_resource type="Texture2D" uid="uid://di0w12wutrt08" path="res://assets/Robot Warfare Asset Pack 22-11-24/Robots/Spider.png" id="3_4xmfh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
+radius = 32.0156
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_om0l4"]
+atlas = ExtResource("3_4xmfh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n7br"]
+atlas = ExtResource("3_4xmfh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bfjn"]
+atlas = ExtResource("3_4xmfh")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn0gw"]
+atlas = ExtResource("3_4xmfh")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ng83"]
+atlas = ExtResource("3_4xmfh")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4aom"]
+atlas = ExtResource("3_4xmfh")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kpacd"]
+atlas = ExtResource("3_4xmfh")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p1l2"]
+atlas = ExtResource("3_4xmfh")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pfg58"]
+animations = [{
+"frames": [SubResource("AtlasTexture_om0l4"), SubResource("AtlasTexture_5n7br")],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_7bfjn"), SubResource("AtlasTexture_dn0gw")],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_7ng83"), SubResource("AtlasTexture_d4aom"), SubResource("AtlasTexture_kpacd"), SubResource("AtlasTexture_1p1l2")],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D"]
+position = Vector2(493, 322)
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cqmyh")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+frames = SubResource("SpriteFrames_pfg58")
+animation = &"idle"
+playing = true

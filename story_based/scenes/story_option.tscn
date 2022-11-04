@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://ximwiqybxv0c"]
+
+[ext_resource type="Script" path="res://story_based/scripts/story_option.gd" id="1_7fwxk"]
+
+[node name="StoryOption" type="Control"]
+custom_minimum_size = Vector2i(0, 65)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 37.0
+offset_top = 10.0
+offset_right = 112.0
+offset_bottom = 77.0
+script = ExtResource("1_7fwxk")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 669.0
+offset_bottom = 41.0
+
+[node name="Label" type="Label" parent="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Card text"
+autowrap_mode = 2
+clip_text = true

@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://cbe60gdmuni8b"]
+
+[ext_resource type="Script" path="res://action_based/player.gd" id="1_tv6lt"]
+[ext_resource type="Texture2D" uid="uid://i62t76tng572" path="res://assets/Robot Warfare Asset Pack 22-11-24/Soldiers/SquadLeader.png" id="2_7ogby"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
+radius = 19.105
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2clp"]
+atlas = ExtResource("2_7ogby")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5ltk"]
+atlas = ExtResource("2_7ogby")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el14m"]
+atlas = ExtResource("2_7ogby")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amo4f"]
+atlas = ExtResource("2_7ogby")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lgdc"]
+atlas = ExtResource("2_7ogby")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db80m"]
+atlas = ExtResource("2_7ogby")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i3po"]
+atlas = ExtResource("2_7ogby")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sxxe"]
+atlas = ExtResource("2_7ogby")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4yd57"]
+animations = [{
+"frames": [SubResource("AtlasTexture_x2clp"), SubResource("AtlasTexture_k5ltk")],
+"loop": true,
+"name": &"crawl",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_el14m"), SubResource("AtlasTexture_amo4f")],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_7lgdc"), SubResource("AtlasTexture_db80m")],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [SubResource("AtlasTexture_2i3po"), SubResource("AtlasTexture_7sxxe")],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(493, 322)
+script = ExtResource("1_tv6lt")
+speed = 20000.0
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_cqmyh")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(4, 4)
+frames = SubResource("SpriteFrames_4yd57")
+animation = &"idle"
+playing = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

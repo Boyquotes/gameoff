@@ -46,6 +46,12 @@ player_move_right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="characters"
+2d_physics/layer_2="obstacles"
+2d_physics/layer_3="cliffs"
+
 [rendering]
 
 renderer/rendering_method="mobile"

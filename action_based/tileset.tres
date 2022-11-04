@@ -982,7 +982,7 @@ texture = ExtResource("1_xs0hg")
 1:7/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_fmle0")
 
 [resource]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "wall"
 terrain_set_0/terrain_0/color = Color(0, 0.376471, 0.737255, 1)

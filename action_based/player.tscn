@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbe60gdmuni8b"]
+[gd_scene load_steps=15 format=3 uid="uid://cv41obnckni4k"]
 
 [ext_resource type="Script" path="res://action_based/player.gd" id="1_tv6lt"]
 [ext_resource type="Texture2D" uid="uid://i62t76tng572" path="res://assets/Robot Warfare Asset Pack 22-11-24/Soldiers/SquadLeader.png" id="2_7ogby"]
+[ext_resource type="Script" path="res://action_based/scripts/vision_cone.gd" id="3_b0wxt"]
+[ext_resource type="Script" path="res://action_based/scripts/player_debug_controls.gd" id="4_uhdju"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
 radius = 19.105
@@ -63,6 +65,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(493, 322)
+collision_mask = 3
 script = ExtResource("1_tv6lt")
 speed = 20000.0
 nav_path_tolerance = 10.0
@@ -78,3 +81,13 @@ animation = &"idle"
 playing = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="VisionCone" type="Node2D" parent="."]
+script = ExtResource("3_b0wxt")
+collision_layer_mask = 2
+debug_shape = true
+
+[node name="PlayerDebugControls" type="Node2D" parent="."]
+script = ExtResource("4_uhdju")
+
+[connection signal="path_changed" from="PlayerDebugControls" to="." method="_on_path_changed"]

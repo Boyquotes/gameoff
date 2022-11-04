@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-var _vision_points: Array[Vector2]
-
 @export var speed: float
 
 @export var nav_path_tolerance: float
@@ -15,9 +13,6 @@ func _physics_process(delta):
 #	move_towards(input_velocity, delta)
 	
 	
-	_draw_vision()
-	queue_redraw()
-	
 	# pathfinding movement
 	nav_path = $NavigationAgent2D.get_nav_path()
 	if len(nav_path) == 0 or nav_path_idx >= len(nav_path): # TODO refactor extract this condition
@@ -28,7 +23,6 @@ func _physics_process(delta):
 	if distance.length() < nav_path_tolerance:
 		nav_path_idx += 1
 		if nav_path_idx >= len(nav_path):
-			print("reached destination")
 			return
 		next = nav_path[nav_path_idx]
 	var towards_next = next - global_position
@@ -52,36 +46,7 @@ func move_towards(direction: Vector2, delta: float):
 func _ready():
 	Engine.time_scale = 1
 	
-func _draw_vision():
-	_vision_points.clear()
-	var ray_count = 100
-	var angle = 2*PI
-	var max_distance = 500
-	
-	var angular_delta = angle / ray_count
-	for i in range(ray_count): 
-		ray(Vector2(0, max_distance).rotated(angular_delta * i))
-
-func ray(direction: Vector2):
-	var destination = global_position + direction
-	var query = PhysicsRayQueryParameters2D.create(global_position, destination)
-	var collision = get_world_2d().direct_space_state.intersect_ray(query)
-	
-	var ray_position = collision["position"] if "position" in collision else destination
-	_vision_points.append(ray_position - global_position)
-#	print("added %s" % (ray_position - global_position))
-	
-#	var sprite = debug_sprite.instantiate()
-#	self.add_child(sprite)
-#	sprite.global_position = ray_position
-	
 func _draw():
-	var from = _vision_points[0]
-	var to: Vector2
-	for i in range(1, len(_vision_points)):
-		to = _vision_points[i]
-		draw_line(from, to, Color.GREEN)
-		from = to
 		
 	var points = $NavigationAgent2D.get_nav_path()
 	if len(points) == 0:

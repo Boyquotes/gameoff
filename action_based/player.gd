@@ -4,32 +4,40 @@ var _vision_points: Array[Vector2]
 
 @export var speed: float
 
+var nav_path
+var nav_path_idx = 0
+
 func _physics_process(delta):
+	# input movement
 	var input_velocity = Input.get_vector("player_move_left", "player_move_right", "player_move_up", "player_move_down")
+#	move_towards(input_velocity, delta)
 	
-	if input_velocity.length() > 1:
-		input_velocity = input_velocity.normalized()
-	input_velocity *= speed * delta
 	
-	if input_velocity.length() > 0:
-		velocity = input_velocity
+	_draw_vision()
+	queue_redraw()
+	
+	# pathfinding movement
+	var next = $NavigationAgent2D.get_next_location()
+	var towards_next = next - global_position
+	move_towards(towards_next, delta)
+	
+func move_towards(direction: Vector2, delta: float):
+	if direction.length() > 1:
+		direction = direction.normalized()
+	direction *= speed * delta
+	
+	if direction.length() > 0:
+		velocity = direction
 		move_and_slide()
-		$Sprite.flip_h = input_velocity.x < 0
+		$Sprite.flip_h = direction.x < 0
 		$Sprite.play("walk")
 	else: 
 		$Sprite.play("idle")
 		
-	_draw_vision()
-	queue_redraw()
-	
-	# pathfinding
-	var next = $NavigationAgent2D.get_next_location()
-	global_position = next
 
 # TODO separate vision logic, key movement and path movement
 func _ready():
-	pass
-	NavigationServer2D
+	Engine.time_scale = 1
 	
 func _draw_vision():
 	_vision_points.clear()
@@ -69,9 +77,15 @@ func _draw():
 	for i in range(1, len(points)):
 		draw_line(s, to_local(points[i]), Color.RED)
 		s = to_local(points[i])
+		
+	## 
+	var next = to_local($NavigationAgent2D.get_next_location())
+	draw_line(Vector2.ZERO, next, Color.MAGENTA, 3)
 
 func _unhandled_input(event: InputEvent):
 	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed):
 		return
 		
 	$NavigationAgent2D.set_target_location(get_global_mouse_position())
+	nav_path = $NavigationAgent2D.get_nav_path()
+	nav_path_idx = 0

@@ -5,7 +5,7 @@ signal path_changed
 
 func _physics_process(delta):
 	# input movement
-	var input_velocity = Input.get_vector("player_move_left", "player_move_right", "player_move_up", "player_move_down")
+	var input_velocity = Input.get_vector("debug_move_left", "debug_move_right", "debug_move_up", "debug_move_down")
 	get_node("..")._move_towards(input_velocity, delta)
 
 func _unhandled_input(event: InputEvent):

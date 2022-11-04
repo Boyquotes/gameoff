@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://car1g2lwjgjr7"]
+[gd_scene load_steps=5 format=3 uid="uid://car1g2lwjgjr7"]
 
 [ext_resource type="TileSet" uid="uid://djjvly0wo8lg3" path="res://action_based/tileset.tres" id="1_v3x5f"]
-[ext_resource type="PackedScene" uid="uid://cv41obnckni4k" path="res://action_based/player.tscn" id="2_6wbog"]
+[ext_resource type="PackedScene" uid="uid://dhn3xx4lredw2" path="res://action_based/player.tscn" id="2_6wbog"]
+[ext_resource type="Script" path="res://action_based/scripts/player.gd" id="2_75dex"]
 [ext_resource type="PackedScene" uid="uid://b61t3qt87a7o1" path="res://action_based/enemy.tscn" id="3_bft2q"]
 
 [node name="Main" type="Node2D"]
@@ -20,10 +21,15 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(131082, 131073, 2, 131083, 262145, 2, 131084, 262145, 2, 131085, 262145, 2, 131086, 262145, 2, 131087, 327681, 0, 196623, 131073, 0, 262159, 131073, 0, 327695, 196609, 1, 393231, 327681, 1, 393230, 262145, 2, 393229, 262145, 2, 393228, 262145, 2, 393227, 262145, 2, 393226, 262145, 1, 327690, 196609, 0, 131078, 131073, 2, 131079, 196609, 2, 131080, 327681, 2, 65543, 196609, 1, 7, 196609, 1, -65529, 196609, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(640, 360)
+script = ExtResource("2_75dex")
+speed = 40000.0
 
-[node name="Player" parent="." instance=ExtResource("2_6wbog")]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+
+[node name="FakePlayer" parent="." instance=ExtResource("2_6wbog")]
 position = Vector2(404, 322)
 
 [node name="Enemy" parent="." instance=ExtResource("3_bft2q")]

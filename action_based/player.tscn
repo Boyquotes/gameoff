@@ -1,9 +1,53 @@
-[gd_scene load_steps=15 format=3 uid="uid://cv41obnckni4k"]
+[gd_scene load_steps=15 format=3 uid="uid://dhn3xx4lredw2"]
 
-[ext_resource type="Script" path="res://action_based/player.gd" id="1_tv6lt"]
 [ext_resource type="Texture2D" uid="uid://i62t76tng572" path="res://assets/Robot Warfare Asset Pack 22-11-24/Soldiers/SquadLeader.png" id="2_7ogby"]
 [ext_resource type="Script" path="res://action_based/scripts/vision_cone.gd" id="3_b0wxt"]
 [ext_resource type="Script" path="res://action_based/scripts/player_debug_controls.gd" id="4_uhdju"]
+
+[sub_resource type="GDScript" id="GDScript_a7rib"]
+script/source = "extends CharacterBody2D
+
+@export var speed: float
+
+func _physics_process(delta):
+	# pathfinding movement
+	queue_redraw()
+	if $NavigationAgent2D.is_target_reached():
+		return
+	var next = $NavigationAgent2D.get_next_location()
+	var towards_next = next - global_position
+	_move_towards(towards_next, delta)
+	
+func _move_towards(direction: Vector2, delta: float):
+	if direction.length() > 1:
+		direction = direction.normalized()
+	direction *= speed * delta
+	
+	if direction.length() > 0:
+		velocity = direction
+		move_and_slide()
+		$Sprite.flip_h = direction.x < 0
+		$Sprite.play(\"walk\")
+	else: 
+		$Sprite.play(\"idle\")
+
+func _draw():
+	# draw full path
+	var points = $NavigationAgent2D.get_nav_path()
+	if len(points) == 0:
+		return
+	var s = to_local(points[0])
+	for i in range(1, len(points)):
+		draw_line(s, to_local(points[i]), Color.RED)
+		s = to_local(points[i])
+		
+	# draw movement to next point
+	var next = to_local($NavigationAgent2D.get_next_location())
+	draw_line(Vector2.ZERO, next, Color.MAGENTA, 3)
+
+func _on_path_changed() -> void:
+	pass
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
 radius = 19.105
@@ -63,10 +107,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="FakePlayer" type="CharacterBody2D"]
 position = Vector2(493, 322)
 collision_mask = 3
-script = ExtResource("1_tv6lt")
+script = SubResource("GDScript_a7rib")
 speed = 20000.0
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]

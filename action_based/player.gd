@@ -4,7 +4,9 @@ var _vision_points: Array[Vector2]
 
 @export var speed: float
 
-var nav_path
+@export var nav_path_tolerance: float
+
+var nav_path = []
 var nav_path_idx = 0
 
 func _physics_process(delta):
@@ -17,7 +19,18 @@ func _physics_process(delta):
 	queue_redraw()
 	
 	# pathfinding movement
-	var next = $NavigationAgent2D.get_next_location()
+	nav_path = $NavigationAgent2D.get_nav_path()
+	if len(nav_path) == 0 or nav_path_idx >= len(nav_path): # TODO refactor extract this condition
+		return
+		
+	var next = nav_path[nav_path_idx]
+	var distance: Vector2 = global_position - next
+	if distance.length() < nav_path_tolerance:
+		nav_path_idx += 1
+		if nav_path_idx >= len(nav_path):
+			print("reached destination")
+			return
+		next = nav_path[nav_path_idx]
 	var towards_next = next - global_position
 	move_towards(towards_next, delta)
 	
@@ -79,7 +92,10 @@ func _draw():
 		s = to_local(points[i])
 		
 	## 
-	var next = to_local($NavigationAgent2D.get_next_location())
+#	var next = to_local($NavigationAgent2D.get_next_location())
+	if len(nav_path) == 0 or nav_path_idx >= len(nav_path):
+		return
+	var next = to_local(nav_path[nav_path_idx])
 	draw_line(Vector2.ZERO, next, Color.MAGENTA, 3)
 
 func _unhandled_input(event: InputEvent):
@@ -89,3 +105,4 @@ func _unhandled_input(event: InputEvent):
 	$NavigationAgent2D.set_target_location(get_global_mouse_position())
 	nav_path = $NavigationAgent2D.get_nav_path()
 	nav_path_idx = 0
+	$NavigationAgent2D.get_next_location()

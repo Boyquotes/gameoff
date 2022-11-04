@@ -21,10 +21,12 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(131082, 131073, 2, 131083, 262145, 2, 131084, 262145, 2, 131085, 262145, 2, 131086, 262145, 2, 131087, 327681, 0, 196623, 131073, 0, 262159, 131073, 0, 327695, 196609, 1, 393231, 327681, 1, 393230, 262145, 2, 393229, 262145, 2, 393228, 262145, 2, 393227, 262145, 2, 393226, 262145, 1, 327690, 196609, 0, 131078, 131073, 2, 131079, 196609, 2, 131080, 327681, 2, 65543, 196609, 1, 7, 196609, 1, -65529, 196609, 0)
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="RigidBody2D" parent="."]
 position = Vector2(640, 360)
+gravity_scale = 0.0
+linear_damp = 10.0
 script = ExtResource("2_75dex")
-speed = 40000.0
+speed = 400000.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

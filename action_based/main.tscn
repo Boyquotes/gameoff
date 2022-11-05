@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://car1g2lwjgjr7"]
+[gd_scene load_steps=6 format=3 uid="uid://car1g2lwjgjr7"]
 
 [ext_resource type="PackedScene" uid="uid://1kjp77t4d8rw" path="res://action_based/test_map.tscn" id="1_dc3i8"]
 [ext_resource type="PackedScene" uid="uid://dhn3xx4lredw2" path="res://action_based/player.tscn" id="2_6wbog"]
 [ext_resource type="Script" path="res://action_based/scripts/player.gd" id="2_75dex"]
 [ext_resource type="PackedScene" uid="uid://b61t3qt87a7o1" path="res://action_based/enemy.tscn" id="3_bft2q"]
+[ext_resource type="PackedScene" uid="uid://cho0l4bah4l4l" path="res://action_based/barrel.tscn" id="3_is40m"]
 
 [node name="Main" type="Node2D"]
 
@@ -15,6 +16,8 @@ gravity_scale = 0.0
 linear_damp = 10.0
 script = ExtResource("2_75dex")
 speed = 400000.0
+object_template = ExtResource("3_is40m")
+collision_layer_mask = 7
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

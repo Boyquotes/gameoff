@@ -124,8 +124,8 @@ animation = &"idle"
 playing = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 10.0
-target_desired_distance = 10.0
+path_desired_distance = 20.0
+target_desired_distance = 20.0
 path_max_distance = 20.0
 
 [node name="VisionCone" type="Node2D" parent="."]

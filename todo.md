@@ -5,7 +5,7 @@ HIGH
 
 MID
 - AI with behavior tree https://godotengine.org/asset-library/asset/837
-- collision mask on vision cone
+- collision mesh on vision cone
 - sprite render on vision cone
 - player health
 - player fun

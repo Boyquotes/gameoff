@@ -19,6 +19,8 @@ animations = [{
 
 [node name="Barrel" type="CharacterBody2D"]
 position = Vector2(493, 322)
+collision_layer = 8
+collision_mask = 15
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cqmyh")

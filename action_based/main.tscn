@@ -17,7 +17,7 @@ linear_damp = 10.0
 script = ExtResource("2_75dex")
 speed = 400000.0
 object_template = ExtResource("3_is40m")
-collision_layer_mask = 7
+collision_layer_mask = 15
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

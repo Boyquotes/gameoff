@@ -4,7 +4,7 @@ extends Node2D
 @export var ray_count = 100
 @export var angle = 2*PI
 @export var max_distance = 500
-@export var collision_layer_mask: int = 0
+@export_flags_2d_physics var collision_layer_mask: int = 0
 
 @export var debug_lines = false
 @export var debug_shape = false

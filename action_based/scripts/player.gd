@@ -31,12 +31,10 @@ func _unhandled_input(event: InputEvent):
 
 	var query = PhysicsRayQueryParameters2D.create(pos, pos + Vector2(1,0), collision_layer_mask)
 	query.hit_from_inside = true
-	var collision = get_world_2d().direct_space_state.intersect_ray(query)
+	var collision = get_world_2d().direct_space_state.intersect_ray(query) # TODO should do a shapecast with a circle for better precision
 
 	if "position" in collision:
-		print("not spawning because colliding")
+		print("not spawning item because colliding")
 		return
-
-	# var ray_position = collision["position"] if "position" in collision else destination
 		
 	_place_item(pos)

@@ -109,7 +109,7 @@ animations = [{
 
 [node name="FakePlayer" type="CharacterBody2D"]
 position = Vector2(493, 322)
-collision_mask = 3
+collision_mask = 15
 script = SubResource("GDScript_a7rib")
 speed = 20000.0
 

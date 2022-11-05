@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxvd30uwjhox2"]
+
+[ext_resource type="Script" path="res://action_based/scripts/machinegun_weapon.gd" id="1_wo2np"]
+[ext_resource type="PackedScene" uid="uid://l0ssgloducgm" path="res://action_based/bullet_spray.tscn" id="2_0od3n"]
+
+[node name="MachineGunWeapon" type="Node"]
+script = ExtResource("1_wo2np")
+shoot_interval_msec = 50.0
+shoot_randomness = 50.0
+bullet_template = ExtResource("2_0od3n")

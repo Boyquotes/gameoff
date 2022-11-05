@@ -15,5 +15,7 @@ func shoot(target: Node):
 		randf_range(-shoot_randomness, shoot_randomness),
 		randf_range(-shoot_randomness, shoot_randomness)
 	) # TODO not uniform
+
 	bullet.global_position = target.global_position + random_dir
 	get_node("../..").add_child(bullet) # TODO rethink node structure
+	bullet.init(get_parent().global_position)

@@ -4,9 +4,12 @@ class_name FakePlayer
 
 @export var speed: float
 
+var _enemies_in_range: Dictionary = {}
 var _target_enemy: Enemy
 
 func _process(delta: float) -> void:
+	_refresh_target()
+
 	if _target_enemy:
 		$MachineGunWeapon.shoot(_target_enemy)
 
@@ -51,17 +54,24 @@ func _on_path_changed() -> void:
 
 
 # basic AI
+func _refresh_target():
+	# TODO choose closest
+	if not _target_enemy and len(_enemies_in_range) > 0:
+		_target_enemy = _enemies_in_range.values()[0]
+
 func _on_visibility_area_body_entered(body: Node2D) -> void:
 	if not body is Enemy:
 		return
 	_acquire_target(body)
 	body.emit_signal("player_entered_target_area", self)
+	_enemies_in_range[body.get_instance_id()] = body
 
 func _on_visibility_area_body_exited(body:Node2D) -> void:
 	if not body is Enemy:
 		return
 	_remove_target(body)
 	body.emit_signal("player_exited_target_area")
+	_enemies_in_range.erase(body.get_instance_id())
 
 func _acquire_target(enemy: Enemy):
 	print("Acquired target %s" % enemy)

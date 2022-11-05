@@ -1,6 +1,14 @@
 extends CharacterBody2D
 
+class_name FakePlayer
+
 @export var speed: float
+
+var _target_enemy: Enemy
+
+func _process(delta: float) -> void:
+	if _target_enemy:
+		$MachineGunWeapon.shoot(_target_enemy)
 
 func _physics_process(delta):
 	# pathfinding movement
@@ -40,3 +48,25 @@ func _draw():
 
 func _on_path_changed() -> void:
 	pass
+
+
+# basic AI
+func _on_visibility_area_body_entered(body: Node2D) -> void:
+	if not body is Enemy:
+		return
+	_acquire_target(body)
+	body.emit_signal("player_entered_target_area", self)
+
+func _on_visibility_area_body_exited(body:Node2D) -> void:
+	if not body is Enemy:
+		return
+	_remove_target(body)
+	body.emit_signal("player_exited_target_area")
+
+func _acquire_target(enemy: Enemy):
+	print("Acquired target %s" % enemy)
+	_target_enemy = enemy
+
+func _remove_target(enemy: Enemy):
+	print("Lost target %s" % enemy)
+	_target_enemy = null

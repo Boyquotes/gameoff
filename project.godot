@@ -8,6 +8,22 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "CharacterBody2D",
+"class": &"Enemy",
+"language": &"GDScript",
+"path": "res://action_based/scripts/enemy.gd"
+}, {
+"base": "CharacterBody2D",
+"class": &"FakePlayer",
+"language": &"GDScript",
+"path": "res://action_based/scripts/fake_player.gd"
+}]
+_global_script_class_icons={
+"Enemy": "",
+"FakePlayer": ""
+}
+
 [application]
 
 config/name="Gameoff"

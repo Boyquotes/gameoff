@@ -9,17 +9,29 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Character",
+"class": &"Barrel",
+"language": &"GDScript",
+"path": "res://action_based/scripts/barrel.gd"
+}, {
 "base": "CharacterBody2D",
+"class": &"Character",
+"language": &"GDScript",
+"path": "res://action_based/scripts/character.gd"
+}, {
+"base": "Character",
 "class": &"Enemy",
 "language": &"GDScript",
 "path": "res://action_based/scripts/enemy.gd"
 }, {
-"base": "CharacterBody2D",
+"base": "Character",
 "class": &"FakePlayer",
 "language": &"GDScript",
 "path": "res://action_based/scripts/fake_player.gd"
 }]
 _global_script_class_icons={
+"Barrel": "",
+"Character": "",
 "Enemy": "",
 "FakePlayer": ""
 }

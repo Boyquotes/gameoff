@@ -1,0 +1,77 @@
+[gd_scene load_steps=16 format=3 uid="uid://b7j4il526tsw4"]
+
+[ext_resource type="Script" path="res://action_based/scripts/bullet_spray.gd" id="1_78vrv"]
+[ext_resource type="Texture2D" uid="uid://tb8qy5w0m643" path="res://assets/Robot Warfare Asset Pack 22-11-24/Effects/big-explosion.png" id="2_y3cs2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
+radius = 87.1436
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj7hc"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6837b"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tax0u"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trucn"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgdh2"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u3n6"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3wvn"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2keia"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3k6ao"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vb8e"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1rq1"]
+atlas = ExtResource("2_y3cs2")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ukdmi"]
+animations = [{
+"frames": [SubResource("AtlasTexture_lj7hc"), SubResource("AtlasTexture_6837b"), SubResource("AtlasTexture_tax0u"), SubResource("AtlasTexture_trucn"), SubResource("AtlasTexture_lgdh2"), SubResource("AtlasTexture_2u3n6"), SubResource("AtlasTexture_f3wvn"), SubResource("AtlasTexture_2keia"), SubResource("AtlasTexture_3k6ao"), SubResource("AtlasTexture_7vb8e"), SubResource("AtlasTexture_m1rq1")],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Explosion" type="Area2D"]
+position = Vector2(493, 322)
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_78vrv")
+damage = 100
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cqmyh")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(8, 8)
+frames = SubResource("SpriteFrames_ukdmi")
+playing = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

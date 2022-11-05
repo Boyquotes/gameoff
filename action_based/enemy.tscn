@@ -73,6 +73,8 @@ playing = true
 [node name="MachineGunWeapon" parent="." instance=ExtResource("3_v64hv")]
 shoot_interval_msec = 200.0
 shoot_randomness = 100.0
+damage = 1
 
 [connection signal="player_entered_target_area" from="." to="." method="_on_player_entered_target_area"]
 [connection signal="player_exited_target_area" from="." to="." method="_on_player_exited_target_area"]
+[connection signal="received_damage" from="." to="." method="_on_received_damage"]

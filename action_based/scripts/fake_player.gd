@@ -1,17 +1,17 @@
-extends CharacterBody2D
+extends Character
 
 class_name FakePlayer
 
 @export var speed: float
 
 var _enemies_in_range: Dictionary = {}
-var _target_enemy: Enemy
+var _current_target: Node2D
 
 func _process(delta: float) -> void:
 	_refresh_target()
 
-	if _target_enemy:
-		$MachineGunWeapon.shoot(_target_enemy)
+	if _current_target:
+		$MachineGunWeapon.shoot(_current_target)
 
 func _physics_process(delta):
 	# pathfinding movement
@@ -56,27 +56,30 @@ func _on_path_changed() -> void:
 # basic AI
 func _refresh_target():
 	# TODO choose closest
-	if not _target_enemy and len(_enemies_in_range) > 0:
-		_target_enemy = _enemies_in_range.values()[0]
+	if not _current_target and len(_enemies_in_range) > 0:
+		_current_target = _enemies_in_range.values()[0]
 
 func _on_visibility_area_body_entered(body: Node2D) -> void:
-	if not body is Enemy:
+	if not _is_targetable(body):
 		return
 	_acquire_target(body)
 	body.emit_signal("player_entered_target_area", self)
 	_enemies_in_range[body.get_instance_id()] = body
 
-func _on_visibility_area_body_exited(body:Node2D) -> void:
-	if not body is Enemy:
+func _on_visibility_area_body_exited(body: Node2D) -> void:
+	if not _is_targetable(body):
 		return
 	_remove_target(body)
 	body.emit_signal("player_exited_target_area")
 	_enemies_in_range.erase(body.get_instance_id())
 
-func _acquire_target(enemy: Enemy):
-	print("Acquired target %s" % enemy)
-	_target_enemy = enemy
+func _is_targetable(body: Node2D):
+	return body is Enemy or body is Barrel
 
-func _remove_target(enemy: Enemy):
+func _acquire_target(enemy: Character):
+	print("Acquired target %s" % enemy)
+	_current_target = enemy
+
+func _remove_target(enemy: Character):
 	print("Lost target %s" % enemy)
-	_target_enemy = null
+	_current_target = null

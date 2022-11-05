@@ -3,6 +3,7 @@ extends Node
 @export var shoot_interval_msec: float
 @export var shoot_randomness: float
 @export var bullet_template: PackedScene
+@export var damage: int
 
 var _last_shot_time = 0
 
@@ -18,4 +19,4 @@ func shoot(target: Node):
 
 	bullet.global_position = target.global_position + random_dir
 	get_node("../..").add_child(bullet) # TODO rethink node structure
-	bullet.init(get_parent().global_position)
+	bullet.init(get_parent().global_position, damage)

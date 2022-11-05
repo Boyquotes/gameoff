@@ -1,5 +1,4 @@
 HIGH
-- project structure
 - AI with behavior tree https://godotengine.org/asset-library/asset/837
 - collision mesh on vision cone
 

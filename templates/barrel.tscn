@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cho0l4bah4l4l"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Texture2D" uid="uid://wkqsbisrrplb" path="res://assets/Robot Warfare Asset Pack 22-11-24/Obstacles and Objects/obstacles-and-objects.png" id="1_j10su"]
-[ext_resource type="Script" path="res://action_based/scripts/barrel.gd" id="1_l8tln"]
-[ext_resource type="PackedScene" uid="uid://b7j4il526tsw4" path="res://action_based/explosion.tscn" id="2_t4r0r"]
+[ext_resource type="Script" path="res://scripts/barrel.gd" id="1_l8tln"]
+[ext_resource type="PackedScene" path="res://templates/explosion.tscn" id="2_t4r0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
 radius = 32.0156

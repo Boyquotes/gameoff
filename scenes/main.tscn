@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://car1g2lwjgjr7"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="PackedScene" uid="uid://1kjp77t4d8rw" path="res://action_based/test_map.tscn" id="1_dc3i8"]
-[ext_resource type="PackedScene" uid="uid://b46pra7a45gif" path="res://action_based/player.tscn" id="2_6wbog"]
-[ext_resource type="Script" path="res://action_based/scripts/player.gd" id="2_75dex"]
-[ext_resource type="PackedScene" uid="uid://b61t3qt87a7o1" path="res://action_based/enemy.tscn" id="3_bft2q"]
-[ext_resource type="PackedScene" uid="uid://cho0l4bah4l4l" path="res://action_based/barrel.tscn" id="3_is40m"]
+[ext_resource type="PackedScene" uid="uid://bpwf5w7sf8x0q" path="res://scenes/test_map.tscn" id="1_dc3i8"]
+[ext_resource type="PackedScene" path="res://templates/player.tscn" id="2_6wbog"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_75dex"]
+[ext_resource type="PackedScene" path="res://templates/enemy.tscn" id="3_bft2q"]
+[ext_resource type="PackedScene" path="res://templates/barrel.tscn" id="3_is40m"]
 
 [node name="Main" type="Node2D"]
 

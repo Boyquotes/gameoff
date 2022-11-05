@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://b46pra7a45gif"]
+[gd_scene load_steps=17 format=3]
 
-[ext_resource type="Script" path="res://action_based/scripts/fake_player.gd" id="1_n377r"]
+[ext_resource type="Script" path="res://scripts/fake_player.gd" id="1_n377r"]
 [ext_resource type="Texture2D" uid="uid://i62t76tng572" path="res://assets/Robot Warfare Asset Pack 22-11-24/Soldiers/SquadLeader.png" id="2_7ogby"]
-[ext_resource type="Script" path="res://action_based/scripts/vision_cone.gd" id="3_b0wxt"]
-[ext_resource type="Script" path="res://action_based/scripts/player_debug_controls.gd" id="4_uhdju"]
-[ext_resource type="PackedScene" uid="uid://bxvd30uwjhox2" path="res://action_based/machine_gun_weapon.tscn" id="5_ly6y4"]
+[ext_resource type="Script" path="res://scripts/vision_cone.gd" id="3_b0wxt"]
+[ext_resource type="Script" path="res://scripts/player_debug_controls.gd" id="4_uhdju"]
+[ext_resource type="PackedScene" path="res://templates/machine_gun_weapon.tscn" id="5_ly6y4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
 radius = 13.0

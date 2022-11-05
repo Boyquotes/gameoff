@@ -12,22 +12,22 @@ _global_script_classes=[{
 "base": "Character",
 "class": &"Barrel",
 "language": &"GDScript",
-"path": "res://action_based/scripts/barrel.gd"
+"path": "res://scripts/barrel.gd"
 }, {
 "base": "CharacterBody2D",
 "class": &"Character",
 "language": &"GDScript",
-"path": "res://action_based/scripts/character.gd"
+"path": "res://scripts/character.gd"
 }, {
 "base": "Character",
 "class": &"Enemy",
 "language": &"GDScript",
-"path": "res://action_based/scripts/enemy.gd"
+"path": "res://scripts/enemy.gd"
 }, {
 "base": "Character",
 "class": &"FakePlayer",
 "language": &"GDScript",
-"path": "res://action_based/scripts/fake_player.gd"
+"path": "res://scripts/fake_player.gd"
 }]
 _global_script_class_icons={
 "Barrel": "",
@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Gameoff"
-run/main_scene="res://action_based/main.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 run/max_fps=60
 config/icon="res://icon.svg"

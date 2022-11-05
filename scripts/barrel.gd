@@ -6,7 +6,6 @@ class_name Barrel
 
 func _die():
 	emit_signal("has_died")
-	print("%s killed" % self)
 	queue_free()
 	var explosion = explosion_template.instantiate()
 	explosion.global_position = global_position

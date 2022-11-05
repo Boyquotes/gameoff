@@ -50,7 +50,7 @@ func _on_path_changed() -> void:
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
-radius = 19.105
+radius = 13.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x2clp"]
 atlas = ExtResource("2_7ogby")
@@ -126,6 +126,7 @@ playing = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 10.0
 target_desired_distance = 10.0
+path_max_distance = 20.0
 
 [node name="VisionCone" type="Node2D" parent="."]
 script = ExtResource("3_b0wxt")

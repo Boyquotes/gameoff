@@ -1,7 +1,7 @@
 extends ConditionLeaf
 
 
-func tick(actor: FakePlayer, blackboard: Blackboard):
+func tick(actor: Character, blackboard: Blackboard):
 	if actor.has_enemies_in_range():
 		return SUCCESS
 		

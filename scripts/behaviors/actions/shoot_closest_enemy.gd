@@ -1,7 +1,7 @@
 extends ActionLeaf
 
 
-func tick(actor: FakePlayer, blackboard: Blackboard):
+func tick(actor: Character, blackboard: Blackboard):
 	actor.stop_movement()
 	actor.shoot()
 	if actor.has_enemies_in_range():

@@ -5,7 +5,7 @@ extends ActionLeaf
 var _has_started = false
 var _start_time = -1
 
-func tick(actor: FakePlayer, blackboard: Blackboard):
+func tick(actor: Character, blackboard: Blackboard):
 	if not _has_started:
 		_has_started = true
 		_start_time = Time.get_ticks_msec()

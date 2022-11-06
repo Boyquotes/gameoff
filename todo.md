@@ -1,9 +1,11 @@
 HIGH
+- fire animations
+- move enemy to behavior tree
+- player can select from multiple objects to place
 - collision mesh on vision cone
 
 MID
 - sprite render on vision cone
-- player can select from multiple objects to place
 - character health visible
 - player fun
 

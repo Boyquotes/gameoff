@@ -6,6 +6,9 @@ signal player_entered_target_area
 signal player_exited_target_area
 
 
+func _ready() -> void:
+	change_target_destination(global_position)
+
 func _process(delta: float) -> void:
 	_refresh_target()
 
@@ -22,3 +25,19 @@ func _on_player_entered_target_area(player: Node2D) -> void:
 func _on_player_exited_target_area(player: Node2D) -> void:
 	_remove_target(player)
 	_enemies_in_range.erase(player.get_instance_id())
+
+
+func _on_visibility_area_body_entered(body: Node2D) -> void:
+	if body is Enemy:
+		print("friendly added to list %s" % body)
+		_friendlies_in_range[body.get_instance_id()] = body
+		body.connect("received_damage", _on_friendly_received_damage)
+
+func _on_friendly_received_damage(damage: int, receiver: Character, origin: Character):
+	# if has_reached_target():
+	change_target_destination(origin.global_position)
+	resume_movement()
+
+
+func _on_visibility_area_body_exited(body: Node2D) -> void:
+	_friendlies_in_range.erase(body.get_instance_id())

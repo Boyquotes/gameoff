@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Character
 
-signal received_damage(damage: int)
+signal received_damage(damage: int, receiver: Character, origin: Character)
 signal has_died
 signal path_changed
 
@@ -11,12 +11,14 @@ signal path_changed
 @export var speed: float
 
 @onready var _health_current = health_start
-var _current_target: Node2D
 var _enemies_in_range: Dictionary = {}
+var _friendlies_in_range: Dictionary = {}#
+
+var _current_target: Node2D
 var _moving_towards_target = false
 
 
-func _on_received_damage(damage: int) -> void:
+func _on_received_damage(damage: int, _receiver: Character, origin: Character) -> void:
 	_health_current -= damage
 	if _health_current <= 0:
 		_die()
@@ -64,8 +66,8 @@ func _remove_target(enemy: Character):
 
 # NAVIGATION
 func change_target_destination(new_target: Vector2):
-	get_node("NavigationAgent2D").set_target_location(new_target)
-	get_node("NavigationAgent2D").get_next_location()
+	$NavigationAgent2D.set_target_location(new_target)
+	$NavigationAgent2D.get_next_location()
 	emit_signal("path_changed")
 
 func resume_movement():
@@ -75,6 +77,7 @@ func stop_movement():
 	_moving_towards_target = false
 
 func has_reached_target() -> bool:
+	# print($NavigationAgent2D.is_navigation_finished())
 	return $NavigationAgent2D.is_target_reached()
 
 func _navigate_towards_target(delta):

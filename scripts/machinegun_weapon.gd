@@ -22,6 +22,6 @@ func shoot(target: Node):
 
 	bullet.global_position = target.global_position + random_dir
 	get_node("../..").add_child(bullet) # TODO rethink node structure
-	bullet.init(get_parent().global_position, damage)
+	bullet.init(get_parent().global_position, damage, $"..")
 
 	emit_signal("shot_fired")

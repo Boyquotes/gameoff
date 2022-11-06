@@ -80,7 +80,6 @@ radius = 330.097
 position = Vector2(493, 322)
 collision_mask = 15
 script = ExtResource("1_n377r")
-ai_debug_visible = true
 speed = 15000.0
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]

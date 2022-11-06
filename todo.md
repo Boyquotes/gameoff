@@ -1,6 +1,4 @@
 HIGH
-- fire animations
-- move enemy to behavior tree
 - player can select from multiple objects to place
 - collision mesh on vision cone
 
@@ -8,16 +6,19 @@ MID
 - sprite render on vision cone
 - character health visible
 - player fun
+- bug: enemies shuffle move while firing
+- fire animations (missing muzzle flash)
 
 LOW
+- fire priority: should shoot barrels first
 - export vision cone as asset
-- reimplement behaviour trees? (for fun mostly)
 - shots randomness and direct vision
 - different types of weapons
 - moving around corners
 - game over condition
 - menu
 - audio
+- reimplement behaviour trees? (for fun mostly)
 
 improvements to beehave:
 - node descriptions

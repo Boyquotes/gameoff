@@ -2,7 +2,7 @@ extends Area2D
 
 @export var damage: int = 0
 
-var _owner: Node2D
+var _owner: Node2D = self
 
 func init(origin: Vector2, damage: int, owner: Node2D) -> void:
 	$Sprite.flip_h = global_position.x - origin.x < 0

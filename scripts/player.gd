@@ -3,8 +3,10 @@ extends RigidBody2D
 @export var speed: float
 @export var zoom_speed_multiplier: float
 @export var zoom_time: float = 0.1
-@export var object_template: PackedScene
+@export var item_templates: Array[PackedScene]
 @export_flags_2d_physics var collision_layer_mask: int
+
+var _currently_selected_idx = 0
 
 func _physics_process(delta):
 	# input movement
@@ -20,13 +22,18 @@ func _physics_process(delta):
 		# move_and_slide()
 
 func _unhandled_input(event: InputEvent):
-	if  event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			_try_place_item(get_global_mouse_position())
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			_zoom_camera(1 + zoom_speed_multiplier)
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			_zoom_camera(1 - zoom_speed_multiplier)
+	
+	elif event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode >= KEY_1 and event.keycode <= KEY_9:
+			_currently_selected_idx = event.keycode - KEY_1
+
 
 func _try_place_item(pos: Vector2):
 	var query = PhysicsRayQueryParameters2D.create(pos, pos + Vector2(1,0), collision_layer_mask)
@@ -39,8 +46,11 @@ func _try_place_item(pos: Vector2):
 		
 	_place_item(pos)
 
+func _get_selected_item() -> PackedScene:
+	return item_templates[_currently_selected_idx]
+
 func _place_item(spawn_pos: Vector2):
-	var obj = object_template.instantiate()
+	var obj = _get_selected_item().instantiate()
 	obj.global_position = spawn_pos
 	$"%ObjectsRoot".add_child(obj)
 

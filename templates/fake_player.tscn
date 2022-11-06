@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dj35whggdadiy"]
+[gd_scene load_steps=26 format=3 uid="uid://dnwglvkmwhcbe"]
 
 [ext_resource type="Script" path="res://scripts/fake_player.gd" id="1_n377r"]
 [ext_resource type="Texture2D" uid="uid://i62t76tng572" path="res://assets/Robot Warfare Asset Pack 22-11-24/Soldiers/SquadLeader.png" id="2_7ogby"]
@@ -11,7 +11,9 @@
 [ext_resource type="Script" path="res://scripts/behaviors/actions/is_enemy_in_sight.gd" id="9_iqt2y"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/shoot_closest_enemy.gd" id="10_nx26x"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/wait_seconds.gd" id="11_55nro"]
-[ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_level_end.gd" id="11_g4agn"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_target.gd" id="12_2wlmu"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="12_ncvhy"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_node.gd" id="13_35gbs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
 radius = 13.0
@@ -141,9 +143,25 @@ script = ExtResource("10_nx26x")
 script = ExtResource("11_55nro")
 wait_in_seconds = 0.5
 
+[node name="CanMoveToTarget" type="Node" parent="BehaviourAI/Either"]
+script = ExtResource("12_ncvhy")
+
+[node name="MoveToTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget"]
+script = ExtResource("8_hyn44")
+
+[node name="MoveTowardsTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget/MoveToTarget"]
+unique_name_in_owner = true
+script = ExtResource("12_2wlmu")
+distance_threshold = 20
+destination = NodePath("")
+
+[node name="WaitSeconds" type="Node" parent="BehaviourAI/Either/CanMoveToTarget/MoveToTarget"]
+script = ExtResource("11_55nro")
+wait_in_seconds = 1.0
+
 [node name="MoveTowardsLevelEnd" type="Node" parent="BehaviourAI/Either"]
 unique_name_in_owner = true
-script = ExtResource("11_g4agn")
+script = ExtResource("13_35gbs")
 distance_threshold = 20
 
 [connection signal="body_entered" from="VisibilityArea" to="." method="_on_visibility_area_body_entered"]

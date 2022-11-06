@@ -27,13 +27,18 @@ func change_target_destination(new_target: Vector2):
 	get_node("NavigationAgent2D").set_target_location(new_target)
 	get_node("NavigationAgent2D").get_next_location()
 	emit_signal("path_changed")
+
+func resume_movement():
 	_moving_towards_target = true
 
 func stop_movement():
 	_moving_towards_target = false
 
+func has_reached_target() -> bool:
+	return $NavigationAgent2D.is_target_reached()
+
 func _navigate_towards_target(delta):
-	if $NavigationAgent2D.is_target_reached():
+	if has_reached_target():
 		return
 	var next = $NavigationAgent2D.get_next_location()
 	var towards_next = next - global_position

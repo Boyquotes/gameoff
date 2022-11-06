@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/enemy.tscn" id="3_bft2q"]
 [ext_resource type="Script" path="res://scripts/level_exit.gd" id="3_w3d6o"]
 [ext_resource type="PackedScene" uid="uid://bdaohy4o37tsb" path="res://templates/actual_player.tscn" id="4_wckix"]
-[ext_resource type="PackedScene" uid="uid://dj35whggdadiy" path="res://templates/fake_player.tscn" id="7_a0hvl"]
+[ext_resource type="PackedScene" uid="uid://dnwglvkmwhcbe" path="res://templates/fake_player.tscn" id="7_a0hvl"]
 
 [node name="Main" type="Node2D"]
 

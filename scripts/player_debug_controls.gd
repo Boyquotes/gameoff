@@ -1,8 +1,5 @@
 extends Node2D
 
-signal path_changed
-
-
 func _physics_process(delta):
 	# input movement
 	var input_velocity = Input.get_vector("debug_move_left", "debug_move_right", "debug_move_up", "debug_move_down")
@@ -12,6 +9,4 @@ func _unhandled_input(event: InputEvent):
 	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed):
 		return
 		
-	get_node("../NavigationAgent2D").set_target_location(get_global_mouse_position())
-	get_node("../NavigationAgent2D").get_next_location()
-	emit_signal("path_changed")
+	get_node("..").change_target_destination(get_global_mouse_position())

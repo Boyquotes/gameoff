@@ -2,7 +2,11 @@ extends Character
 
 class_name FakePlayer
 
+signal path_changed
+
 @export var speed: float
+
+var _moving_towards_target = false
 
 var _enemies_in_range: Dictionary = {}
 var _current_target: Node2D
@@ -10,12 +14,26 @@ var _current_target: Node2D
 func _process(delta: float) -> void:
 	_refresh_target()
 
-	if _current_target:
-		$MachineGunWeapon.shoot(_current_target)
+func set_level_exit(target):
+	print(target)
+	$"%MoveTowardsLevelEnd".destination = target.get_path()
 
 func _physics_process(delta):
 	# pathfinding movement
 	queue_redraw()
+	if _moving_towards_target:
+		_navigate_towards_target(delta)
+
+func change_target_destination(new_target: Vector2):
+	get_node("NavigationAgent2D").set_target_location(new_target)
+	get_node("NavigationAgent2D").get_next_location()
+	emit_signal("path_changed")
+	_moving_towards_target = true
+
+func stop_movement():
+	_moving_towards_target = false
+
+func _navigate_towards_target(delta):
 	if $NavigationAgent2D.is_target_reached():
 		return
 	var next = $NavigationAgent2D.get_next_location()
@@ -49,11 +67,10 @@ func _draw():
 	var next = to_local($NavigationAgent2D.get_next_location())
 	draw_line(Vector2.ZERO, next, Color.MAGENTA, 3)
 
-func _on_path_changed() -> void:
-	pass
+func shoot():
+	if _current_target:
+		$MachineGunWeapon.shoot(_current_target)
 
-
-# basic AI
 func _refresh_target():
 	# TODO choose closest
 	if not _current_target and len(_enemies_in_range) > 0:

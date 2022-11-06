@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=14 format=3 uid="uid://ck0o1johp1beh"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_t8n6g"]
 [ext_resource type="Texture2D" uid="uid://di0w12wutrt08" path="res://assets/Robot Warfare Asset Pack 22-11-24/Robots/Spider.png" id="3_4xmfh"]

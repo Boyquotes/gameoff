@@ -20,7 +20,7 @@ func _physics_process(delta):
 func _place_item(spawn_pos: Vector2):
 	var obj = object_template.instantiate()
 	obj.global_position = spawn_pos
-	get_tree().root.get_child(0).add_child(obj)
+	$"%ObjectsRoot".add_child(obj)
 
 
 func _unhandled_input(event: InputEvent):

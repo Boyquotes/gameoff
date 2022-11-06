@@ -1,14 +1,22 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=8 format=3 uid="uid://cp3ivcp73puoc"]
 
 [ext_resource type="PackedScene" uid="uid://bpwf5w7sf8x0q" path="res://scenes/test_map.tscn" id="1_dc3i8"]
-[ext_resource type="PackedScene" path="res://templates/player.tscn" id="2_6wbog"]
+[ext_resource type="PackedScene" uid="uid://dj35whggdadiy" path="res://templates/player.tscn" id="2_6wbog"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_75dex"]
-[ext_resource type="PackedScene" path="res://templates/enemy.tscn" id="3_bft2q"]
+[ext_resource type="Texture2D" uid="uid://b08ppcxyhq527" path="res://icon.svg" id="2_kd63r"]
+[ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/enemy.tscn" id="3_bft2q"]
 [ext_resource type="PackedScene" path="res://templates/barrel.tscn" id="3_is40m"]
+[ext_resource type="Script" path="res://scripts/level_exit.gd" id="3_w3d6o"]
 
 [node name="Main" type="Node2D"]
 
 [node name="TileMap" parent="." instance=ExtResource("1_dc3i8")]
+
+[node name="LevelExit" type="Sprite2D" parent="."]
+position = Vector2(1323, 688)
+scale = Vector2(0.511719, 0.511719)
+texture = ExtResource("2_kd63r")
+script = ExtResource("3_w3d6o")
 
 [node name="Player" type="RigidBody2D" parent="."]
 position = Vector2(640, 360)
@@ -22,14 +30,18 @@ collision_layer_mask = 15
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 
-[node name="FakePlayer" parent="." instance=ExtResource("2_6wbog")]
-position = Vector2(404, 322)
+[node name="ObjectsRoot" type="Node2D" parent="."]
+unique_name_in_owner = true
 
-[node name="Enemy" parent="." instance=ExtResource("3_bft2q")]
+[node name="FakePlayer" parent="ObjectsRoot" instance=ExtResource("2_6wbog")]
+unique_name_in_owner = true
+position = Vector2(150, 128)
+
+[node name="Enemy" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
 position = Vector2(860, 299)
 
-[node name="Enemy2" parent="." instance=ExtResource("3_bft2q")]
-position = Vector2(507, 615)
+[node name="Enemy2" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
+position = Vector2(604, 665)
 
-[node name="Enemy3" parent="." instance=ExtResource("3_bft2q")]
+[node name="Enemy3" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
 position = Vector2(871, 519)

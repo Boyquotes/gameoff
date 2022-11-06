@@ -1,10 +1,16 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=23 format=3 uid="uid://dj35whggdadiy"]
 
 [ext_resource type="Script" path="res://scripts/fake_player.gd" id="1_n377r"]
 [ext_resource type="Texture2D" uid="uid://i62t76tng572" path="res://assets/Robot Warfare Asset Pack 22-11-24/Soldiers/SquadLeader.png" id="2_7ogby"]
 [ext_resource type="Script" path="res://scripts/vision_cone.gd" id="3_b0wxt"]
 [ext_resource type="Script" path="res://scripts/player_debug_controls.gd" id="4_uhdju"]
 [ext_resource type="PackedScene" path="res://templates/machine_gun_weapon.tscn" id="5_ly6y4"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_root.gd" id="6_duisw"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="7_8fqbr"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="7_i0p8o"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/is_enemy_in_sight.gd" id="9_iqt2y"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/shoot_closest_enemy.gd" id="10_nx26x"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_level_end.gd" id="11_g4agn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
 radius = 13.0
@@ -72,6 +78,7 @@ position = Vector2(493, 322)
 collision_mask = 15
 script = ExtResource("1_n377r")
 speed = 20000.0
+ai_debug_visible = true
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 16)
@@ -94,6 +101,7 @@ collision_layer_mask = 2
 debug_shape = true
 
 [node name="PlayerDebugControls" type="Node2D" parent="."]
+position = Vector2(-5, 2)
 script = ExtResource("4_uhdju")
 
 [node name="VisibilityArea" type="Area2D" parent="."]
@@ -105,6 +113,26 @@ shape = SubResource("CircleShape2D_vyxm8")
 [node name="MachineGunWeapon" parent="." instance=ExtResource("5_ly6y4")]
 damage = 10
 
-[connection signal="path_changed" from="PlayerDebugControls" to="." method="_on_path_changed"]
+[node name="BehaviourAI" type="Node" parent="."]
+script = ExtResource("6_duisw")
+actor_node_path = NodePath("..")
+
+[node name="Either" type="Node" parent="BehaviourAI"]
+script = ExtResource("7_i0p8o")
+
+[node name="TargetEnemeis" type="Node" parent="BehaviourAI/Either"]
+script = ExtResource("7_8fqbr")
+
+[node name="IsEnemyInSight" type="Node" parent="BehaviourAI/Either/TargetEnemeis"]
+script = ExtResource("9_iqt2y")
+
+[node name="ShootClosestEnemy" type="Node" parent="BehaviourAI/Either/TargetEnemeis"]
+script = ExtResource("10_nx26x")
+
+[node name="MoveTowardsLevelEnd" type="Node" parent="BehaviourAI/Either"]
+unique_name_in_owner = true
+script = ExtResource("11_g4agn")
+distance_threshold = 20
+
 [connection signal="body_entered" from="VisibilityArea" to="." method="_on_visibility_area_body_entered"]
 [connection signal="body_exited" from="VisibilityArea" to="." method="_on_visibility_area_body_exited"]

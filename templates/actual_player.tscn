@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdaohy4o37tsb"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_0x4us"]
+[ext_resource type="PackedScene" path="res://templates/barrel.tscn" id="2_3gak1"]
+
+[node name="Player" type="RigidBody2D"]
+position = Vector2(640, 360)
+gravity_scale = 0.0
+linear_damp = 10.0
+script = ExtResource("1_0x4us")
+speed = 400000.0
+zoom_speed_multiplier = 0.3
+object_template = ExtResource("2_3gak1")
+collision_layer_mask = 15
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true

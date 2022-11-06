@@ -26,7 +26,6 @@ unique_name_in_owner = true
 [node name="FakePlayer" parent="ObjectsRoot" instance=ExtResource("7_a0hvl")]
 unique_name_in_owner = true
 position = Vector2(143, 137)
-ai_debug_visible = false
 
 [node name="Enemy" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
 position = Vector2(860, 299)

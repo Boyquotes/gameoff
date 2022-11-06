@@ -15,7 +15,6 @@ func _process(delta: float) -> void:
 	_refresh_target()
 
 func set_level_exit(target):
-	print(target)
 	$"%MoveTowardsLevelEnd".destination = target.get_path()
 
 func _physics_process(delta):
@@ -70,6 +69,9 @@ func _draw():
 func shoot():
 	if _current_target:
 		$MachineGunWeapon.shoot(_current_target)
+
+func has_enemies_in_range():
+	return len(_enemies_in_range) > 0
 
 func _refresh_target():
 	# TODO choose closest

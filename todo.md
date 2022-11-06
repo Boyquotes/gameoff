@@ -23,3 +23,4 @@ improvements to beehave:
 - dive deeper into explanation https://www.gamedeveloper.com/programming/behavior-trees-for-ai-how-they-work
 - compare with UE implementation: https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/ArtificialIntelligence/BehaviorTrees/BehaviorTreesOverview/
   - conditionals as decorators instead of leaf nodes as it improves readability
+- https://github.com/libgdx/gdx-ai/wiki/Behavior-Trees

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Character
 
-signal received_damage(damage: int, receiver: Character, origin: Character)
+signal received_damage(damage: int, receiver: Node2D, origin: Node2D)
 signal has_died
 signal path_changed
 
@@ -18,7 +18,7 @@ var _current_target: Node2D
 var _moving_towards_target = false
 
 
-func _on_received_damage(damage: int, _receiver: Character, origin: Character) -> void:
+func _on_received_damage(damage: int, _receiver: Node2D, origin: Node2D) -> void:
 	_health_current -= damage
 	if _health_current <= 0:
 		_die()

@@ -1,11 +1,13 @@
 HIGH
-- player can select from multiple objects to place
+- ammo
+- health packs
 - collision mesh on vision cone
 
 MID
 - sprite render on vision cone
 - character health visible
 - player fun
+- UI for player selections
 - bug: enemies shuffle move while firing
 - fire animations (missing muzzle flash)
 

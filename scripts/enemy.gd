@@ -32,12 +32,12 @@ func _on_visibility_area_body_entered(body: Node2D) -> void:
 		print("friendly added to list %s" % body)
 		_friendlies_in_range[body.get_instance_id()] = body
 		body.connect("received_damage", _on_friendly_received_damage)
+	# TODO disconnect signal
 
-func _on_friendly_received_damage(damage: int, receiver: Character, origin: Character):
+func _on_friendly_received_damage(damage: int, receiver: Node2D, origin: Node2D):
 	# if has_reached_target():
 	change_target_destination(origin.global_position)
 	resume_movement()
-
 
 func _on_visibility_area_body_exited(body: Node2D) -> void:
 	_friendlies_in_range.erase(body.get_instance_id())

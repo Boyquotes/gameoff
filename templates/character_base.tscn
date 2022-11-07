@@ -1,50 +1,43 @@
-[gd_scene load_steps=23 format=3 uid="uid://ck0o1johp1beh"]
+[gd_scene load_steps=16 format=3 uid="uid://ck0o1johp1beh"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_t8n6g"]
-[ext_resource type="Texture2D" uid="uid://di0w12wutrt08" path="res://assets/Robot Warfare Asset Pack 22-11-24/Robots/Spider.png" id="3_4xmfh"]
-[ext_resource type="PackedScene" path="res://templates/machine_gun_weapon.tscn" id="3_v64hv"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_root.gd" id="4_sdw7x"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="5_6adgh"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="6_idkam"]
-[ext_resource type="Script" path="res://scripts/behaviors/actions/is_enemy_in_sight.gd" id="7_ekh07"]
-[ext_resource type="Script" path="res://scripts/behaviors/actions/wait_seconds.gd" id="8_hawit"]
-[ext_resource type="Script" path="res://scripts/behaviors/actions/shoot_closest_enemy.gd" id="9_vqo85"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="10_v6lp8"]
-[ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_target.gd" id="11_ip5yg"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ofepm"]
+[ext_resource type="Texture2D" uid="uid://di0w12wutrt08" path="res://assets/Robot Warfare Asset Pack 22-11-24/Robots/Spider.png" id="2_sucmj"]
+[ext_resource type="PackedScene" path="res://templates/machine_gun_weapon.tscn" id="3_1ri7l"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_root.gd" id="4_4cykd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
-radius = 32.0156
+radius = 13.1529
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7bfjn"]
-atlas = ExtResource("3_4xmfh")
+atlas = ExtResource("2_sucmj")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dn0gw"]
-atlas = ExtResource("3_4xmfh")
+atlas = ExtResource("2_sucmj")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_om0l4"]
-atlas = ExtResource("3_4xmfh")
+atlas = ExtResource("2_sucmj")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5n7br"]
-atlas = ExtResource("3_4xmfh")
+atlas = ExtResource("2_sucmj")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ng83"]
-atlas = ExtResource("3_4xmfh")
+atlas = ExtResource("2_sucmj")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d4aom"]
-atlas = ExtResource("3_4xmfh")
+atlas = ExtResource("2_sucmj")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kpacd"]
-atlas = ExtResource("3_4xmfh")
+atlas = ExtResource("2_sucmj")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1p1l2"]
-atlas = ExtResource("3_4xmfh")
+atlas = ExtResource("2_sucmj")
 region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pfg58"]
@@ -70,7 +63,7 @@ radius = 330.097
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(493, 322)
-script = ExtResource("1_t8n6g")
+script = ExtResource("1_ofepm")
 ai_debug_visible = true
 speed = 25000.0
 
@@ -88,49 +81,14 @@ path_desired_distance = 20.0
 target_desired_distance = 20.0
 path_max_distance = 30.0
 
-[node name="MachineGunWeapon" parent="." instance=ExtResource("3_v64hv")]
+[node name="MachineGunWeapon" parent="." instance=ExtResource("3_1ri7l")]
 shoot_interval_msec = 200.0
 shoot_randomness = 100.0
 damage = 1
 
 [node name="BehaviourAI" type="Node" parent="."]
-script = ExtResource("4_sdw7x")
+script = ExtResource("4_4cykd")
 actor_node_path = NodePath("..")
-
-[node name="Either" type="Node" parent="BehaviourAI"]
-script = ExtResource("5_6adgh")
-
-[node name="ClearEnemies" type="Node" parent="BehaviourAI/Either"]
-script = ExtResource("6_idkam")
-
-[node name="IsEnemyInSight" type="Node" parent="BehaviourAI/Either/ClearEnemies"]
-script = ExtResource("7_ekh07")
-
-[node name="ShootEnemies" type="Node" parent="BehaviourAI/Either/ClearEnemies"]
-script = ExtResource("6_idkam")
-
-[node name="ReactionWait" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies"]
-script = ExtResource("8_hawit")
-wait_in_seconds = 0.2
-
-[node name="ShootClosestEnemy" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies"]
-script = ExtResource("9_vqo85")
-
-[node name="WaitSeconds" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies"]
-script = ExtResource("8_hawit")
-wait_in_seconds = 0.5
-
-[node name="CanMoveToTarget" type="Node" parent="BehaviourAI/Either"]
-script = ExtResource("10_v6lp8")
-
-[node name="MoveToTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget"]
-script = ExtResource("6_idkam")
-
-[node name="MoveTowardsTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget/MoveToTarget"]
-unique_name_in_owner = true
-script = ExtResource("11_ip5yg")
-distance_threshold = 20
-destination = NodePath("")
 
 [node name="VisibilityArea" type="Area2D" parent="."]
 collision_mask = 9

@@ -1,13 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://ky2yj0p18r2a"]
+[gd_scene load_steps=8 format=3 uid="uid://c551g2a8xafeh"]
 
 [ext_resource type="PackedScene" uid="uid://bpwf5w7sf8x0q" path="res://scenes/test_map.tscn" id="1_dc3i8"]
 [ext_resource type="Texture2D" uid="uid://djcpgwtrf8dhy" path="res://assets/rbetta.png" id="2_t4mw0"]
-[ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/enemy.tscn" id="3_bft2q"]
 [ext_resource type="Script" path="res://scripts/level_exit.gd" id="3_w3d6o"]
-[ext_resource type="PackedScene" uid="uid://bdaohy4o37tsb" path="res://templates/actual_player.tscn" id="4_wckix"]
+[ext_resource type="PackedScene" path="res://templates/actual_player.tscn" id="4_wckix"]
 [ext_resource type="PackedScene" uid="uid://bqjqblwxlhadp" path="res://scenes/ui.tscn" id="5_ohdqs"]
-[ext_resource type="PackedScene" path="res://templates/barrel.tscn" id="5_w7e0g"]
-[ext_resource type="PackedScene" uid="uid://dnwglvkmwhcbe" path="res://templates/fake_player.tscn" id="7_a0hvl"]
+[ext_resource type="PackedScene" uid="uid://ddkh7hj8etv2l" path="res://templates/fake_player.tscn" id="8_at8g1"]
+[ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="9_vktja"]
 
 [node name="Main" type="Node2D"]
 
@@ -21,63 +20,25 @@ texture = ExtResource("2_t4mw0")
 script = ExtResource("3_w3d6o")
 
 [node name="Player" parent="." instance=ExtResource("4_wckix")]
-item_templates = [{
-"name": "Barrel",
-"template": ExtResource("5_w7e0g")
-}, {
-"name": "Enemy",
-"template": ExtResource("3_bft2q")
-}]
 
 [node name="UI" parent="Player" instance=ExtResource("5_ohdqs")]
 
 [node name="ObjectsRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="FakePlayer" parent="ObjectsRoot" instance=ExtResource("7_a0hvl")]
+[node name="FakePlayer" parent="ObjectsRoot" instance=ExtResource("8_at8g1")]
 unique_name_in_owner = true
-position = Vector2(143, 137)
+position = Vector2(219, 187)
+ai_debug_visible = false
+speed = 15000.0
 
-[node name="Enemy" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(860, 299)
+[node name="Enemy" parent="ObjectsRoot" instance=ExtResource("9_vktja")]
+position = Vector2(857, 274)
 
-[node name="Enemy4" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(1798, 99)
+[node name="Enemy2" parent="ObjectsRoot" instance=ExtResource("9_vktja")]
+position = Vector2(1039, 526)
 
-[node name="Enemy5" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(1760, 572)
-
-[node name="Enemy6" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(1905, 720)
-
-[node name="Enemy7" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(2680, 309)
-
-[node name="Enemy8" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(2706, 459)
-
-[node name="Enemy9" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(3253, 805)
-
-[node name="Enemy10" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(2335, 974)
-
-[node name="Enemy11" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(2362, 1096)
-
-[node name="Enemy12" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(2481, 1179)
-
-[node name="Enemy13" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(2501, 966)
-
-[node name="Enemy14" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(2624, 1128)
-
-[node name="Enemy2" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(604, 665)
-
-[node name="Enemy3" parent="ObjectsRoot" instance=ExtResource("3_bft2q")]
-position = Vector2(871, 519)
+[node name="Enemy3" parent="ObjectsRoot" instance=ExtResource("9_vktja")]
+position = Vector2(593, 632)
 
 [connection signal="changed_item" from="Player" to="Player/UI" method="changed_item"]

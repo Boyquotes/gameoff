@@ -1,170 +1,86 @@
-[gd_scene load_steps=26 format=3 uid="uid://dnwglvkmwhcbe"]
+[gd_scene load_steps=14 format=3 uid="uid://ddkh7hj8etv2l"]
 
-[ext_resource type="Script" path="res://scripts/fake_player.gd" id="1_n377r"]
-[ext_resource type="Texture2D" uid="uid://i62t76tng572" path="res://assets/Robot Warfare Asset Pack 22-11-24/Soldiers/SquadLeader.png" id="2_7ogby"]
-[ext_resource type="Script" path="res://scripts/vision_cone.gd" id="3_b0wxt"]
-[ext_resource type="Script" path="res://scripts/player_debug_controls.gd" id="4_uhdju"]
-[ext_resource type="PackedScene" path="res://templates/machine_gun_weapon.tscn" id="5_ly6y4"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_root.gd" id="6_duisw"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="7_i0p8o"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="8_hyn44"]
-[ext_resource type="Script" path="res://scripts/behaviors/actions/is_enemy_in_sight.gd" id="9_iqt2y"]
-[ext_resource type="Script" path="res://scripts/behaviors/actions/shoot_closest_enemy.gd" id="10_nx26x"]
-[ext_resource type="Script" path="res://scripts/behaviors/actions/wait_seconds.gd" id="11_55nro"]
-[ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_target.gd" id="12_2wlmu"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="12_ncvhy"]
-[ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_node.gd" id="13_35gbs"]
+[ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/character_base.tscn" id="1_o86wx"]
+[ext_resource type="Script" path="res://scripts/fake_player.gd" id="2_bnnhh"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_t6v0d"]
+[ext_resource type="SpriteFrames" uid="uid://xukc4wy64q54" path="res://other/player_sprite_frames.tres" id="2_v0gpv"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="3_do5g3"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/is_enemy_in_sight.gd" id="4_pfc8f"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/wait_seconds.gd" id="5_t5nph"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/shoot_closest_enemy.gd" id="6_ocwf3"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="7_6wlqp"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_target.gd" id="8_fr2y8"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_node.gd" id="9_u8kx3"]
+[ext_resource type="Script" path="res://scripts/vision_cone.gd" id="11_ltmra"]
+[ext_resource type="Script" path="res://scripts/player_debug_controls.gd" id="12_vftbo"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
-radius = 13.0
+[node name="FakePlayer" instance=ExtResource("1_o86wx")]
+script = ExtResource("2_bnnhh")
+speed = null
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x2clp"]
-atlas = ExtResource("2_7ogby")
-region = Rect2(16, 32, 16, 16)
+[node name="CollisionPolygon2D" parent="." index="0"]
+position = Vector2(0, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k5ltk"]
-atlas = ExtResource("2_7ogby")
-region = Rect2(0, 32, 16, 16)
+[node name="Sprite" parent="." index="1"]
+frames = ExtResource("2_v0gpv")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_el14m"]
-atlas = ExtResource("2_7ogby")
-region = Rect2(0, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_amo4f"]
-atlas = ExtResource("2_7ogby")
-region = Rect2(16, 48, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7lgdc"]
-atlas = ExtResource("2_7ogby")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_db80m"]
-atlas = ExtResource("2_7ogby")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2i3po"]
-atlas = ExtResource("2_7ogby")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7sxxe"]
-atlas = ExtResource("2_7ogby")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4yd57"]
-animations = [{
-"frames": [SubResource("AtlasTexture_x2clp"), SubResource("AtlasTexture_k5ltk")],
-"loop": true,
-"name": &"crawl",
-"speed": 5.0
-}, {
-"frames": [SubResource("AtlasTexture_el14m"), SubResource("AtlasTexture_amo4f")],
-"loop": false,
-"name": &"fire",
-"speed": 10.0
-}, {
-"frames": [SubResource("AtlasTexture_7lgdc"), SubResource("AtlasTexture_db80m")],
-"loop": true,
-"name": &"idle",
-"speed": 3.0
-}, {
-"frames": [SubResource("AtlasTexture_2i3po"), SubResource("AtlasTexture_7sxxe")],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vyxm8"]
-radius = 330.097
-
-[node name="FakePlayer" type="CharacterBody2D"]
-position = Vector2(493, 322)
-collision_mask = 15
-script = ExtResource("1_n377r")
-speed = 15000.0
-
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 16)
-shape = SubResource("CircleShape2D_cqmyh")
-
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(4, 4)
-frames = SubResource("SpriteFrames_4yd57")
-animation = &"idle"
-playing = true
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 20.0
-target_desired_distance = 20.0
-path_max_distance = 30.0
-
-[node name="VisionCone" type="Node2D" parent="."]
-script = ExtResource("3_b0wxt")
-collision_layer_mask = 2
-debug_shape = true
-
-[node name="PlayerDebugControls" type="Node2D" parent="."]
-position = Vector2(-5, 2)
-script = ExtResource("4_uhdju")
-
-[node name="VisibilityArea" type="Area2D" parent="."]
-collision_mask = 9
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibilityArea"]
-shape = SubResource("CircleShape2D_vyxm8")
-
-[node name="MachineGunWeapon" parent="." instance=ExtResource("5_ly6y4")]
+[node name="MachineGunWeapon" parent="." index="3"]
+shoot_interval_msec = 50.0
+shoot_randomness = 50.0
 damage = 10
 
-[node name="BehaviourAI" type="Node" parent="."]
-script = ExtResource("6_duisw")
-actor_node_path = NodePath("..")
+[node name="Either" type="Node" parent="BehaviourAI" index="0"]
+script = ExtResource("2_t6v0d")
 
-[node name="Either" type="Node" parent="BehaviourAI"]
-script = ExtResource("7_i0p8o")
+[node name="ClearEnemies" type="Node" parent="BehaviourAI/Either" index="0"]
+script = ExtResource("3_do5g3")
 
-[node name="ClearEnemies" type="Node" parent="BehaviourAI/Either"]
-script = ExtResource("8_hyn44")
+[node name="IsEnemyInSight" type="Node" parent="BehaviourAI/Either/ClearEnemies" index="0"]
+script = ExtResource("4_pfc8f")
 
-[node name="IsEnemyInSight" type="Node" parent="BehaviourAI/Either/ClearEnemies"]
-script = ExtResource("9_iqt2y")
+[node name="ShootEnemies" type="Node" parent="BehaviourAI/Either/ClearEnemies" index="1"]
+script = ExtResource("3_do5g3")
 
-[node name="ShootEnemies" type="Node" parent="BehaviourAI/Either/ClearEnemies"]
-script = ExtResource("8_hyn44")
-
-[node name="ReactionWait" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies"]
-script = ExtResource("11_55nro")
+[node name="ReactionWait" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies" index="0"]
+script = ExtResource("5_t5nph")
 wait_in_seconds = 0.2
 
-[node name="ShootClosestEnemy" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies"]
-script = ExtResource("10_nx26x")
+[node name="ShootClosestEnemy" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies" index="1"]
+script = ExtResource("6_ocwf3")
 
-[node name="WaitSeconds" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies"]
-script = ExtResource("11_55nro")
+[node name="WaitSeconds" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies" index="2"]
+script = ExtResource("5_t5nph")
 wait_in_seconds = 0.5
 
-[node name="CanMoveToTarget" type="Node" parent="BehaviourAI/Either"]
-script = ExtResource("12_ncvhy")
+[node name="CanMoveToTarget" type="Node" parent="BehaviourAI/Either" index="1"]
+script = ExtResource("7_6wlqp")
 
-[node name="MoveToTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget"]
-script = ExtResource("8_hyn44")
+[node name="MoveToTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget" index="0"]
+script = ExtResource("3_do5g3")
 
-[node name="MoveTowardsTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget/MoveToTarget"]
+[node name="MoveTowardsTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget/MoveToTarget" index="0"]
 unique_name_in_owner = true
-script = ExtResource("12_2wlmu")
+script = ExtResource("8_fr2y8")
 distance_threshold = 20
 destination = NodePath("")
 
-[node name="WaitSeconds" type="Node" parent="BehaviourAI/Either/CanMoveToTarget/MoveToTarget"]
-script = ExtResource("11_55nro")
+[node name="WaitSeconds" type="Node" parent="BehaviourAI/Either/CanMoveToTarget/MoveToTarget" index="1"]
+script = ExtResource("5_t5nph")
 wait_in_seconds = 1.0
 
-[node name="MoveTowardsLevelEnd" type="Node" parent="BehaviourAI/Either"]
+[node name="MoveTowardsLevelEnd" type="Node" parent="BehaviourAI/Either" index="2"]
 unique_name_in_owner = true
-script = ExtResource("13_35gbs")
+script = ExtResource("9_u8kx3")
 distance_threshold = 20
 
-[connection signal="received_damage" from="." to="." method="_on_received_damage"]
-[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
-[connection signal="body_entered" from="VisibilityArea" to="." method="_on_visibility_area_body_entered"]
-[connection signal="body_exited" from="VisibilityArea" to="." method="_on_visibility_area_body_exited"]
-[connection signal="shot_fired" from="MachineGunWeapon" to="." method="_on_machine_gun_weapon_shot_fired"]
+[node name="CollisionShape2D" parent="VisibilityArea" index="0"]
+visible = true
+
+[node name="VisionCone" type="Node2D" parent="." index="6"]
+script = ExtResource("11_ltmra")
+collision_layer_mask = 2
+debug_shape = true
+
+[node name="PlayerDebugControls" type="Node2D" parent="." index="7"]
+position = Vector2(-5, 2)
+script = ExtResource("12_vftbo")

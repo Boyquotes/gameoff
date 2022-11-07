@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctrai1vn6u7hd"]
+
+[ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/character_base.tscn" id="1_eou82"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_vjg25"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="3_6oxtv"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/is_enemy_in_sight.gd" id="4_b6vxa"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/wait_seconds.gd" id="5_qli3k"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/shoot_closest_enemy.gd" id="6_qiai6"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="7_qwwxs"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_target.gd" id="8_rxnpg"]
+
+[node name="Enemy" instance=ExtResource("1_eou82")]
+
+[node name="Either" type="Node" parent="BehaviourAI" index="0"]
+script = ExtResource("2_vjg25")
+
+[node name="ClearEnemies" type="Node" parent="BehaviourAI/Either" index="0"]
+script = ExtResource("3_6oxtv")
+
+[node name="IsEnemyInSight" type="Node" parent="BehaviourAI/Either/ClearEnemies" index="0"]
+script = ExtResource("4_b6vxa")
+
+[node name="ShootEnemies" type="Node" parent="BehaviourAI/Either/ClearEnemies" index="1"]
+script = ExtResource("3_6oxtv")
+
+[node name="ReactionWait" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies" index="0"]
+script = ExtResource("5_qli3k")
+wait_in_seconds = 0.2
+
+[node name="ShootClosestEnemy" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies" index="1"]
+script = ExtResource("6_qiai6")
+
+[node name="WaitSeconds" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies" index="2"]
+script = ExtResource("5_qli3k")
+wait_in_seconds = 0.5
+
+[node name="CanMoveToTarget" type="Node" parent="BehaviourAI/Either" index="1"]
+script = ExtResource("7_qwwxs")
+
+[node name="MoveToTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget" index="0"]
+script = ExtResource("3_6oxtv")
+
+[node name="MoveTowardsTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget/MoveToTarget" index="0"]
+unique_name_in_owner = true
+script = ExtResource("8_rxnpg")
+distance_threshold = 20
+destination = NodePath("")

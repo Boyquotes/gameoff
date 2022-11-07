@@ -133,14 +133,14 @@ func _node_to_type(node: Node2D):
 		return "health"
 	if node.is_in_group("barrel"):
 		return "barrel"
-	return node.get_class().to_lower()
+	return null
 
-func _map_type(type_name: String): # TODO rename
+func _map_type(type_name): # TODO rename
 	return type_name
 
 func _on_visibility_area_body_entered(body: Node2D) -> void:
 	var type = _map_type(_node_to_type(body))
-	# print("%s: target entered %s with type %s" % [self, body, type])
+	debug_ai_state("%s: target entered %s with type %s" % [self, body, type])
 	if type == null:
 		return
 	if type == "enemy":
@@ -156,3 +156,9 @@ func _on_visibility_area_body_exited(body: Node2D) -> void:
 	_things_in_range[type].erase(body.get_instance_id())
 	if type == "enemy":
 		_remove_target(body)
+
+func _on_visibility_area_area_exited(area:Area2D) -> void:
+	_on_visibility_area_body_exited(area.get_parent())
+
+func _on_visibility_area_area_entered(area:Area2D) -> void:
+	_on_visibility_area_body_entered(area.get_parent())

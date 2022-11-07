@@ -93,6 +93,7 @@ actor_node_path = NodePath("..")
 
 [node name="VisibilityArea" type="Area2D" parent="."]
 collision_mask = 9
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisibilityArea"]
 visible = false
@@ -100,10 +101,10 @@ shape = SubResource("CircleShape2D_hqoqe")
 
 [node name="HealthBar" parent="." instance=ExtResource("5_2ngo1")]
 
-[connection signal="player_entered_target_area" from="." to="." method="_on_player_entered_target_area"]
-[connection signal="player_exited_target_area" from="." to="." method="_on_player_exited_target_area"]
 [connection signal="received_damage" from="." to="." method="_on_received_damage"]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="shot_fired" from="MachineGunWeapon" to="." method="_on_machine_gun_weapon_shot_fired"]
+[connection signal="area_entered" from="VisibilityArea" to="." method="_on_visibility_area_area_entered"]
+[connection signal="area_exited" from="VisibilityArea" to="." method="_on_visibility_area_area_exited"]
 [connection signal="body_entered" from="VisibilityArea" to="." method="_on_visibility_area_body_entered"]
 [connection signal="body_exited" from="VisibilityArea" to="." method="_on_visibility_area_body_exited"]

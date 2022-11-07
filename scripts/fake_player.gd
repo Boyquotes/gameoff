@@ -44,7 +44,7 @@ func _draw():
 	draw_line(Vector2.ZERO, next, Color.MAGENTA, 3)
 
 
-func _map_type(type_name: String):
+func _map_type(type_name):
 	if type_name == "player":
 		return null
 	if type_name == "enemy":

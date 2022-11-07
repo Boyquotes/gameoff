@@ -26,7 +26,7 @@ func _on_friendly_received_damage(damage: int, receiver: Node2D, origin: Node2D)
 	change_target_destination(origin.global_position)
 	resume_movement()
 
-func _map_type(type_name: String):
+func _map_type(type_name):
 	if type_name == "player":
 		return "enemy"
 	if type_name == "enemy":

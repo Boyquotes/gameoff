@@ -4,7 +4,7 @@ extends ConditionLeaf
 
 
 func tick(actor: Character, blackboard: Blackboard):
-	if actor.get_item_in_range(item_type):
+	if actor.get_item_in_range(item_type) != null:
 		return SUCCESS
 		
 	return FAILURE

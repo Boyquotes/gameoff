@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://ck0o1johp1beh"]
+[gd_scene load_steps=22 format=3 uid="uid://ck0o1johp1beh"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ofepm"]
 [ext_resource type="Texture2D" uid="uid://di0w12wutrt08" path="res://assets/Robot Warfare Asset Pack 22-11-24/Robots/Spider.png" id="2_sucmj"]
 [ext_resource type="PackedScene" path="res://templates/machine_gun_weapon.tscn" id="3_1ri7l"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_root.gd" id="4_4cykd"]
+[ext_resource type="Script" path="res://scripts/healthbar.gd" id="5_155yd"]
+[ext_resource type="Texture2D" uid="uid://c2gv6ppcyava1" path="res://assets/Robot Warfare Asset Pack 22-11-24/UI/overhead-health-bars.png" id="6_wy6id"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
 radius = 13.1529
@@ -61,6 +63,36 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hqoqe"]
 radius = 330.097
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_mchpc"]
+atlas = ExtResource("6_wy6id")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5cs0"]
+atlas = ExtResource("6_wy6id")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iedhc"]
+atlas = ExtResource("6_wy6id")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_33ari"]
+animations = [{
+"frames": [SubResource("AtlasTexture_mchpc")],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_d5cs0")],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_iedhc")],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
+
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(493, 322)
 script = ExtResource("1_ofepm")
@@ -97,6 +129,26 @@ collision_mask = 9
 visible = false
 shape = SubResource("CircleShape2D_hqoqe")
 
+[node name="HealthBar" type="Node2D" parent="."]
+script = ExtResource("5_155yd")
+
+[node name="Full" type="AnimatedSprite2D" parent="HealthBar"]
+position = Vector2(0, -50)
+scale = Vector2(4, 4)
+frames = SubResource("SpriteFrames_33ari")
+animation = &"green"
+
+[node name="Empty" type="Node2D" parent="HealthBar"]
+position = Vector2(32, -50)
+scale = Vector2(1e-05, 1)
+
+[node name="Empty" type="AnimatedSprite2D" parent="HealthBar/Empty"]
+position = Vector2(-32, 0)
+scale = Vector2(4, 4)
+frames = SubResource("SpriteFrames_33ari")
+animation = &"red"
+
+[connection signal="health_updated" from="." to="HealthBar" method="_on_character_health_updated"]
 [connection signal="player_entered_target_area" from="." to="." method="_on_player_entered_target_area"]
 [connection signal="player_exited_target_area" from="." to="." method="_on_player_exited_target_area"]
 [connection signal="received_damage" from="." to="." method="_on_received_damage"]

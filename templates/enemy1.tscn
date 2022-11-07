@@ -11,6 +11,9 @@
 
 [node name="Enemy" instance=ExtResource("1_eou82")]
 
+[node name="MachineGunWeapon" parent="." index="3"]
+damage = 20
+
 [node name="Either" type="Node" parent="BehaviourAI" index="0"]
 script = ExtResource("2_vjg25")
 
@@ -25,7 +28,7 @@ script = ExtResource("3_6oxtv")
 
 [node name="ReactionWait" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies" index="0"]
 script = ExtResource("5_qli3k")
-wait_in_seconds = 0.2
+wait_in_seconds = 0.1
 
 [node name="ShootClosestEnemy" type="Node" parent="BehaviourAI/Either/ClearEnemies/ShootEnemies" index="1"]
 script = ExtResource("6_qiai6")

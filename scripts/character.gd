@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Character
 
 signal received_damage(damage: int, receiver: Node2D, origin: Node2D)
+signal health_updated(current_health: int, previous_health: int, max_health: int)
 signal has_died
 signal path_changed
 
@@ -20,6 +21,7 @@ var _moving_towards_target = false
 
 func _on_received_damage(damage: int, _receiver: Node2D, origin: Node2D) -> void:
 	_health_current -= damage
+	emit_signal("health_updated", _health_current, _health_current + damage, health_start)
 	print("%s has health %s" % [str(self), str(_health_current)])
 	if _health_current <= 0:
 		_die()

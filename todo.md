@@ -1,4 +1,5 @@
 HIGH
+- bug: barrel can't be killed
 - move towards pickups
 - collision mesh on vision cone
 
@@ -10,6 +11,7 @@ MID
 - bug: enemies shuffle move while firing
 - fire animations (missing muzzle flash)
 - draw own sprites. possible inspiration: brotato, broforce
+- items shouldn't inherit from Character
 
 LOW
 - view player path in with line renderer

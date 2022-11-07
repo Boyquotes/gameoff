@@ -12,7 +12,7 @@ var _last_shot_time = 0
 func shoot(target: Node):
 	if Time.get_ticks_msec() - _last_shot_time < shoot_interval_msec:
 		return
-	if $"..".ammo() <= 0:
+	if $"..".get_ammo() <= 0:
 		return
 
 	_last_shot_time = Time.get_ticks_msec()

@@ -12,10 +12,10 @@ signal path_changed
 @export var speed: float
 
 @onready var _health_current = health_start
-var _enemies_in_range: Dictionary = {}
-var _friendlies_in_range: Dictionary = {}#
 
-var _current_target: Node2D
+var _things_in_range: Dictionary = {}
+
+var _current_target: Node2D # TODO remove or rename
 var _moving_towards_target = false
 
 
@@ -33,8 +33,11 @@ func add_health(health: int):
 func add_ammo(value: int):
 	pass
 
-func ammo():
+func get_ammo():
 	return 1
+
+func get_health():
+	return _health_current
 
 func _die():
 	emit_signal("has_died")
@@ -62,19 +65,17 @@ func _on_machine_gun_weapon_shot_fired() -> void:
 		# print("changing animation to fire")
 		$Sprite.play("fire")
 	pass
-			
-func has_enemies_in_range():
-	return len(_enemies_in_range) > 0
 
 func _refresh_target():
 	# TODO choose closest
-	if not _current_target and len(_enemies_in_range) > 0:
-		_current_target = _enemies_in_range.values()[0]
+	# TODO revisit logic
+	if not _current_target and get_item_in_range("enemy") != null:
+		_current_target = get_item_in_range("enemy")
 
-func _acquire_target(enemy: Character):
+func _acquire_target(enemy: Node2D):  # TODO is this really needed?
 	_current_target = enemy
 
-func _remove_target(enemy: Character):
+func _remove_target(enemy: Node2D):
 	_current_target = null
 
 # NAVIGATION
@@ -114,3 +115,44 @@ func _move_towards(direction: Vector2, delta: float):
 	else: 
 		# $Sprite.play("idle")
 		pass
+
+# TARGETING
+func get_item_in_range(item_type: String):
+	if _things_in_range.has(item_type):
+		var values = _things_in_range.get(item_type).values()
+		return values[0] if len(values) > 0 else null
+
+func _node_to_type(node: Node2D):
+	if node.is_in_group("player"):
+		return "player"
+	if node.is_in_group("enemy"):
+		return "enemy"
+	if node.is_in_group("ammo_pickup"):
+		return "ammo"
+	if node.is_in_group("health_pickup"):
+		return "health"
+	if node.is_in_group("barrel"):
+		return "barrel"
+	return node.get_class().to_lower()
+
+func _map_type(type_name: String): # TODO rename
+	return type_name
+
+func _on_visibility_area_body_entered(body: Node2D) -> void:
+	var type = _map_type(_node_to_type(body))
+	# print("%s: target entered %s with type %s" % [self, body, type])
+	if type == null:
+		return
+	if type == "enemy":
+		_acquire_target(body)
+	if not _things_in_range.has(type):
+		_things_in_range[type] = {}
+	_things_in_range[type][body.get_instance_id()] = body
+
+func _on_visibility_area_body_exited(body: Node2D) -> void:
+	var type = _map_type(_node_to_type(body))
+	if type == null:
+		return
+	_things_in_range[type].erase(body.get_instance_id())
+	if type == "enemy":
+		_remove_target(body)

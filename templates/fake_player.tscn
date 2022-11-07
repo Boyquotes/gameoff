@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddkh7hj8etv2l"]
+[gd_scene load_steps=18 format=3 uid="uid://ddkh7hj8etv2l"]
 
 [ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/character_base.tscn" id="1_o86wx"]
 [ext_resource type="Script" path="res://scripts/fake_player.gd" id="2_bnnhh"]
@@ -10,12 +10,15 @@
 [ext_resource type="Script" path="res://scripts/behaviors/actions/shoot_closest_enemy.gd" id="6_ocwf3"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="7_6wlqp"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_target.gd" id="8_fr2y8"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/property_compare.gd" id="9_4gr7y"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_node.gd" id="9_u8kx3"]
+[ext_resource type="Script" path="res://scripts/behaviors/actions/is_item_nearby.gd" id="10_0tqwc"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="11_4tav7"]
 [ext_resource type="Script" path="res://scripts/vision_cone.gd" id="11_ltmra"]
 [ext_resource type="Script" path="res://scripts/player_debug_controls.gd" id="12_vftbo"]
 [ext_resource type="PackedScene" uid="uid://66l0v7vali28" path="res://templates/health_bar.tscn" id="14_hu7u1"]
 
-[node name="FakePlayer" instance=ExtResource("1_o86wx")]
+[node name="FakePlayer" groups=["character", "player"] instance=ExtResource("1_o86wx")]
 script = ExtResource("2_bnnhh")
 ammo_start = 200
 health_start = 1000
@@ -55,23 +58,38 @@ script = ExtResource("6_ocwf3")
 script = ExtResource("5_t5nph")
 wait_in_seconds = 0.5
 
-[node name="CanMoveToTarget" type="Node" parent="BehaviourAI/Either" index="1"]
-script = ExtResource("7_6wlqp")
-
-[node name="MoveToTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget" index="0"]
+[node name="MoveToHealth" type="Node" parent="BehaviourAI/Either" index="1"]
 script = ExtResource("3_do5g3")
 
-[node name="MoveTowardsTarget" type="Node" parent="BehaviourAI/Either/CanMoveToTarget/MoveToTarget" index="0"]
+[node name="IsHealthLow" type="Node" parent="BehaviourAI/Either/MoveToHealth" index="0"]
+script = ExtResource("9_4gr7y")
+property_getter = "get_health"
+compare_value = 500
+
+[node name="IsHealthNearby" type="Node" parent="BehaviourAI/Either/MoveToHealth" index="1"]
+script = ExtResource("10_0tqwc")
+item_type = "health_pickup"
+
+[node name="GoToHealth" type="Node" parent="BehaviourAI/Either/MoveToHealth" index="2"]
+script = ExtResource("11_4tav7")
+
+[node name="MoveToTargetInverted" type="Node" parent="BehaviourAI/Either" index="2"]
+script = ExtResource("7_6wlqp")
+
+[node name="MoveToTarget" type="Node" parent="BehaviourAI/Either/MoveToTargetInverted" index="0"]
+script = ExtResource("3_do5g3")
+
+[node name="MoveTowardsTarget" type="Node" parent="BehaviourAI/Either/MoveToTargetInverted/MoveToTarget" index="0"]
 unique_name_in_owner = true
 script = ExtResource("8_fr2y8")
 distance_threshold = 20
 destination = NodePath("")
 
-[node name="WaitSeconds" type="Node" parent="BehaviourAI/Either/CanMoveToTarget/MoveToTarget" index="1"]
+[node name="WaitSeconds" type="Node" parent="BehaviourAI/Either/MoveToTargetInverted/MoveToTarget" index="1"]
 script = ExtResource("5_t5nph")
 wait_in_seconds = 1.0
 
-[node name="MoveTowardsLevelEnd" type="Node" parent="BehaviourAI/Either" index="2"]
+[node name="MoveTowardsLevelEnd" type="Node" parent="BehaviourAI/Either" index="3"]
 unique_name_in_owner = true
 script = ExtResource("9_u8kx3")
 distance_threshold = 20

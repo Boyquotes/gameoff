@@ -14,7 +14,7 @@ func add_ammo(value: int):
 	_ammo_current = max(_ammo_current, 0)
 	emit_signal("ammo_updated", _ammo_current, _ammo_current - value, ammo_start)
 
-func ammo():
+func get_ammo():
 	return _ammo_current
 
 func set_level_exit(target):
@@ -44,22 +44,11 @@ func _draw():
 	draw_line(Vector2.ZERO, next, Color.MAGENTA, 3)
 
 
-func _is_targetable(body: Node2D):
-	return body is Enemy or body is Barrel
-
-
-func _on_visibility_area_body_entered(body: Node2D) -> void:
-	if not _is_targetable(body):
-		return
-	_acquire_target(body)
-	if body.has_signal("player_entered_target_area"):
-		body.emit_signal("player_entered_target_area", self)
-	_enemies_in_range[body.get_instance_id()] = body
-
-func _on_visibility_area_body_exited(body: Node2D) -> void:
-	if not _is_targetable(body):
-		return
-	_remove_target(body)
-	if body.has_signal("player_exited_target_area"):
-		body.emit_signal("player_exited_target_area", self)
-	_enemies_in_range.erase(body.get_instance_id())
+func _map_type(type_name: String):
+	if type_name == "player":
+		return null
+	if type_name == "enemy":
+		return "enemy"
+	if type_name == "barrel":
+		return "enemy"
+	return type_name

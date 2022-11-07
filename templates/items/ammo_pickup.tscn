@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_0wkop"]
 radius = 34.0
 
-[node name="AmmoPickup" instance=ExtResource("1_mibb3")]
+[node name="AmmoPickup" groups=["ammo_pickup", "pickup"] instance=ExtResource("1_mibb3")]
 script = ExtResource("2_4bi60")
 ammo_value = 100
 

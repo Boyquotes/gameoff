@@ -2,4 +2,4 @@
 
 [ext_resource type="PackedScene" uid="uid://cca550etooeud" path="res://templates/items/item_base.tscn" id="1_fsl36"]
 
-[node name="Barrel" instance=ExtResource("1_fsl36")]
+[node name="Barrel" groups=["barrel", "item"] instance=ExtResource("1_fsl36")]

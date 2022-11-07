@@ -1,5 +1,4 @@
 HIGH
-- health packs
 - ammo for player
 - ammo pickup
 - collision mesh on vision cone
@@ -8,7 +7,8 @@ MID
 - sprite render on vision cone
 - character health visible
 - player fun
-- UI for player selections
+- UI for powerups
+- economy for powerups (gain resources while in flow state, use it to spend on items)
 - bug: enemies shuffle move while firing
 - fire animations (missing muzzle flash)
 

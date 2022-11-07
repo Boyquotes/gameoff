@@ -1,6 +1,7 @@
 HIGH
-- ammo
 - health packs
+- ammo for player
+- ammo pickup
 - collision mesh on vision cone
 
 MID
@@ -12,14 +13,17 @@ MID
 - fire animations (missing muzzle flash)
 
 LOW
+- view player path in with line renderer
 - fire priority: should shoot barrels first
-- export vision cone as asset
 - shots randomness and direct vision
+- export vision cone as asset
+- level design
+- game over condition
+- audio
+- menu
 - different types of weapons
 - moving around corners
-- game over condition
-- menu
-- audio
+- draw own sprites. possible inspiration: brotato, broforce
 - reimplement behaviour trees? (for fun mostly)
 
 improvements to beehave:

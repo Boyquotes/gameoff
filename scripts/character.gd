@@ -20,6 +20,7 @@ var _moving_towards_target = false
 
 func _on_received_damage(damage: int, _receiver: Node2D, origin: Node2D) -> void:
 	_health_current -= damage
+	print("%s has health %s" % [str(self), str(_health_current)])
 	if _health_current <= 0:
 		_die()
 

@@ -13,6 +13,5 @@ func init(origin: Vector2, damage: int, owner: Node2D) -> void:
 func _on_sprite_animation_finished() -> void:
 	queue_free()
 
-func _on_body_entered(body:Node2D) -> void:
-	# print("hit %s" % body)
+func _on_body_entered(body: Node2D) -> void:
 	body.emit_signal("received_damage", damage, body, _owner)

@@ -6,8 +6,9 @@ class_name Barrel
 
 func _die():
 	emit_signal("has_died")
-	queue_free()
 	var explosion = explosion_template.instantiate()
 	explosion.global_position = global_position
-	get_parent().add_child(explosion)
+	# explosion.set_deferred("global_position", global_position)
+	get_parent().call_deferred("add_child", explosion)
+	queue_free()
 	

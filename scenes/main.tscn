@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://ky2yj0p18r2a"]
 
 [ext_resource type="PackedScene" uid="uid://bpwf5w7sf8x0q" path="res://scenes/test_map.tscn" id="1_dc3i8"]
-[ext_resource type="Texture2D" uid="uid://b08ppcxyhq527" path="res://icon.svg" id="2_kd63r"]
+[ext_resource type="Texture2D" uid="uid://djcpgwtrf8dhy" path="res://assets/rbetta.png" id="2_t4mw0"]
 [ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/enemy.tscn" id="3_bft2q"]
 [ext_resource type="Script" path="res://scripts/level_exit.gd" id="3_w3d6o"]
 [ext_resource type="PackedScene" uid="uid://bdaohy4o37tsb" path="res://templates/actual_player.tscn" id="4_wckix"]
@@ -17,7 +17,7 @@ layer_0/tile_data = PackedInt32Array(65537, 720897, 12, 524289, 720897, 14, 5243
 [node name="LevelExit" type="Sprite2D" parent="."]
 position = Vector2(2271, 1127)
 scale = Vector2(0.511719, 0.511719)
-texture = ExtResource("2_kd63r")
+texture = ExtResource("2_t4mw0")
 script = ExtResource("3_w3d6o")
 
 [node name="Player" parent="." instance=ExtResource("4_wckix")]

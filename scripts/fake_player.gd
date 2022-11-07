@@ -37,12 +37,14 @@ func _on_visibility_area_body_entered(body: Node2D) -> void:
 	if not _is_targetable(body):
 		return
 	_acquire_target(body)
-	body.emit_signal("player_entered_target_area", self)
+	if body.has_signal("player_entered_target_area"):
+		body.emit_signal("player_entered_target_area", self)
 	_enemies_in_range[body.get_instance_id()] = body
 
 func _on_visibility_area_body_exited(body: Node2D) -> void:
 	if not _is_targetable(body):
 		return
 	_remove_target(body)
-	body.emit_signal("player_exited_target_area", self)
+	if body.has_signal("player_exited_target_area"):
+		body.emit_signal("player_exited_target_area", self)
 	_enemies_in_range.erase(body.get_instance_id())

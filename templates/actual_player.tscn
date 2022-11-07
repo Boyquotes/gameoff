@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxt15yjfx4xnd"]
+[gd_scene load_steps=6 format=3 uid="uid://bxt15yjfx4xnd"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0x4us"]
 [ext_resource type="PackedScene" uid="uid://bd17gabfwqslt" path="res://templates/items/barrel.tscn" id="2_cs0le"]
 [ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="3_0gl0l"]
 [ext_resource type="PackedScene" uid="uid://bisqy6xfmcp8j" path="res://templates/items/health_pickup.tscn" id="3_bakv5"]
+[ext_resource type="PackedScene" uid="uid://b6rxlb8kqpstf" path="res://templates/items/ammo_pickup.tscn" id="4_rhlnq"]
 
 [node name="Player" type="RigidBody2D"]
 position = Vector2(640, 360)
@@ -18,6 +19,9 @@ item_templates = [{
 }, {
 "name": "Health",
 "template": ExtResource("3_bakv5")
+}, {
+"name": "Ammo",
+"template": ExtResource("4_rhlnq")
 }, {
 "name": "Enemy",
 "template": ExtResource("3_0gl0l")

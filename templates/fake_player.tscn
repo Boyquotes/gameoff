@@ -17,7 +17,7 @@
 
 [node name="FakePlayer" instance=ExtResource("1_o86wx")]
 script = ExtResource("2_bnnhh")
-ammo_start = 1000
+ammo_start = 200
 health_start = 1000
 speed = null
 

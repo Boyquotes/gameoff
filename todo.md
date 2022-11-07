@@ -1,19 +1,19 @@
 HIGH
-- ammo for player
-- ammo pickup
+- move towards pickups
 - collision mesh on vision cone
 
 MID
 - sprite render on vision cone
-- character health visible
 - player fun
 - UI for powerups
 - economy for powerups (gain resources while in flow state, use it to spend on items)
 - bug: enemies shuffle move while firing
 - fire animations (missing muzzle flash)
+- draw own sprites. possible inspiration: brotato, broforce
 
 LOW
 - view player path in with line renderer
+- add dynamic object avoidance to characters
 - fire priority: should shoot barrels first
 - shots randomness and direct vision
 - export vision cone as asset
@@ -23,7 +23,6 @@ LOW
 - menu
 - different types of weapons
 - moving around corners
-- draw own sprites. possible inspiration: brotato, broforce
 - reimplement behaviour trees? (for fun mostly)
 
 improvements to beehave:

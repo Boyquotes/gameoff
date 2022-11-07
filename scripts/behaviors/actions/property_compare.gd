@@ -5,7 +5,7 @@ extends ConditionLeaf
 
 
 func tick(actor: Character, blackboard: Blackboard):
-	if actor.call(property_getter) < compare_value:
+	if actor.call(property_getter) <= compare_value:
 		return SUCCESS
 		
 	return FAILURE

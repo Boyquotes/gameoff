@@ -1,28 +1,27 @@
 HIGH
 - bug: barrel can't be killed
-- move towards pickups
 - collision mesh on vision cone
 
 MID
-- sprite render on vision cone
+- items shouldn't inherit from Character
 - player fun
 - UI for powerups
 - economy for powerups (gain resources while in flow state, use it to spend on items)
+- sprite render on vision cone
 - bug: enemies shuffle move while firing
-- fire animations (missing muzzle flash)
 - draw own sprites. possible inspiration: brotato, broforce
-- items shouldn't inherit from Character
+- fire animations (missing muzzle flash)
 
 LOW
-- view player path in with line renderer
+- view player path with line renderer
 - add dynamic object avoidance to characters
 - fire priority: should shoot barrels first
-- shots randomness and direct vision
-- export vision cone as asset
+- shots randomness and hitscan vision
 - level design
 - game over condition
 - audio
 - menu
+- export vision cone as asset
 - different types of weapons
 - moving around corners
 - reimplement behaviour trees? (for fun mostly)

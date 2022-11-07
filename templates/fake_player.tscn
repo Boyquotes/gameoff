@@ -37,7 +37,31 @@ damage = 10
 [node name="Either" type="Node" parent="BehaviourAI" index="0"]
 script = ExtResource("2_t6v0d")
 
-[node name="ClearEnemies" type="Node" parent="BehaviourAI/Either" index="0"]
+[node name="MoveToHealthCritical" type="Node" parent="BehaviourAI/Either" index="0"]
+script = ExtResource("3_do5g3")
+
+[node name="IsHealthLow" type="Node" parent="BehaviourAI/Either/MoveToHealthCritical" index="0"]
+script = ExtResource("9_4gr7y")
+property_getter = "get_health"
+compare_value = 250
+
+[node name="GoToHealth" type="Node" parent="BehaviourAI/Either/MoveToHealthCritical" index="1"]
+script = ExtResource("11_i7rhi")
+item_type = "health"
+
+[node name="MoveToAmmoCritical" type="Node" parent="BehaviourAI/Either" index="1"]
+script = ExtResource("3_do5g3")
+
+[node name="IsAmmoLow" type="Node" parent="BehaviourAI/Either/MoveToAmmoCritical" index="0"]
+script = ExtResource("9_4gr7y")
+property_getter = "get_ammo"
+compare_value = 0
+
+[node name="GoToAmmo" type="Node" parent="BehaviourAI/Either/MoveToAmmoCritical" index="1"]
+script = ExtResource("11_i7rhi")
+item_type = "ammo"
+
+[node name="ClearEnemies" type="Node" parent="BehaviourAI/Either" index="2"]
 script = ExtResource("3_do5g3")
 
 [node name="IsEnemyInSight" type="Node" parent="BehaviourAI/Either/ClearEnemies" index="0"]
@@ -57,7 +81,7 @@ script = ExtResource("6_ocwf3")
 script = ExtResource("5_t5nph")
 wait_in_seconds = 0.5
 
-[node name="MoveToHealth" type="Node" parent="BehaviourAI/Either" index="1"]
+[node name="MoveToHealth" type="Node" parent="BehaviourAI/Either" index="3"]
 script = ExtResource("3_do5g3")
 
 [node name="IsHealthLow" type="Node" parent="BehaviourAI/Either/MoveToHealth" index="0"]
@@ -69,7 +93,7 @@ compare_value = 800
 script = ExtResource("11_i7rhi")
 item_type = "health"
 
-[node name="MoveToAmmo" type="Node" parent="BehaviourAI/Either" index="2"]
+[node name="MoveToAmmo" type="Node" parent="BehaviourAI/Either" index="4"]
 script = ExtResource("3_do5g3")
 
 [node name="IsAmmoLow" type="Node" parent="BehaviourAI/Either/MoveToAmmo" index="0"]
@@ -81,7 +105,7 @@ compare_value = 150
 script = ExtResource("11_i7rhi")
 item_type = "ammo"
 
-[node name="MoveToTargetInverted" type="Node" parent="BehaviourAI/Either" index="3"]
+[node name="MoveToTargetInverted" type="Node" parent="BehaviourAI/Either" index="5"]
 script = ExtResource("7_6wlqp")
 
 [node name="MoveToTarget" type="Node" parent="BehaviourAI/Either/MoveToTargetInverted" index="0"]
@@ -97,7 +121,7 @@ destination = NodePath("")
 script = ExtResource("5_t5nph")
 wait_in_seconds = 1.0
 
-[node name="MoveTowardsLevelEnd" type="Node" parent="BehaviourAI/Either" index="4"]
+[node name="MoveTowardsLevelEnd" type="Node" parent="BehaviourAI/Either" index="6"]
 unique_name_in_owner = true
 script = ExtResource("9_u8kx3")
 distance_threshold = 20

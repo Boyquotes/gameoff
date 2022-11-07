@@ -2,6 +2,21 @@ extends Character
 
 class_name FakePlayer
 
+signal ammo_updated(current_ammo: int, previous_ammo: int, max_ammo: int)
+
+@export var ammo_start: int = 100
+
+@onready var _ammo_current = ammo_start
+
+func add_ammo(value: int):
+	_ammo_current += value
+	_ammo_current = min(_ammo_current, ammo_start)
+	_ammo_current = max(_ammo_current, 0)
+	emit_signal("ammo_updated", _ammo_current, _ammo_current - value, ammo_start)
+
+func ammo():
+	return _ammo_current
+
 func set_level_exit(target):
 	$"%MoveTowardsLevelEnd".destination = target.get_path()
 

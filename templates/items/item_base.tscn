@@ -1,19 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cca550etooeud"]
+[gd_scene load_steps=3 format=3 uid="uid://cca550etooeud"]
 
-[ext_resource type="Script" path="res://scripts/items/barrel.gd" id="1_aiy1n"]
-[ext_resource type="PackedScene" path="res://templates/explosion.tscn" id="2_t4r0r"]
 [ext_resource type="SpriteFrames" uid="uid://c1amnlhw7ny8" path="res://other/items_sprite_frames.tres" id="3_kulnb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
 radius = 32.0156
 
-[node name="Barrel" type="CharacterBody2D"]
+[node name="Item" type="CharacterBody2D"]
 position = Vector2(493, 322)
 collision_layer = 8
 collision_mask = 15
-script = ExtResource("1_aiy1n")
-explosion_template = ExtResource("2_t4r0r")
-health_start = 60
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cqmyh")
@@ -23,5 +18,3 @@ scale = Vector2(4, 4)
 frames = ExtResource("3_kulnb")
 animation = &"barrel"
 playing = true
-
-[connection signal="received_damage" from="." to="." method="_on_received_damage"]

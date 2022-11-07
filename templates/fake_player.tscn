@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddkh7hj8etv2l"]
+[gd_scene load_steps=15 format=3 uid="uid://ddkh7hj8etv2l"]
 
 [ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/character_base.tscn" id="1_o86wx"]
 [ext_resource type="Script" path="res://scripts/fake_player.gd" id="2_bnnhh"]
@@ -13,9 +13,11 @@
 [ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_node.gd" id="9_u8kx3"]
 [ext_resource type="Script" path="res://scripts/vision_cone.gd" id="11_ltmra"]
 [ext_resource type="Script" path="res://scripts/player_debug_controls.gd" id="12_vftbo"]
+[ext_resource type="PackedScene" uid="uid://66l0v7vali28" path="res://templates/health_bar.tscn" id="14_hu7u1"]
 
 [node name="FakePlayer" instance=ExtResource("1_o86wx")]
 script = ExtResource("2_bnnhh")
+ammo_start = 1000
 health_start = 1000
 speed = null
 
@@ -85,3 +87,13 @@ debug_shape = true
 [node name="PlayerDebugControls" type="Node2D" parent="." index="7"]
 position = Vector2(-5, 2)
 script = ExtResource("12_vftbo")
+
+[node name="AmmoBar" parent="." index="8" instance=ExtResource("14_hu7u1")]
+position = Vector2(0, 7)
+
+[node name="Full" parent="AmmoBar" index="0"]
+animation = &"yellow"
+
+[connection signal="ammo_updated" from="." to="AmmoBar" method="_on_character_health_updated"]
+
+[editable path="AmmoBar"]

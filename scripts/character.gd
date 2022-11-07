@@ -30,6 +30,12 @@ func add_health(health: int):
 	if _health_current <= 0:
 		_die()
 
+func add_ammo(value: int):
+	pass
+
+func ammo():
+	return 1
+
 func _die():
 	emit_signal("has_died")
 	queue_free()

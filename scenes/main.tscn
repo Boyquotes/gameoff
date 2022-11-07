@@ -29,6 +29,7 @@ unique_name_in_owner = true
 [node name="FakePlayer" parent="ObjectsRoot" instance=ExtResource("8_at8g1")]
 unique_name_in_owner = true
 position = Vector2(219, 187)
+ammo_start = 100
 ai_debug_visible = false
 speed = 15000.0
 
@@ -42,3 +43,7 @@ position = Vector2(1039, 526)
 position = Vector2(593, 632)
 
 [connection signal="changed_item" from="Player" to="Player/UI" method="changed_item"]
+[connection signal="health_updated" from="ObjectsRoot/FakePlayer" to="ObjectsRoot/FakePlayer/HealthBar" method="_on_character_health_updated"]
+[connection signal="health_updated" from="ObjectsRoot/Enemy" to="ObjectsRoot/Enemy/HealthBar" method="_on_character_health_updated"]
+[connection signal="health_updated" from="ObjectsRoot/Enemy2" to="ObjectsRoot/Enemy2/HealthBar" method="_on_character_health_updated"]
+[connection signal="health_updated" from="ObjectsRoot/Enemy3" to="ObjectsRoot/Enemy3/HealthBar" method="_on_character_health_updated"]

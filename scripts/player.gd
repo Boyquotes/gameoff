@@ -1,9 +1,11 @@
 extends RigidBody2D
 
+signal changed_item(PackedScene)
+
 @export var speed: float
 @export var zoom_speed_multiplier: float
 @export var zoom_time: float = 0.1
-@export var item_templates: Array[PackedScene]
+@export var item_templates: Array[Dictionary]
 @export_flags_2d_physics var collision_layer_mask: int
 
 var _currently_selected_idx = 0
@@ -33,6 +35,8 @@ func _unhandled_input(event: InputEvent):
 	elif event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode >= KEY_1 and event.keycode <= KEY_9:
 			_currently_selected_idx = event.keycode - KEY_1
+			_currently_selected_idx %= len(item_templates)
+			emit_signal("changed_item", str(_get_selected_item()["name"]))
 
 
 func _try_place_item(pos: Vector2):
@@ -46,11 +50,11 @@ func _try_place_item(pos: Vector2):
 		
 	_place_item(pos)
 
-func _get_selected_item() -> PackedScene:
+func _get_selected_item() -> Dictionary:
 	return item_templates[_currently_selected_idx]
 
 func _place_item(spawn_pos: Vector2):
-	var obj = _get_selected_item().instantiate()
+	var obj = _get_selected_item()["template"].instantiate()
 	obj.global_position = spawn_pos
 	$"%ObjectsRoot".add_child(obj)
 

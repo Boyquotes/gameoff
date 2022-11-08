@@ -6,5 +6,5 @@ class_name AmmoPickup
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body is FakePlayer:
-		body.add_ammo(ammo_value)
+		body.dynamic_fields["add_ammo"].call(ammo_value)
 		queue_free()

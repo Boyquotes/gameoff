@@ -5,7 +5,13 @@ extends ConditionLeaf
 
 
 func tick(actor: Character, blackboard: Blackboard):
-	if actor.call(property_getter) <= compare_value:
+	var value
+	if actor.has_method(property_getter):
+		value = actor.call(property_getter)
+	else:
+		value = actor.dynamic_fields[property_getter].call()
+
+	if value <= compare_value:
 		return SUCCESS
 		
 	return FAILURE

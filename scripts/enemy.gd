@@ -5,15 +5,6 @@ class_name Enemy
 func _ready() -> void:
 	change_target_destination(global_position)
 
-func _process(delta: float) -> void:
-	_refresh_target()
-
-func _physics_process(delta):
-	# pathfinding movement
-	queue_redraw()
-	if _moving_towards_target:
-		_navigate_towards_target(delta)
-
 func _on_visibility_area_body_entered(body: Node2D) -> void:
 	super._on_visibility_area_body_entered(body)
 	var type = _map_type(_node_to_type(body))

@@ -8,6 +8,8 @@ signal has_died
 
 @export var health_start: int = 100
 
+var dynamic_fields = {}
+
 @onready var _health_current = health_start
 
 

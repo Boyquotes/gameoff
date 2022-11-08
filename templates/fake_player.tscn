@@ -19,9 +19,8 @@
 
 [node name="FakePlayer" groups=["character", "player"] instance=ExtResource("1_o86wx")]
 script = ExtResource("2_bnnhh")
-ammo_start = 200
-health_start = 1000
 speed = null
+health_start = 1000
 
 [node name="CollisionPolygon2D" parent="." index="0"]
 position = Vector2(0, 14)
@@ -29,7 +28,10 @@ position = Vector2(0, 14)
 [node name="Sprite" parent="." index="1"]
 frames = ExtResource("2_v0gpv")
 
-[node name="MachineGunWeapon" parent="." index="3"]
+[node name="Shooting" parent="." index="3"]
+ammo_start = 200
+
+[node name="MachineGunWeapon" parent="Shooting" index="0"]
 shoot_interval_msec = 50.0
 shoot_randomness = 50.0
 damage = 10
@@ -143,7 +145,5 @@ position = Vector2(0, 7)
 
 [node name="Full" parent="AmmoBar" index="0"]
 animation = &"yellow"
-
-[connection signal="ammo_updated" from="." to="AmmoBar" method="_on_character_health_updated"]
 
 [editable path="AmmoBar"]

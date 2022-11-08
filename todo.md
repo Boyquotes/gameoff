@@ -2,7 +2,6 @@ HIGH
 - collision mesh on vision cone
 
 MID
-- items shouldn't inherit from Character
 - player fun
 - UI for powerups
 - economy for powerups (gain resources while in flow state, use it to spend on items)
@@ -21,6 +20,8 @@ LOW
 - audio
 - menu
 - export vision cone as asset
+- try mobile version
+- setup github CI to upload to itch
 - different types of weapons
 - moving around corners
 - reimplement behaviour trees? (for fun mostly)

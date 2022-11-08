@@ -1,4 +1,4 @@
-extends Character
+extends Actor
 
 class_name Barrel
 

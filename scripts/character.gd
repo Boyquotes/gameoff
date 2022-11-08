@@ -1,17 +1,11 @@
-extends CharacterBody2D
+extends Actor
 
 class_name Character
 
-signal received_damage(damage: int, receiver: Node2D, origin: Node2D)
-signal health_updated(current_health: int, previous_health: int, max_health: int)
-signal has_died
 signal path_changed
 
-@export var health_start: int = 100
 @export var ai_debug_visible = false
 @export var speed: float
-
-@onready var _health_current = health_start
 
 var _things_in_range: Dictionary = {}
 
@@ -19,29 +13,12 @@ var _current_target: Node2D # TODO remove or rename
 var _moving_towards_target = false
 
 
-func _on_received_damage(damage: int, _receiver: Node2D, origin: Node2D) -> void:
-	add_health(-damage)
-
-func add_health(health: int):
-	_health_current += health
-	_health_current = min(_health_current, health_start)
-
-	emit_signal("health_updated", _health_current, _health_current - health, health_start)
-	if _health_current <= 0:
-		_die()
 
 func add_ammo(value: int):
 	pass
 
 func get_ammo():
 	return 1
-
-func get_health():
-	return _health_current
-
-func _die():
-	emit_signal("has_died")
-	queue_free()
 
 func debug_ai_state(debug_text: String):
 	if ai_debug_visible:

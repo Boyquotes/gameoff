@@ -14,6 +14,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/beehave/nodes/leaves/action.gd"
 }, {
+"base": "CharacterBody2D",
+"class": &"Actor",
+"language": &"GDScript",
+"path": "res://scripts/actor.gd"
+}, {
 "base": "Decorator",
 "class": &"AlwaysFailDecorator",
 "language": &"GDScript",
@@ -29,7 +34,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://scripts/items/ammo_pickup.gd"
 }, {
-"base": "Character",
+"base": "Actor",
 "class": &"Barrel",
 "language": &"GDScript",
 "path": "res://scripts/items/barrel.gd"
@@ -54,7 +59,7 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://addons/beehave/blackboard.gd"
 }, {
-"base": "CharacterBody2D",
+"base": "Actor",
 "class": &"Character",
 "language": &"GDScript",
 "path": "res://scripts/character.gd"
@@ -126,6 +131,7 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 "ActionLeaf": "res://addons/beehave/icons/action.svg",
+"Actor": "",
 "AlwaysFailDecorator": "res://addons/beehave/icons/fail.svg",
 "AlwaysSucceedDecorator": "res://addons/beehave/icons/succeed.svg",
 "AmmoPickup": "",

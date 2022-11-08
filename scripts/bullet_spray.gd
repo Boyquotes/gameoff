@@ -14,4 +14,5 @@ func _on_sprite_animation_finished() -> void:
 	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
-	body.emit_signal("received_damage", damage, body, _owner)
+	if body.has_signal("received_damage"):
+		body.emit_signal("received_damage", damage, body, _owner)

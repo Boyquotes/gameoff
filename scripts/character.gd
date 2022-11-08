@@ -140,7 +140,7 @@ func _map_type(type_name): # TODO rename
 
 func _on_visibility_area_body_entered(body: Node2D) -> void:
 	var type = _map_type(_node_to_type(body))
-	debug_ai_state("%s: target entered %s with type %s" % [self, body, type])
+	# debug_ai_state("%s: target entered %s with type %s" % [self, body, type])
 	if type == null:
 		return
 	if type == "enemy":

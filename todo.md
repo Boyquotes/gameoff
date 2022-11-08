@@ -1,5 +1,4 @@
 HIGH
-- bug: barrel can't be killed
 - collision mesh on vision cone
 
 MID

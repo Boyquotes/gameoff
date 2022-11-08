@@ -16,11 +16,14 @@ func _physics_process(delta):
 
 func _on_visibility_area_body_entered(body: Node2D) -> void:
 	super._on_visibility_area_body_entered(body)
-	body.connect("received_damage", _on_friendly_received_damage)
+	var type = _map_type(_node_to_type(body))
+	if type == "friendly":
+		body.connect("received_damage", _on_friendly_received_damage)
 
 func _on_visibility_area_body_exited(body: Node2D) -> void:
 	super._on_visibility_area_body_exited(body)
-	body.disconnect("received_damage", _on_friendly_received_damage)
+	if body.has_signal("received_damage") and body.is_connected("received_damage", _on_friendly_received_damage):
+		body.disconnect("received_damage", _on_friendly_received_damage)
 
 func _on_friendly_received_damage(damage: int, receiver: Node2D, origin: Node2D):
 	change_target_destination(origin.global_position)

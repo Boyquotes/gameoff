@@ -101,6 +101,7 @@ shape = SubResource("CircleShape2D_hqoqe")
 
 [node name="HealthBar" parent="." instance=ExtResource("5_2ngo1")]
 
+[connection signal="health_updated" from="." to="HealthBar" method="_on_character_health_updated"]
 [connection signal="received_damage" from="." to="." method="_on_received_damage"]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="shot_fired" from="MachineGunWeapon" to="." method="_on_machine_gun_weapon_shot_fired"]

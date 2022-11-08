@@ -30,13 +30,13 @@ position = Vector2(219, 187)
 speed = 15000.0
 
 [node name="Enemy" parent="ObjectsRoot" instance=ExtResource("9_vktja")]
-position = Vector2(857, 274)
+position = Vector2(857, 286)
 
 [node name="Enemy2" parent="ObjectsRoot" instance=ExtResource("9_vktja")]
-position = Vector2(1039, 526)
+position = Vector2(583, 590)
 
 [node name="Enemy3" parent="ObjectsRoot" instance=ExtResource("9_vktja")]
-position = Vector2(593, 632)
+position = Vector2(1021, 530)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -44,7 +44,3 @@ position = Vector2(593, 632)
 mouse_filter = 1
 
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
-[connection signal="health_updated" from="ObjectsRoot/FakePlayer" to="ObjectsRoot/FakePlayer/HealthBar" method="_on_character_health_updated"]
-[connection signal="health_updated" from="ObjectsRoot/Enemy" to="ObjectsRoot/Enemy/HealthBar" method="_on_character_health_updated"]
-[connection signal="health_updated" from="ObjectsRoot/Enemy2" to="ObjectsRoot/Enemy2/HealthBar" method="_on_character_health_updated"]
-[connection signal="health_updated" from="ObjectsRoot/Enemy3" to="ObjectsRoot/Enemy3/HealthBar" method="_on_character_health_updated"]

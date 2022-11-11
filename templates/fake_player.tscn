@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ddkh7hj8etv2l"]
+[gd_scene load_steps=18 format=3 uid="uid://ddkh7hj8etv2l"]
 
 [ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/character_base.tscn" id="1_o86wx"]
 [ext_resource type="Script" path="res://scripts/fake_player.gd" id="2_bnnhh"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/vision_cone.gd" id="11_ltmra"]
 [ext_resource type="Script" path="res://scripts/player_debug_controls.gd" id="12_vftbo"]
 [ext_resource type="PackedScene" uid="uid://66l0v7vali28" path="res://templates/health_bar.tscn" id="14_hu7u1"]
+[ext_resource type="Script" path="res://scripts/fun.gd" id="17_opp3i"]
 
 [node name="FakePlayer" groups=["character", "player"] instance=ExtResource("1_o86wx")]
 script = ExtResource("2_bnnhh")
@@ -89,7 +90,7 @@ script = ExtResource("3_do5g3")
 [node name="IsHealthLow" type="Node" parent="BehaviourAI/Either/MoveToHealth" index="0"]
 script = ExtResource("9_4gr7y")
 property_getter = "get_health"
-compare_value = 800
+compare_value = 999
 
 [node name="GoToHealth" type="Node" parent="BehaviourAI/Either/MoveToHealth" index="1"]
 script = ExtResource("11_i7rhi")
@@ -101,7 +102,7 @@ script = ExtResource("3_do5g3")
 [node name="IsAmmoLow" type="Node" parent="BehaviourAI/Either/MoveToAmmo" index="0"]
 script = ExtResource("9_4gr7y")
 property_getter = "get_ammo"
-compare_value = 150
+compare_value = 199
 
 [node name="GoToAmmo" type="Node" parent="BehaviourAI/Either/MoveToAmmo" index="1"]
 script = ExtResource("11_i7rhi")
@@ -141,9 +142,36 @@ position = Vector2(-5, 2)
 script = ExtResource("12_vftbo")
 
 [node name="AmmoBar" parent="." index="8" instance=ExtResource("14_hu7u1")]
+visible = false
 position = Vector2(0, 7)
 
 [node name="Full" parent="AmmoBar" index="0"]
 animation = &"yellow"
 
+[node name="FunBar" parent="." index="9" instance=ExtResource("14_hu7u1")]
+visible = false
+position = Vector2(0, -8)
+
+[node name="Full" parent="FunBar" index="0"]
+modulate = Color(0.552941, 0.560784, 0.482353, 1)
+animation = &"yellow"
+
+[node name="HealthBar" parent="." index="10"]
+visible = false
+
+[node name="Fun" type="Node2D" parent="." index="11"]
+script = ExtResource("17_opp3i")
+fun_max = 100.0
+fun_start = 50.0
+fun_gain_mg_shot = 1.0
+fun_decay_per_second = 5.0
+
+[node name="Timer" type="Timer" parent="Fun" index="0"]
+autostart = true
+
+[connection signal="shot_fired" from="Shooting/MachineGunWeapon" to="Fun" method="_on_machine_gun_weapon_shot_fired"]
+[connection signal="fun_updated" from="Fun" to="FunBar" method="_on_character_health_updated"]
+[connection signal="timeout" from="Fun/Timer" to="Fun" method="_on_timer_timeout"]
+
 [editable path="AmmoBar"]
+[editable path="FunBar"]

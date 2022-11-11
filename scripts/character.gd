@@ -23,7 +23,6 @@ func debug_ai_state(debug_text: String):
 func _on_sprite_animation_finished() -> void:
 	# using this instead of controller for simplicity
 	if $Sprite.animation == "fire":
-		# print("move to idle animation")
 		$Sprite.play("idle")
 	pass
 
@@ -45,6 +44,7 @@ func has_reached_target() -> bool:
 
 func _navigate_towards_target(delta):
 	if has_reached_target():
+		$Sprite.animation = "idle"
 		return
 	var next = $NavigationAgent2D.get_next_location()
 	var towards_next = next - global_position
@@ -55,15 +55,14 @@ func _move_towards(direction: Vector2, delta: float):
 	if direction.length() > 1:
 		direction = direction.normalized()
 	direction *= speed * delta
-	
 	if direction.length() > 0:
 		velocity = direction
 		move_and_slide()
 		$Sprite.flip_h = direction.x < 0
-		# $Sprite.play("walk") # TODO animation not working when walking
+		if $Sprite.animation != "walk":
+			$Sprite.animation = "walk"
 	else: 
-		# $Sprite.play("idle")
-		pass
+		$Sprite.animation = "idle"
 
 # TARGETING
 func get_item_in_range(item_type: String):

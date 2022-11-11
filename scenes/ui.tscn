@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqjqblwxlhadp"]
+[gd_scene load_steps=7 format=3 uid="uid://bqjqblwxlhadp"]
 
 [ext_resource type="Theme" uid="uid://dfe3mctdeege7" path="res://other/ui_theme.tres" id="1_m6sju"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="2_sffo3"]
+[ext_resource type="PackedScene" uid="uid://66l0v7vali28" path="res://templates/health_bar.tscn" id="3_tj7s3"]
+[ext_resource type="PackedScene" uid="uid://dslkyq31p8hy7" path="res://templates/ui_item.tscn" id="3_xgr54"]
+[ext_resource type="SpriteFrames" uid="uid://xukc4wy64q54" path="res://other/player_sprite_frames.tres" id="4_iyeyj"]
+[ext_resource type="SpriteFrames" uid="uid://c1amnlhw7ny8" path="res://other/items_sprite_frames.tres" id="5_rx57f"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -12,13 +16,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_m6sju")
 script = ExtResource("2_sffo3")
+items_template = ExtResource("3_xgr54")
 
 [node name="ItemUI" type="HBoxContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 123.0
+offset_left = 436.0
 offset_top = -109.0
 offset_right = -123.0
 offset_bottom = 1.0
@@ -26,6 +31,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="ItemLabel" type="Label" parent="ItemUI"]
+visible = false
 offset_top = 27.0
 offset_right = 125.0
 offset_bottom = 82.0
@@ -34,11 +40,60 @@ grow_vertical = 0
 text = "Item: "
 
 [node name="ItemName" type="Label" parent="ItemUI"]
-offset_left = 129.0
+visible = false
 offset_top = 27.0
-offset_right = 273.0
+offset_right = 144.0
 offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "NAME
 "
+
+[node name="Container" type="Node2D" parent="."]
+position = Vector2(54, 628)
+
+[node name="FunBar" parent="Container" instance=ExtResource("3_tj7s3")]
+position = Vector2(187, 103)
+scale = Vector2(3, 3)
+
+[node name="Full" parent="Container/FunBar" index="0"]
+modulate = Color(0.129412, 0.294118, 0.321569, 1)
+
+[node name="AmmoBar" parent="Container" instance=ExtResource("3_tj7s3")]
+position = Vector2(187, 208)
+scale = Vector2(3, 3)
+
+[node name="Full" parent="Container/AmmoBar" index="0"]
+animation = &"yellow"
+
+[node name="HealthBar" parent="Container" instance=ExtResource("3_tj7s3")]
+position = Vector2(187, 156)
+scale = Vector2(3, 3)
+
+[node name="Portrait" type="AnimatedSprite2D" parent="Container"]
+position = Vector2(12, 55)
+scale = Vector2(11.52, 11.52)
+frames = ExtResource("4_iyeyj")
+animation = &"idle"
+
+[node name="HealthIcon" type="AnimatedSprite2D" parent="Container"]
+position = Vector2(311, 7)
+scale = Vector2(2, 2)
+frames = ExtResource("5_rx57f")
+animation = &"health"
+
+[node name="AmmoIcon" type="AnimatedSprite2D" parent="Container"]
+position = Vector2(311, 60)
+scale = Vector2(2, 2)
+frames = ExtResource("5_rx57f")
+animation = &"ammo"
+
+[node name="FunIcon" type="AnimatedSprite2D" parent="Container"]
+position = Vector2(311, -45)
+scale = Vector2(2, 2)
+frames = ExtResource("5_rx57f")
+animation = &"fun"
+
+[editable path="Container/FunBar"]
+[editable path="Container/AmmoBar"]
+[editable path="Container/HealthBar"]

@@ -42,5 +42,18 @@ position = Vector2(1021, 530)
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("5_ohdqs")]
 mouse_filter = 1
+player = NodePath("../../Player")
 
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
+[connection signal="items_ready" from="Player" to="CanvasLayer/UI" method="_on_player_items_ready"]
+[connection signal="health_updated" from="ObjectsRoot/FakePlayer" to="CanvasLayer/UI/Container/HealthBar" method="_on_character_health_updated"]
+[connection signal="ammo_updated" from="ObjectsRoot/FakePlayer/Shooting" to="CanvasLayer/UI/Container/AmmoBar" method="_on_character_health_updated"]
+[connection signal="fun_updated" from="ObjectsRoot/FakePlayer/Fun" to="CanvasLayer/UI/Container/FunBar" method="_on_character_health_updated"]
+
+[editable path="ObjectsRoot/FakePlayer"]
+[editable path="ObjectsRoot/FakePlayer/AmmoBar"]
+[editable path="ObjectsRoot/FakePlayer/FunBar"]
+[editable path="CanvasLayer/UI"]
+[editable path="CanvasLayer/UI/Container/FunBar"]
+[editable path="CanvasLayer/UI/Container/AmmoBar"]
+[editable path="CanvasLayer/UI/Container/HealthBar"]

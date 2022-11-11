@@ -1,0 +1,16 @@
+- nub game
+- I never thought a game so bad could be made. I was wrong!
+- Do not play this!
+- pay to win
+- terrible
+- Worst game I have ever played
+- The game is great, but I can't recommend it
+- Shitty graphics
+- buggy game
+- even worse than I expected
+- I have played a lot of bad games in my life but none were so offensively bad that I felt like the creator was mocking me for owning it
+- I got this game for free and I still feel like I paid too much for it
+- I have no idea what I am even playing
+- Seriously as bad as other reviewers are saying
+- poor netcode
+- no players online

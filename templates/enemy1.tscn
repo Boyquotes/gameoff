@@ -15,6 +15,11 @@ ai_debug_visible = false
 [node name="Shooting" parent="." index="3"]
 ammo_start = 100000000000000
 
+[node name="MachineGunWeapon" parent="Shooting" index="0"]
+shoot_interval_msec = 150.0
+shoot_randomness = 70.0
+damage = 20
+
 [node name="Either" type="Node" parent="BehaviourAI" index="0"]
 script = ExtResource("2_vjg25")
 

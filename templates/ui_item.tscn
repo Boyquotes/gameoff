@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dslkyq31p8hy7"]
+
+[ext_resource type="SpriteFrames" uid="uid://c1amnlhw7ny8" path="res://other/items_sprite_frames.tres" id="1_bd3tb"]
+[ext_resource type="Script" path="res://scripts/ui_item.gd" id="1_cxs8i"]
+
+[node name="UIItem" type="Button"]
+offset_left = 277.0
+offset_right = 414.0
+offset_bottom = 110.0
+text = "TEXT"
+expand_icon = true
+script = ExtResource("1_cxs8i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(67, 20)
+frames = ExtResource("1_bd3tb")
+animation = &"barrel"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+signal items_ready(items: Array[Dictionary])
 signal changed_item(PackedScene)
 
 @export var speed: float
@@ -9,6 +10,9 @@ signal changed_item(PackedScene)
 @export_flags_2d_physics var collision_layer_mask: int
 
 var _currently_selected_idx = 0
+
+func _ready() -> void:
+	emit_signal("items_ready", item_templates)
 
 func _physics_process(delta):
 	# input movement
@@ -36,8 +40,13 @@ func _unhandled_input(event: InputEvent):
 		if event.keycode >= KEY_1 and event.keycode <= KEY_9:
 			_currently_selected_idx = event.keycode - KEY_1
 			_currently_selected_idx %= len(item_templates)
-			emit_signal("changed_item", str(_get_selected_item()["name"]))
+			select_item(_currently_selected_idx)
 
+func select_item(idx: int):
+	_currently_selected_idx = idx
+	var item_name = str(_get_selected_item()["name"])
+	print("Selected: %s" % item_name)
+	emit_signal("changed_item", item_name)
 
 func _try_place_item(pos: Vector2):
 	var query = PhysicsRayQueryParameters2D.create(pos, pos + Vector2(1,0), collision_layer_mask)

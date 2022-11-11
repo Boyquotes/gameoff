@@ -6,13 +6,22 @@ signal changed_item(PackedScene)
 @export var speed: float
 @export var zoom_speed_multiplier: float
 @export var zoom_time: float = 0.1
+@export var single_click_tolerance_msec: int = 100
+@export var pan_camera_factor = 1.2
 @export var item_templates: Array[Dictionary]
 @export_flags_2d_physics var collision_layer_mask: int
 
 var _currently_selected_idx = 0
+var _time_click_start = null
+var _click_start_position = null
+var _camera_start_position = null
 
 func _ready() -> void:
 	emit_signal("items_ready", item_templates)
+
+func _process(delta: float) -> void:
+	if _time_click_start != null:
+		global_position = _camera_start_position - (get_local_mouse_position() - _click_start_position) * pan_camera_factor
 
 func _physics_process(delta):
 	# input movement
@@ -28,19 +37,34 @@ func _physics_process(delta):
 		# move_and_slide()
 
 func _unhandled_input(event: InputEvent):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton:
+		print(event)
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			_try_place_item(get_global_mouse_position())
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			_zoom_camera(1 + zoom_speed_multiplier)
-		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			_zoom_camera(1 - zoom_speed_multiplier)
+			if event.pressed:
+				_time_click_start = Time.get_ticks_msec()
+				_click_start_position = get_local_mouse_position()
+				_camera_start_position = global_position
+			else:
+				var is_short_click = Time.get_ticks_msec() - _time_click_start < single_click_tolerance_msec
+				_time_click_start = null
+				_click_start_position = null
+				if is_short_click:
+					_try_place_item(get_global_mouse_position())
+		if event.pressed:
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				_zoom_camera(1 + zoom_speed_multiplier)
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				_zoom_camera(1 - zoom_speed_multiplier)
 	
 	elif event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode >= KEY_1 and event.keycode <= KEY_9:
 			_currently_selected_idx = event.keycode - KEY_1
 			_currently_selected_idx %= len(item_templates)
 			select_item(_currently_selected_idx)
+
+	# TODO detect multitouch zoom
+	if event is InputEventScreenTouch:
+		print("event: %s" % event)
 
 func select_item(idx: int):
 	_currently_selected_idx = idx

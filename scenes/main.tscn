@@ -20,6 +20,7 @@ texture = ExtResource("2_t4mw0")
 script = ExtResource("3_w3d6o")
 
 [node name="Player" parent="." instance=ExtResource("4_wckix")]
+pan_camera_factor = 1.3
 
 [node name="ObjectsRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -43,6 +44,15 @@ position = Vector2(1021, 530)
 [node name="UI" parent="CanvasLayer" instance=ExtResource("5_ohdqs")]
 mouse_filter = 1
 player = NodePath("../../Player")
+
+[node name="ItemUI" parent="CanvasLayer/UI" index="0"]
+layout_mode = 1
+
+[node name="ItemLabel" parent="CanvasLayer/UI/ItemUI" index="0"]
+layout_mode = 2
+
+[node name="ItemName" parent="CanvasLayer/UI/ItemUI" index="1"]
+layout_mode = 2
 
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
 [connection signal="items_ready" from="Player" to="CanvasLayer/UI" method="_on_player_items_ready"]

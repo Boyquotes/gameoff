@@ -1,17 +1,18 @@
 HIGH
-- player fun
 - collision mesh on vision cone
-- UI for powerups
 - economy for powerups (gain resources while in flow state, use it to spend on items)
 - refactor: replace relative paths with NodePath
 
 MID
+- support touch controls
 - add dynamic object avoidance to characters
 - view player path with line renderer
 - sprite render on vision cone
 - bug: enemies shuffle move while firing
 - draw own sprites. possible inspiration: brotato, broforce
+- UI for powerups
 - fire animations (missing muzzle flash)
+- juice (when placing items, when player does stuff)
 
 LOW
 - fire priority: should shoot barrels first
@@ -20,11 +21,13 @@ LOW
 - game over condition
 - audio
 - menu
-- export vision cone as asset
 - try mobile version
-- setup github CI to upload to itch
 - different types of weapons
 - moving around corners
+
+probably cut
+- export vision cone as asset
+- setup github CI to upload to itch
 - reimplement behaviour trees? (for fun mostly)
 
 improvements to beehave:

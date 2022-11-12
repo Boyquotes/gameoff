@@ -1,14 +1,19 @@
 extends Node2D
 
-
+@export_group("Raycast parameters")
 @export var ray_count = 100
 @export var angle = 2*PI
 @export var max_distance = 500
+
+@export_group("Collisions")
 @export_flags_2d_physics var collision_layer_mask: int = 0
 @export var write_collision_polygon: CollisionPolygon2D
+
+@export_group("Static optimization")
 @export var recalculate_if_static = false
 @export var static_threshold: float = 10
 
+@export_group("Debug")
 @export var debug_lines = false
 @export var debug_shape = false
 

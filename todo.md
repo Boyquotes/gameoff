@@ -1,5 +1,4 @@
 HIGH
-- collision mesh on vision cone
 - refactor: replace relative paths with NodePath
 
 MID

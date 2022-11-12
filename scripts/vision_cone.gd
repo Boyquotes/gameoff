@@ -45,9 +45,9 @@ func update_collision_polygon():
 	polygon.append_array(_vision_points)
 	write_collision_polygon.polygon = polygon
 
-func _recalculate_vision():
+func _recalculate_vision(override_static_flag = false):
 	var position_has_changed = _last_position == null or (global_position - _last_position).length() > static_threshold
-	if recalculate_if_static or position_has_changed:
+	if override_static_flag or recalculate_if_static or position_has_changed:
 		_last_position = global_position
 		_vision_points.clear()
 		

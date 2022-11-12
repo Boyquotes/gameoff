@@ -1,19 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://c551g2a8xafeh"]
+[gd_scene load_steps=8 format=3 uid="uid://c551g2a8xafeh"]
 
 [ext_resource type="PackedScene" uid="uid://bpwf5w7sf8x0q" path="res://scenes/test_map.tscn" id="1_dc3i8"]
 [ext_resource type="Texture2D" uid="uid://djcpgwtrf8dhy" path="res://assets/rbetta.png" id="2_t4mw0"]
 [ext_resource type="Script" path="res://scripts/level_exit.gd" id="3_w3d6o"]
 [ext_resource type="PackedScene" uid="uid://bxt15yjfx4xnd" path="res://templates/actual_player.tscn" id="4_wckix"]
 [ext_resource type="PackedScene" uid="uid://bqjqblwxlhadp" path="res://scenes/ui.tscn" id="5_ohdqs"]
-[ext_resource type="Script" path="res://scripts/machinegun_weapon.gd" id="6_1uxy3"]
 [ext_resource type="PackedScene" uid="uid://ddkh7hj8etv2l" path="res://templates/fake_player.tscn" id="8_at8g1"]
 [ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="9_vktja"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
-radius = 13.1529
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hqoqe"]
-radius = 330.097
 
 [node name="Main" type="Node2D"]
 
@@ -38,15 +31,8 @@ unique_name_in_owner = true
 position = Vector2(219, 187)
 speed = 15000.0
 
-[node name="CollisionPolygon2D" parent="ObjectsRoot/FakePlayer" index="0"]
-scale = Vector2(1, 1)
-shape = SubResource("CircleShape2D_cqmyh")
-
-[node name="MachineGunWeapon" parent="ObjectsRoot/FakePlayer/Shooting" index="0"]
-script = ExtResource("6_1uxy3")
-
-[node name="CollisionShape2D" parent="ObjectsRoot/FakePlayer/VisibilityArea" index="0"]
-shape = SubResource("CircleShape2D_hqoqe")
+[node name="TiggerVisionConeUpdate" parent="ObjectsRoot/FakePlayer" index="11"]
+wait_time = 0.5
 
 [node name="Enemy" parent="ObjectsRoot" instance=ExtResource("9_vktja")]
 position = Vector2(857, 286)
@@ -66,11 +52,8 @@ player = NodePath("../../Player")
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
 [connection signal="coins_updated" from="Player" to="CanvasLayer/UI" method="_on_player_coins_updated"]
 [connection signal="items_ready" from="Player" to="CanvasLayer/UI" method="_on_player_items_ready"]
-[connection signal="health_updated" from="ObjectsRoot/FakePlayer" to="ObjectsRoot/FakePlayer/HealthBar" method="_on_character_health_updated"]
 [connection signal="health_updated" from="ObjectsRoot/FakePlayer" to="CanvasLayer/UI/Container/HealthBar" method="_on_character_health_updated"]
-[connection signal="animation_finished" from="ObjectsRoot/FakePlayer/Sprite" to="ObjectsRoot/FakePlayer" method="_on_sprite_animation_finished"]
 [connection signal="ammo_updated" from="ObjectsRoot/FakePlayer/Shooting" to="CanvasLayer/UI/Container/AmmoBar" method="_on_character_health_updated"]
-[connection signal="shot_fired" from="ObjectsRoot/FakePlayer/Shooting/MachineGunWeapon" to="ObjectsRoot/FakePlayer/Shooting" method="_on_machine_gun_weapon_shot_fired"]
 [connection signal="fun_updated" from="ObjectsRoot/FakePlayer/Fun" to="CanvasLayer/UI/Container/FunBar" method="_on_character_health_updated"]
 
 [editable path="ObjectsRoot/FakePlayer"]

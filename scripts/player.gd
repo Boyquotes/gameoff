@@ -1,7 +1,10 @@
 extends RigidBody2D
 
+class_name Player
+
 signal items_ready(items: Array[Dictionary])
 signal changed_item(PackedScene)
+signal coins_updated(current_coins: int, previous_coins: int)
 
 @export var speed: float
 @export var zoom_speed_multiplier: float
@@ -10,14 +13,20 @@ signal changed_item(PackedScene)
 @export var pan_camera_factor = 1.2
 @export var item_templates: Array[Dictionary]
 @export_flags_2d_physics var collision_layer_mask: int
+@export var starting_coins: int
 
 var _currently_selected_idx = 0
 var _time_click_start = null
 var _click_start_position = null
 var _camera_start_position = null
+@onready var _coins_current = starting_coins
+
+func _init() -> void:
+	Globals.player = self
 
 func _ready() -> void:
 	emit_signal("items_ready", item_templates)
+	add_coins(0)
 
 # TODO separate input logic
 
@@ -77,6 +86,9 @@ func _handle_left_mouse(event: InputEventMouseButton):
 		_click_start_position = null
 				
 
+func _get_selected_item() -> Dictionary:
+	return item_templates[_currently_selected_idx]
+
 func select_item(idx: int):
 	_currently_selected_idx = idx
 	var item_name = str(_get_selected_item()["name"])
@@ -94,10 +106,12 @@ func _try_place_item(pos: Vector2):
 		
 	_place_item(pos)
 
-func _get_selected_item() -> Dictionary:
-	return item_templates[_currently_selected_idx]
-
 func _place_item(spawn_pos: Vector2):
+	if _get_selected_item()["cost"] > _coins_current:
+		print("Cannot spawn due to cost")
+		return
+
+	add_coins(-_get_selected_item()["cost"])
 	var obj = _get_selected_item()["template"].instantiate()
 	obj.global_position = spawn_pos
 	$"%ObjectsRoot".add_child(obj)
@@ -107,6 +121,11 @@ func _zoom_camera(zoom_mult):
 	get_tree().create_tween().tween_property($Camera2D, "zoom", target_zoom, zoom_time)
 	# $Camera2D.zoom *= zoom_mult
 
+func add_coins(delta: int):
+	_coins_current += delta
+	emit_signal("coins_updated", _coins_current, _coins_current - delta)
+	print("coins: %d, previous: %d" % [_coins_current, _coins_current - delta])
+	# TODO connect UI
 
 func set_zoom(zoom):
 	var target_zoom = Vector2(zoom, zoom)
@@ -114,3 +133,7 @@ func set_zoom(zoom):
 
 func _get_zoom_level():
 	return 1/$Camera2D.zoom.x
+
+func _on_enemy_killed(enemy: Actor):
+	print("Player received enemy killed %s" % enemy)
+	add_coins(12)

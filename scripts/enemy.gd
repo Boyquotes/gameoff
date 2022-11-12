@@ -4,6 +4,7 @@ class_name Enemy
 
 func _ready() -> void:
 	change_target_destination(global_position)
+	connect("just_died", Globals.player._on_enemy_killed)
 
 func _on_visibility_area_body_entered(body: Node2D) -> void:
 	super._on_visibility_area_body_entered(body)

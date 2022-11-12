@@ -24,7 +24,7 @@ func _on_sprite_animation_finished() -> void:
 	# using this instead of controller for simplicity
 	if $Sprite.animation == "fire":
 		$Sprite.play("idle")
-	pass
+	
 
 # NAVIGATION
 func change_target_destination(new_target: Vector2):

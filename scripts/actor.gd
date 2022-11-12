@@ -4,7 +4,7 @@ class_name Actor
 
 signal received_damage(damage: int, receiver: Node2D, origin: Node2D)
 signal health_updated(current_health: int, previous_health: int, max_health: int)
-signal has_died
+signal just_died(actor: Actor)
 
 @export var health_start: int = 100
 
@@ -25,7 +25,7 @@ func add_health(health: int):
 		_die()
 
 func _die():
-	emit_signal("has_died")
+	emit_signal("just_died", self)
 	queue_free()
 
 func get_health():

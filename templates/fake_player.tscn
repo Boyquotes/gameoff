@@ -131,10 +131,14 @@ distance_threshold = 20
 
 [node name="CollisionShape2D" parent="VisibilityArea" index="0"]
 visible = true
+disabled = true
 
-[node name="VisionCone" type="Node2D" parent="." index="6"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisibilityArea" index="1"]
+
+[node name="VisionCone" type="Node2D" parent="." index="6" node_paths=PackedStringArray("write_collision_polygon")]
 script = ExtResource("11_ltmra")
 collision_layer_mask = 2
+write_collision_polygon = NodePath("../VisibilityArea/CollisionPolygon2D")
 debug_shape = true
 
 [node name="PlayerDebugControls" type="Node2D" parent="." index="7"]

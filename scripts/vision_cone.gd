@@ -5,6 +5,7 @@ extends Node2D
 @export var angle = 2*PI
 @export var max_distance = 500
 @export_flags_2d_physics var collision_layer_mask: int = 0
+@export var write_collision_polygon: CollisionPolygon2D
 
 @export var debug_lines = false
 @export var debug_shape = false
@@ -12,13 +13,14 @@ extends Node2D
 var _vision_points: Array[Vector2]
 
 # TODO add render sprite
-# TODO add collision mesh
 # TODO export to submodule and asset library
 
 func _process(_delta: float) -> void:
 	_recalculate_vision()
 	queue_redraw()
 
+func _physics_process(delta: float) -> void:
+	update_collision_polygon()
 
 func _draw():
 	if len(_vision_points) == 0:
@@ -33,6 +35,13 @@ func _draw():
 			draw_line(Vector2.ZERO, to, Color.BLUE)
 		from = to
 	
+func update_collision_polygon():
+	if write_collision_polygon == null:
+		return
+	write_collision_polygon.polygon.clear()
+	var polygon = PackedVector2Array()
+	polygon.append_array(_vision_points)
+	write_collision_polygon.polygon = polygon
 
 func _recalculate_vision():
 	_vision_points.clear()

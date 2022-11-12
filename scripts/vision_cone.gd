@@ -6,21 +6,23 @@ extends Node2D
 @export var max_distance = 500
 @export_flags_2d_physics var collision_layer_mask: int = 0
 @export var write_collision_polygon: CollisionPolygon2D
+@export var recalculate_if_static = false
+@export var static_threshold: float = 10
 
 @export var debug_lines = false
 @export var debug_shape = false
 
 var _vision_points: Array[Vector2]
+var _last_position = null
 
 # TODO add render sprite
 # TODO export to submodule and asset library
 
 func _process(_delta: float) -> void:
-	_recalculate_vision()
 	queue_redraw()
 
 func _physics_process(delta: float) -> void:
-	update_collision_polygon()
+	_recalculate_vision()
 
 func _draw():
 	if len(_vision_points) == 0:
@@ -44,12 +46,16 @@ func update_collision_polygon():
 	write_collision_polygon.polygon = polygon
 
 func _recalculate_vision():
-	_vision_points.clear()
-	
-	var angular_delta = angle / ray_count
-	for i in range(ray_count): 
-		_ray(Vector2(0, max_distance).rotated(angular_delta * i))
-
+	var position_has_changed = _last_position == null or (global_position - _last_position).length() > static_threshold
+	if recalculate_if_static or position_has_changed:
+		_last_position = global_position
+		_vision_points.clear()
+		
+		var angular_delta = angle / ray_count
+		for i in range(ray_count): 
+			_ray(Vector2(0, max_distance).rotated(angular_delta * i))
+		
+		update_collision_polygon()
 
 func _ray(direction: Vector2):
 	var destination = global_position + direction

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctrai1vn6u7hd"]
+[gd_scene load_steps=10 format=3 uid="uid://ctrai1vn6u7hd"]
 
 [ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/character_base.tscn" id="1_eou82"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_vjg25"]
@@ -8,11 +8,12 @@
 [ext_resource type="Script" path="res://scripts/behaviors/actions/shoot_closest_enemy.gd" id="6_qiai6"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="7_qwwxs"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_target.gd" id="8_rxnpg"]
+[ext_resource type="Script" path="res://scripts/vision_cone.gd" id="9_yutrf"]
 
 [node name="Enemy" groups=["character", "enemy"] instance=ExtResource("1_eou82")]
 ai_debug_visible = false
 
-[node name="Shooting" parent="." index="3"]
+[node name="Shooting" parent="." index="2"]
 ammo_start = 100000000000000
 
 [node name="MachineGunWeapon" parent="Shooting" index="0"]
@@ -54,3 +55,13 @@ unique_name_in_owner = true
 script = ExtResource("8_rxnpg")
 distance_threshold = 20
 destination = NodePath("")
+
+[node name="VisibilityArea" parent="." index="4" node_paths=PackedStringArray("write_collision_polygon")]
+script = ExtResource("9_yutrf")
+ray_count = 40
+collision_layer_mask = 2
+write_collision_polygon = NodePath("CollisionPolygon2D")
+debug_lines = true
+debug_shape = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisibilityArea" index="0"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ck0o1johp1beh"]
+[gd_scene load_steps=17 format=3 uid="uid://ck0o1johp1beh"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ofepm"]
 [ext_resource type="Texture2D" uid="uid://di0w12wutrt08" path="res://assets/Robot Warfare Asset Pack 22-11-24/Robots/Spider.png" id="2_sucmj"]
@@ -6,9 +6,6 @@
 [ext_resource type="Script" path="res://scripts/shooting.gd" id="3_xky3w"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_root.gd" id="4_4cykd"]
 [ext_resource type="PackedScene" uid="uid://66l0v7vali28" path="res://templates/health_bar.tscn" id="5_2ngo1"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
-radius = 13.1529
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7bfjn"]
 atlas = ExtResource("2_sucmj")
@@ -60,17 +57,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hqoqe"]
-radius = 330.097
+[sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
+radius = 13.1529
 
 [node name="Character" type="CharacterBody2D"]
 position = Vector2(493, 322)
 script = ExtResource("1_ofepm")
 ai_debug_visible = true
 speed = 25000.0
-
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_cqmyh")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(4, 4)
@@ -99,11 +93,10 @@ actor_node_path = NodePath("..")
 collision_mask = 9
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibilityArea"]
-visible = false
-shape = SubResource("CircleShape2D_hqoqe")
-
 [node name="HealthBar" parent="." instance=ExtResource("5_2ngo1")]
+
+[node name="CharacterCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cqmyh")
 
 [connection signal="health_updated" from="." to="HealthBar" method="_on_character_health_updated"]
 [connection signal="received_damage" from="." to="." method="_on_received_damage"]

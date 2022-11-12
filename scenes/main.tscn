@@ -46,16 +46,11 @@ position = Vector2(1021, 530)
 mouse_filter = 1
 player = NodePath("../../Player")
 
-[node name="ItemUI" parent="CanvasLayer/UI" index="0"]
-layout_mode = 1
-
-[node name="ItemLabel" parent="CanvasLayer/UI/ItemUI" index="0"]
-layout_mode = 2
-
-[node name="ItemName" parent="CanvasLayer/UI/ItemUI" index="1"]
-layout_mode = 2
+[node name="Coins" parent="CanvasLayer/UI" index="0"]
+layout_mode = 3
 
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
+[connection signal="coins_updated" from="Player" to="CanvasLayer/UI" method="_on_player_coins_updated"]
 [connection signal="items_ready" from="Player" to="CanvasLayer/UI" method="_on_player_items_ready"]
 [connection signal="health_updated" from="ObjectsRoot/FakePlayer" to="CanvasLayer/UI/Container/HealthBar" method="_on_character_health_updated"]
 [connection signal="ammo_updated" from="ObjectsRoot/FakePlayer/Shooting" to="CanvasLayer/UI/Container/AmmoBar" method="_on_character_health_updated"]

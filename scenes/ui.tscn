@@ -18,6 +18,14 @@ theme = ExtResource("1_m6sju")
 script = ExtResource("2_sffo3")
 items_template = ExtResource("3_xgr54")
 
+[node name="Coins" type="Label" parent="."]
+offset_left = 146.0
+offset_top = 495.0
+offset_right = 336.0
+offset_bottom = 547.0
+text = "Coins"
+horizontal_alignment = 2
+
 [node name="ItemUI" type="HBoxContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
@@ -93,6 +101,12 @@ position = Vector2(311, -45)
 scale = Vector2(2, 2)
 frames = ExtResource("5_rx57f")
 animation = &"fun"
+
+[node name="CoinsIcon" type="AnimatedSprite2D" parent="Container"]
+position = Vector2(311, -105)
+scale = Vector2(2, 2)
+frames = ExtResource("5_rx57f")
+animation = &"coins"
 
 [editable path="Container/FunBar"]
 [editable path="Container/AmmoBar"]

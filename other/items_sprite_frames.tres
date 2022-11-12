@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://c1amnlhw7ny8"]
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://c1amnlhw7ny8"]
 
 [ext_resource type="Texture2D" uid="uid://wkqsbisrrplb" path="res://assets/Robot Warfare Asset Pack 22-11-24/Obstacles and Objects/obstacles-and-objects.png" id="1_s1lmw"]
 [ext_resource type="Texture2D" uid="uid://c0d7ackb06t7x" path="res://assets/Robot Warfare Asset Pack 22-11-24/UI/icon-set.png" id="2_3k8lq"]
@@ -10,6 +10,10 @@ region = Rect2(0, 32, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nlnuf"]
 atlas = ExtResource("1_s1lmw")
 region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dajla"]
+atlas = ExtResource("2_3k8lq")
+region = Rect2(96, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6kjr0"]
 atlas = ExtResource("2_3k8lq")
@@ -29,6 +33,11 @@ animations = [{
 "frames": [SubResource("AtlasTexture_nlnuf")],
 "loop": true,
 "name": &"barrel",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_dajla")],
+"loop": true,
+"name": &"coins",
 "speed": 5.0
 }, {
 "frames": [SubResource("AtlasTexture_6kjr0")],

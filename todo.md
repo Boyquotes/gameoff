@@ -1,12 +1,12 @@
 HIGH
-- economy for powerups (gain resources while in flow state, use it to spend on items)
 - collision mesh on vision cone
 - refactor: replace relative paths with NodePath
 
 MID
+- sprite render on vision cone
+- design economy for powerups (gain resources while in flow state, use it to spend on items)
 - view player path with line renderer
 - add dynamic object avoidance to characters
-- sprite render on vision cone
 - draw own sprites. possible inspiration: brotato, broforce
 - juice (when placing items, when player does stuff)
 - level design

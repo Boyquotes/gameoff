@@ -14,3 +14,7 @@ func _on_player_items_ready(items: Array[Dictionary]) -> void:
 		var ui_item = items_template.instantiate()
 		$ItemUI.add_child(ui_item)
 		ui_item.init(item["name"], idx, get_node(player))
+
+
+func _on_player_coins_updated(current_coins: int, _previous_coins: int) -> void:
+	$Coins.text = str(current_coins)

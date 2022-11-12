@@ -12,7 +12,12 @@
 [node name="Enemy" groups=["character", "enemy"] instance=ExtResource("1_eou82")]
 ai_debug_visible = false
 
-[node name="Shooting" parent="." index="2"]
+[node name="VisibilityArea" parent="." index="0" node_paths=PackedStringArray("write_collision_polygon")]
+ray_count = 40
+collision_layer_mask = 2
+write_collision_polygon = NodePath("CollisionPolygon2D")
+
+[node name="Shooting" parent="." index="3"]
 ammo_start = 100000000000000
 
 [node name="MachineGunWeapon" parent="Shooting" index="0"]
@@ -54,12 +59,3 @@ unique_name_in_owner = true
 script = ExtResource("8_rxnpg")
 distance_threshold = 20
 destination = NodePath("")
-
-[node name="VisibilityArea" parent="." index="4" node_paths=PackedStringArray("write_collision_polygon")]
-ray_count = 40
-collision_layer_mask = 2
-write_collision_polygon = NodePath("CollisionPolygon2D")
-debug_lines = true
-debug_shape = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisibilityArea" index="0"]

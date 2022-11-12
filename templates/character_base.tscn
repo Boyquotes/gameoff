@@ -67,6 +67,17 @@ script = ExtResource("1_ofepm")
 ai_debug_visible = true
 speed = 25000.0
 
+[node name="VisibilityArea" type="Area2D" parent="." node_paths=PackedStringArray("write_polygon2d")]
+collision_mask = 9
+monitorable = false
+script = ExtResource("6_kbaj7")
+write_polygon2d = NodePath("")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisibilityArea"]
+
+[node name="VisualPolygon2D" type="Polygon2D" parent="VisibilityArea"]
+color = Color(0.988235, 0.682353, 0.686275, 0.211765)
+
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(4, 4)
 frames = SubResource("SpriteFrames_pfg58")
@@ -90,11 +101,6 @@ damage = 1
 script = ExtResource("4_4cykd")
 actor_node_path = NodePath("..")
 
-[node name="VisibilityArea" type="Area2D" parent="."]
-collision_mask = 9
-monitorable = false
-script = ExtResource("6_kbaj7")
-
 [node name="HealthBar" parent="." instance=ExtResource("5_2ngo1")]
 
 [node name="CharacterCollider" type="CollisionShape2D" parent="."]
@@ -107,10 +113,10 @@ autostart = true
 
 [connection signal="health_updated" from="." to="HealthBar" method="_on_character_health_updated"]
 [connection signal="received_damage" from="." to="." method="_on_received_damage"]
-[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
-[connection signal="shot_fired" from="Shooting/MachineGunWeapon" to="Shooting" method="_on_machine_gun_weapon_shot_fired"]
 [connection signal="area_entered" from="VisibilityArea" to="." method="_on_visibility_area_area_entered"]
 [connection signal="area_exited" from="VisibilityArea" to="." method="_on_visibility_area_area_exited"]
 [connection signal="body_entered" from="VisibilityArea" to="." method="_on_visibility_area_body_entered"]
 [connection signal="body_exited" from="VisibilityArea" to="." method="_on_visibility_area_body_exited"]
+[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="shot_fired" from="Shooting/MachineGunWeapon" to="Shooting" method="_on_machine_gun_weapon_shot_fired"]
 [connection signal="timeout" from="TiggerVisionConeUpdate" to="VisibilityArea" method="_recalculate_vision" binds= [true]]

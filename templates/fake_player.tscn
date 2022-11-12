@@ -22,10 +22,15 @@ script = ExtResource("2_bnnhh")
 speed = null
 health_start = 1000
 
-[node name="Sprite" parent="." index="0"]
+[node name="VisibilityArea" parent="." index="0" node_paths=PackedStringArray("write_collision_polygon", "write_polygon2d")]
+collision_layer_mask = 2
+write_collision_polygon = NodePath("CollisionPolygon2D")
+write_polygon2d = NodePath("VisualPolygon2D")
+
+[node name="Sprite" parent="." index="1"]
 frames = ExtResource("2_v0gpv")
 
-[node name="Shooting" parent="." index="2"]
+[node name="Shooting" parent="." index="3"]
 ammo_start = 200
 
 [node name="MachineGunWeapon" parent="Shooting" index="0"]
@@ -124,13 +129,6 @@ wait_in_seconds = 1.0
 unique_name_in_owner = true
 script = ExtResource("9_u8kx3")
 distance_threshold = 20
-
-[node name="VisibilityArea" parent="." index="4" node_paths=PackedStringArray("write_collision_polygon")]
-collision_layer_mask = 2
-write_collision_polygon = NodePath("CollisionPolygon2D")
-debug_shape = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisibilityArea" index="0"]
 
 [node name="HealthBar" parent="." index="5"]
 visible = false

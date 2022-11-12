@@ -1,12 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://c551g2a8xafeh"]
+[gd_scene load_steps=13 format=3 uid="uid://c551g2a8xafeh"]
 
 [ext_resource type="PackedScene" uid="uid://bpwf5w7sf8x0q" path="res://scenes/test_map.tscn" id="1_dc3i8"]
 [ext_resource type="Texture2D" uid="uid://djcpgwtrf8dhy" path="res://assets/rbetta.png" id="2_t4mw0"]
 [ext_resource type="Script" path="res://scripts/level_exit.gd" id="3_w3d6o"]
 [ext_resource type="PackedScene" uid="uid://bxt15yjfx4xnd" path="res://templates/actual_player.tscn" id="4_wckix"]
 [ext_resource type="PackedScene" uid="uid://bqjqblwxlhadp" path="res://scenes/ui.tscn" id="5_ohdqs"]
+[ext_resource type="Script" path="res://scripts/machinegun_weapon.gd" id="6_ph4jv"]
 [ext_resource type="PackedScene" uid="uid://ddkh7hj8etv2l" path="res://templates/fake_player.tscn" id="8_at8g1"]
 [ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="9_vktja"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lcg0y"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_13ncn"]
+mesh = SubResource("PlaneMesh_lcg0y")
+base_texture = ExtResource("2_t4mw0")
+image_size = Vector2(356, 275)
+
+[sub_resource type="SphereMesh" id="SphereMesh_c1aux"]
+radius = 0.928
+
+[sub_resource type="MeshTexture" id="MeshTexture_uiips"]
+mesh = SubResource("SphereMesh_c1aux")
+base_texture = ExtResource("2_t4mw0")
+image_size = Vector2(514, 396)
 
 [node name="Main" type="Node2D"]
 
@@ -31,6 +47,15 @@ unique_name_in_owner = true
 position = Vector2(219, 187)
 speed = 15000.0
 
+[node name="Sprite2D" parent="ObjectsRoot/FakePlayer/VisibilityArea" index="1"]
+texture = SubResource("MeshTexture_13ncn")
+
+[node name="MachineGunWeapon" parent="ObjectsRoot/FakePlayer/Shooting" index="0"]
+script = ExtResource("6_ph4jv")
+
+[node name="CharacterCollider" parent="ObjectsRoot/FakePlayer" index="9"]
+visible = true
+
 [node name="TiggerVisionConeUpdate" parent="ObjectsRoot/FakePlayer" index="11"]
 wait_time = 0.5
 
@@ -43,6 +68,10 @@ position = Vector2(583, 590)
 [node name="Enemy3" parent="ObjectsRoot" instance=ExtResource("9_vktja")]
 position = Vector2(1021, 530)
 
+[node name="Sprite2D" type="Sprite2D" parent="ObjectsRoot"]
+position = Vector2(-1035, 248)
+texture = SubResource("MeshTexture_uiips")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("5_ohdqs")]
@@ -52,8 +81,11 @@ player = NodePath("../../Player")
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
 [connection signal="coins_updated" from="Player" to="CanvasLayer/UI" method="_on_player_coins_updated"]
 [connection signal="items_ready" from="Player" to="CanvasLayer/UI" method="_on_player_items_ready"]
+[connection signal="health_updated" from="ObjectsRoot/FakePlayer" to="ObjectsRoot/FakePlayer/HealthBar" method="_on_character_health_updated"]
 [connection signal="health_updated" from="ObjectsRoot/FakePlayer" to="CanvasLayer/UI/Container/HealthBar" method="_on_character_health_updated"]
+[connection signal="animation_finished" from="ObjectsRoot/FakePlayer/Sprite" to="ObjectsRoot/FakePlayer" method="_on_sprite_animation_finished"]
 [connection signal="ammo_updated" from="ObjectsRoot/FakePlayer/Shooting" to="CanvasLayer/UI/Container/AmmoBar" method="_on_character_health_updated"]
+[connection signal="shot_fired" from="ObjectsRoot/FakePlayer/Shooting/MachineGunWeapon" to="ObjectsRoot/FakePlayer/Shooting" method="_on_machine_gun_weapon_shot_fired"]
 [connection signal="fun_updated" from="ObjectsRoot/FakePlayer/Fun" to="CanvasLayer/UI/Container/FunBar" method="_on_character_health_updated"]
 
 [editable path="ObjectsRoot/FakePlayer"]

@@ -13,18 +13,20 @@ extends Node2D
 @export var recalculate_if_static = false
 @export var static_threshold: float = 10
 
-@export_group("Debug")
+@export_group("Visualization")
+@export var write_polygon2d: Polygon2D
 @export var debug_lines = false
 @export var debug_shape = false
 
 var _vision_points: Array[Vector2]
 var _last_position = null
 
-# TODO add render sprite
 # TODO export to submodule and asset library
 
 func _process(_delta: float) -> void:
-	queue_redraw()
+	if debug_lines or debug_shape:
+		print("redrawing")
+		queue_redraw()
 
 func _physics_process(delta: float) -> void:
 	_recalculate_vision()
@@ -50,6 +52,12 @@ func update_collision_polygon():
 	polygon.append_array(_vision_points)
 	write_collision_polygon.polygon = polygon
 
+func update_sprite():
+	if write_polygon2d == null:
+		return
+	var polygon = PackedVector2Array(_vision_points);
+	write_polygon2d.polygon = polygon
+
 func _recalculate_vision(override_static_flag = false):
 	var position_has_changed = _last_position == null or (global_position - _last_position).length() > static_threshold
 	if override_static_flag or recalculate_if_static or position_has_changed:
@@ -61,6 +69,7 @@ func _recalculate_vision(override_static_flag = false):
 			_ray(Vector2(0, max_distance).rotated(angular_delta * i))
 		
 		update_collision_polygon()
+		update_sprite()
 
 func _ray(direction: Vector2):
 	var destination = global_position + direction

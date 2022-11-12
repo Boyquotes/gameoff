@@ -1,26 +1,25 @@
 HIGH
-- collision mesh on vision cone
 - economy for powerups (gain resources while in flow state, use it to spend on items)
+- collision mesh on vision cone
 - refactor: replace relative paths with NodePath
 
 MID
-- support touch controls
-- add dynamic object avoidance to characters
 - view player path with line renderer
+- add dynamic object avoidance to characters
 - sprite render on vision cone
-- bug: enemies shuffle move while firing
 - draw own sprites. possible inspiration: brotato, broforce
-- UI for powerups
-- fire animations (missing muzzle flash)
 - juice (when placing items, when player does stuff)
-
-LOW
-- fire priority: should shoot barrels first
-- shots randomness and hitscan vision
 - level design
+- UI for powerups
 - game over condition
 - audio
 - menu
+
+LOW
+- bug: enemies shuffle move while firing
+- fire priority: should shoot barrels first
+- fire animations (missing muzzle flash)
+- shots randomness and hitscan vision
 - try mobile version
 - different types of weapons
 - moving around corners

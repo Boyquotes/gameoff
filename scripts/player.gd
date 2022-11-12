@@ -19,9 +19,14 @@ var _camera_start_position = null
 func _ready() -> void:
 	emit_signal("items_ready", item_templates)
 
+# TODO separate input logic
+
 func _process(delta: float) -> void:
-	if _time_click_start != null:
-		global_position = _camera_start_position - (get_local_mouse_position() - _click_start_position) * pan_camera_factor
+	if _time_click_start == null or $TouchHandler.is_zooming:
+		return
+	# maybe can use InputEventMouseMotion instead
+	var camera_delta = (get_local_mouse_position() - _click_start_position) * pan_camera_factor
+	global_position = _camera_start_position - camera_delta
 
 func _physics_process(delta):
 	# input movement
@@ -38,18 +43,7 @@ func _physics_process(delta):
 
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton:
-		print(event)
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				_time_click_start = Time.get_ticks_msec()
-				_click_start_position = get_local_mouse_position()
-				_camera_start_position = global_position
-			else:
-				var is_short_click = Time.get_ticks_msec() - _time_click_start < single_click_tolerance_msec
-				_time_click_start = null
-				_click_start_position = null
-				if is_short_click:
-					_try_place_item(get_global_mouse_position())
+		_handle_left_mouse(event)
 		if event.pressed:
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 				_zoom_camera(1 + zoom_speed_multiplier)
@@ -62,9 +56,26 @@ func _unhandled_input(event: InputEvent):
 			_currently_selected_idx %= len(item_templates)
 			select_item(_currently_selected_idx)
 
-	# TODO detect multitouch zoom
-	if event is InputEventScreenTouch:
-		print("event: %s" % event)
+func _is_short_click():
+	if _time_click_start == null or single_click_tolerance_msec == null:
+		return true
+	else:
+		return Time.get_ticks_msec() - _time_click_start < single_click_tolerance_msec
+
+func _handle_left_mouse(event: InputEventMouseButton):
+	if event.button_index != MOUSE_BUTTON_LEFT:
+		return
+
+	if event.pressed:
+		_time_click_start = Time.get_ticks_msec()
+		_click_start_position = get_local_mouse_position()
+		_camera_start_position = global_position
+	else:
+		if _is_short_click():
+			_try_place_item(get_global_mouse_position())
+		_time_click_start = null
+		_click_start_position = null
+				
 
 func select_item(idx: int):
 	_currently_selected_idx = idx
@@ -95,6 +106,11 @@ func _zoom_camera(zoom_mult):
 	var target_zoom = $Camera2D.zoom * zoom_mult
 	get_tree().create_tween().tween_property($Camera2D, "zoom", target_zoom, zoom_time)
 	# $Camera2D.zoom *= zoom_mult
+
+
+func set_zoom(zoom):
+	var target_zoom = Vector2(zoom, zoom)
+	get_tree().create_tween().tween_property($Camera2D, "zoom", target_zoom, zoom_time)
 
 func _get_zoom_level():
 	return 1/$Camera2D.zoom.x

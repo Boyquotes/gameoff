@@ -8,6 +8,7 @@ extends Node
 func _ready() -> void:
 	GlobalEvents.connect("player_took_damage", _on_player_took_damage)
 	GlobalEvents.connect("explosion_happened", _on_explosion_happened)
+	GlobalEvents.connect("spawn_completed", _on_spawn_completed)
 
 func shake_camera(intensity: float, duration: float):
 	duration /= 2
@@ -30,3 +31,8 @@ func _on_explosion_happened(position: Vector2):
 	var mult = 7
 	shake_camera(camera_shake_intensity * mult, camera_shake_duration * mult)
 	hit_stop(hitstop_intensity / mult, hitstop_duration * mult)
+
+func _on_spawn_completed(position: Vector2, item: SpawnableItem):
+	# TODO not being called for some reason
+	print("spawn completed juice")
+	shake_camera(camera_shake_intensity, camera_shake_duration)

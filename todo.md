@@ -6,13 +6,13 @@ MID
 - juice (when placing items, when player does stuff)
   - projectiles with trails
   - hit/death animations
-  - placing items animation using tween
 - use vision collision to avoid placing items
 - draw own sprites. possible inspiration: brotato, broforce, serious sam bogus detour
 - UI for powerups
 - audio
 - game over condition
 - menu
+- bug: characters moving through walls at times
 
 LOW
 - only move to distant items if in critical condition

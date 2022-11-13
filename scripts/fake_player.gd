@@ -2,6 +2,9 @@ extends Character
 
 class_name FakePlayer
 
+func _init() -> void:
+	Globals.fake_player = self
+
 func _ready() -> void:
 	change_target_destination(global_position)
 

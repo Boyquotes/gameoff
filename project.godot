@@ -173,6 +173,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://scripts/globals.gd"
+GlobalEvents="*res://scripts/global_events.gd"
 
 [debug]
 

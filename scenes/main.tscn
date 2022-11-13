@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkmbrpp2kifyi"]
+[gd_scene load_steps=9 format=3 uid="uid://bkmbrpp2kifyi"]
 
 [ext_resource type="PackedScene" uid="uid://bpwf5w7sf8x0q" path="res://scenes/tilemaps/test_map.tscn" id="1_yixun"]
 [ext_resource type="Texture2D" uid="uid://djcpgwtrf8dhy" path="res://assets/rbetta.png" id="2_t4mw0"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxt15yjfx4xnd" path="res://templates/actual_player.tscn" id="4_wckix"]
 [ext_resource type="PackedScene" uid="uid://bqjqblwxlhadp" path="res://scenes/ui.tscn" id="5_ohdqs"]
 [ext_resource type="PackedScene" uid="uid://ddkh7hj8etv2l" path="res://templates/fake_player.tscn" id="8_at8g1"]
+[ext_resource type="Script" path="res://scripts/juice_manager.gd" id="8_veybb"]
 [ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="9_vktja"]
 
 [node name="Main" type="Node2D"]
@@ -51,10 +52,25 @@ player = NodePath("../../Player")
 metadata/_edit_lock_ = true
 
 [node name="Coins" parent="CanvasLayer/UI" index="0"]
+layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 190.0
 offset_bottom = 52.0
+
+[node name="ItemUI" parent="CanvasLayer/UI" index="1"]
+layout_mode = 1
+
+[node name="ItemLabel" parent="CanvasLayer/UI/ItemUI" index="0"]
+layout_mode = 2
+
+[node name="ItemName" parent="CanvasLayer/UI/ItemUI" index="1"]
+layout_mode = 2
+
+[node name="Managers" type="Node2D" parent="."]
+
+[node name="Juice" type="Node" parent="Managers"]
+script = ExtResource("8_veybb")
 
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
 [connection signal="coins_updated" from="Player" to="CanvasLayer/UI" method="_on_player_coins_updated"]

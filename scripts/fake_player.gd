@@ -2,6 +2,9 @@ extends Character
 
 class_name FakePlayer
 
+func _ready() -> void:
+	change_target_destination(global_position)
+	
 func set_level_exit(target):
 	$"%MoveTowardsLevelEnd".destination = target.get_path()
 

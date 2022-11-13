@@ -19,6 +19,8 @@ MID
 - menu
 
 LOW
+- confused about which items to move to if one item comes in and out of vision
+- enemies should be rigidbodies so that they can be moved a bit
 - fire priority: should shoot barrels first
 - fire animations (missing muzzle flash)
 - shots randomness and hitscan vision

@@ -18,11 +18,11 @@ MID
 - menu
 
 LOW
-- confused about which items to move to if one item comes in and out of vision
+- only move to distant items if in critical condition
 - enemies should be rigidbodies so that they can be moved a bit
 - fire priority: should shoot barrels first
-- fire animations (missing muzzle flash)
-- shots randomness and hitscan vision
+- fire animations
+- shots randomness
 - try mobile version
 - different types of weapons
 - moving around corners

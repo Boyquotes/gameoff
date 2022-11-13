@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ddkh7hj8etv2l"]
+[gd_scene load_steps=18 format=3 uid="uid://ddkh7hj8etv2l"]
 
 [ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/character_base.tscn" id="1_o86wx"]
 [ext_resource type="Script" path="res://scripts/fake_player.gd" id="2_bnnhh"]
@@ -6,6 +6,7 @@
 [ext_resource type="SpriteFrames" uid="uid://xukc4wy64q54" path="res://other/player_sprite_frames.tres" id="2_v0gpv"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="3_do5g3"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/is_enemy_in_sight.gd" id="4_pfc8f"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="5_ex2ls"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/wait_seconds.gd" id="5_t5nph"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/shoot_closest_enemy.gd" id="6_ocwf3"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/decorators/inverter.gd" id="7_6wlqp"]
@@ -49,7 +50,7 @@ shoot_randomness = 50.0
 script = ExtResource("2_t6v0d")
 
 [node name="MoveToHealthCritical" type="Node" parent="BehaviourAI/Either" index="0"]
-script = ExtResource("3_do5g3")
+script = ExtResource("5_ex2ls")
 
 [node name="IsHealthLow" type="Node" parent="BehaviourAI/Either/MoveToHealthCritical" index="0"]
 script = ExtResource("9_4gr7y")
@@ -61,7 +62,7 @@ script = ExtResource("11_i7rhi")
 item_type = "health"
 
 [node name="MoveToAmmoCritical" type="Node" parent="BehaviourAI/Either" index="1"]
-script = ExtResource("3_do5g3")
+script = ExtResource("5_ex2ls")
 
 [node name="IsAmmoLow" type="Node" parent="BehaviourAI/Either/MoveToAmmoCritical" index="0"]
 script = ExtResource("9_4gr7y")
@@ -93,7 +94,7 @@ script = ExtResource("5_t5nph")
 wait_in_seconds = 0.5
 
 [node name="MoveToHealth" type="Node" parent="BehaviourAI/Either" index="3"]
-script = ExtResource("3_do5g3")
+script = ExtResource("5_ex2ls")
 
 [node name="IsHealthLow" type="Node" parent="BehaviourAI/Either/MoveToHealth" index="0"]
 script = ExtResource("9_4gr7y")
@@ -105,7 +106,7 @@ script = ExtResource("11_i7rhi")
 item_type = "health"
 
 [node name="MoveToAmmo" type="Node" parent="BehaviourAI/Either" index="4"]
-script = ExtResource("3_do5g3")
+script = ExtResource("5_ex2ls")
 
 [node name="IsAmmoLow" type="Node" parent="BehaviourAI/Either/MoveToAmmo" index="0"]
 script = ExtResource("9_4gr7y")

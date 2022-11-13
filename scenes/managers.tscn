@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0iqmtmw45vj8"]
+[gd_scene load_steps=3 format=3 uid="uid://b0iqmtmw45vj8"]
 
 [ext_resource type="Script" path="res://scripts/juice_manager.gd" id="1_jdsyp"]
+[ext_resource type="Script" path="res://scripts/spawner_manager.gd" id="2_25gve"]
 
 [node name="Managers" type="Node2D"]
 
@@ -10,3 +11,6 @@ camera_shake_intensity = 3.0
 camera_shake_duration = 0.05
 hitstop_intensity = 0.5
 hitstop_duration = 0.05
+
+[node name="Spawner" type="Node" parent="."]
+script = ExtResource("2_25gve")

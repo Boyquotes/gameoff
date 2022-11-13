@@ -1,6 +1,7 @@
 extends Path2D
 
-@export var spawn_template: PackedScene
+@export var item_index: int
+@export var spawnable_items: SpawnableItems
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,7 +11,7 @@ func _on_timer_timeout():
 	spawn()
 
 func spawn():
-	var item = spawn_template.instantiate()
+	var item = spawnable_items.items[item_index].template.instantiate()
 	$PathFollow2D.progress_ratio = randf()
 	item.global_position = $PathFollow2D.position
 	owner.add_child(item)

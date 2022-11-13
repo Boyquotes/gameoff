@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bgtgiqc6lj1c8"]
+[gd_scene load_steps=19 format=3 uid="uid://bgtgiqc6lj1c8"]
 
 [ext_resource type="PackedScene" uid="uid://c0uq30i4qlbph" path="res://scenes/tilemaps/screensaver_map.tscn" id="1_5el7x"]
 [ext_resource type="Script" path="res://scripts/screensaver.gd" id="1_lre4s"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b6rxlb8kqpstf" path="res://templates/items/ammo_pickup.tscn" id="9_atx7g"]
 [ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="9_vktja"]
 [ext_resource type="PackedScene" uid="uid://bisqy6xfmcp8j" path="res://templates/items/health_pickup.tscn" id="10_k3131"]
+[ext_resource type="Resource" uid="uid://cx87g2dy7gqkn" path="res://other/spawnable_items.tres" id="10_kgg3l"]
 [ext_resource type="PackedScene" uid="uid://bd17gabfwqslt" path="res://templates/items/barrel.tscn" id="12_6pnhn"]
 [ext_resource type="PackedScene" uid="uid://b0iqmtmw45vj8" path="res://scenes/managers.tscn" id="12_spps6"]
 
@@ -96,6 +97,8 @@ layout_mode = 2
 curve = SubResource("Curve2D_vxn0u")
 script = ExtResource("7_1q3f6")
 spawn_template = ExtResource("9_vktja")
+item_index = 3
+spawnable_items = ExtResource("10_kgg3l")
 
 [node name="Timer" type="Timer" parent="Enemy Spawn"]
 wait_time = 2.0
@@ -109,6 +112,8 @@ rotation = -0.00205904
 curve = SubResource("Curve2D_nlu7s")
 script = ExtResource("7_1q3f6")
 spawn_template = ExtResource("9_atx7g")
+item_index = 2
+spawnable_items = ExtResource("10_kgg3l")
 
 [node name="Timer" type="Timer" parent="Ammo Spawn"]
 wait_time = 7.0
@@ -122,6 +127,8 @@ rotation = -0.705194
 curve = SubResource("Curve2D_2ryk3")
 script = ExtResource("7_1q3f6")
 spawn_template = ExtResource("10_k3131")
+item_index = 1
+spawnable_items = ExtResource("10_kgg3l")
 
 [node name="Timer" type="Timer" parent="Health Spawn"]
 wait_time = 10.0
@@ -135,14 +142,15 @@ rotation = 0.590587
 curve = SubResource("Curve2D_act0a")
 script = ExtResource("7_1q3f6")
 spawn_template = ExtResource("12_6pnhn")
+spawnable_items = ExtResource("10_kgg3l")
 
 [node name="Timer" type="Timer" parent="Barrel Spawner"]
 wait_time = 6.0
 autostart = true
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Barrel Spawner"]
-position = Vector2(443, 97)
-rotation = 0.590587
+position = Vector2(330, 91)
+rotation = 0.0224423
 
 [node name="Managers" parent="." instance=ExtResource("12_spps6")]
 

@@ -133,6 +133,16 @@ _global_script_classes=[{
 "class": &"SequenceStarComposite",
 "language": &"GDScript",
 "path": "res://addons/beehave/nodes/composites/sequence_star.gd"
+}, {
+"base": "Resource",
+"class": &"SpawnableItem",
+"language": &"GDScript",
+"path": "res://scripts/resources/spawnable_item.gd"
+}, {
+"base": "Resource",
+"class": &"SpawnableItems",
+"language": &"GDScript",
+"path": "res://scripts/resources/spawnable_items.gd"
 }]
 _global_script_class_icons={
 "ActionLeaf": "res://addons/beehave/icons/action.svg",
@@ -159,7 +169,9 @@ _global_script_class_icons={
 "SelectorComposite": "res://addons/beehave/icons/selector.svg",
 "SelectorStarComposite": "res://addons/beehave/icons/selector_star.svg",
 "SequenceComposite": "res://addons/beehave/icons/sequencer.svg",
-"SequenceStarComposite": "res://addons/beehave/icons/sequencer_star.svg"
+"SequenceStarComposite": "res://addons/beehave/icons/sequencer_star.svg",
+"SpawnableItem": "",
+"SpawnableItems": ""
 }
 
 [application]

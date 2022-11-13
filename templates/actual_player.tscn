@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxt15yjfx4xnd"]
+[gd_scene load_steps=4 format=3 uid="uid://bxt15yjfx4xnd"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0x4us"]
-[ext_resource type="PackedScene" uid="uid://bd17gabfwqslt" path="res://templates/items/barrel.tscn" id="2_cs0le"]
-[ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="3_0gl0l"]
-[ext_resource type="PackedScene" uid="uid://bisqy6xfmcp8j" path="res://templates/items/health_pickup.tscn" id="3_bakv5"]
-[ext_resource type="PackedScene" uid="uid://b6rxlb8kqpstf" path="res://templates/items/ammo_pickup.tscn" id="4_rhlnq"]
 [ext_resource type="Script" path="res://scripts/touch_handler.gd" id="6_ke1h2"]
+[ext_resource type="Resource" uid="uid://cx87g2dy7gqkn" path="res://other/spawnable_items.tres" id="6_pib1g"]
 
 [node name="Player" type="RigidBody2D"]
 position = Vector2(640, 360)
@@ -14,23 +11,7 @@ linear_damp = 10.0
 script = ExtResource("1_0x4us")
 speed = 400000.0
 zoom_speed_multiplier = 0.3
-item_templates = [{
-"cost": 3,
-"name": "Barrel",
-"template": ExtResource("2_cs0le")
-}, {
-"cost": 2,
-"name": "Health",
-"template": ExtResource("3_bakv5")
-}, {
-"cost": 1,
-"name": "Ammo",
-"template": ExtResource("4_rhlnq")
-}, {
-"cost": 10,
-"name": "Enemy",
-"template": ExtResource("3_0gl0l")
-}]
+item_templates = ExtResource("6_pib1g")
 collision_layer_mask = 15
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -11,7 +11,7 @@ signal coins_updated(current_coins: int, previous_coins: int)
 @export var zoom_time: float = 0.1
 @export var single_click_tolerance_msec: int = 100
 @export var pan_camera_factor = 1.2
-@export var item_templates: Array[Dictionary] # TODO replace Dictionary with Resource
+@export var item_templates: SpawnableItems
 @export_flags_2d_physics var collision_layer_mask: int
 @export var starting_coins: int
 
@@ -30,7 +30,7 @@ func _ready() -> void:
 	emit_signal("items_ready", item_templates)
 	add_coins(0)
 
-# TODO separate input logic
+# TODO separate logic
 
 func _process(delta: float) -> void:
 	if _time_click_start == null or $TouchHandler.is_zooming:
@@ -52,6 +52,7 @@ func _physics_process(delta):
 		# velocity = direction
 		# move_and_slide()
 
+# Input processing
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton:
 		_handle_left_mouse(event)
@@ -64,7 +65,7 @@ func _unhandled_input(event: InputEvent):
 	elif event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode >= KEY_1 and event.keycode <= KEY_9:
 			_currently_selected_idx = event.keycode - KEY_1
-			_currently_selected_idx %= len(item_templates)
+			_currently_selected_idx %= len(item_templates.items)
 			select_item(_currently_selected_idx)
 
 func _is_short_click():
@@ -87,9 +88,9 @@ func _handle_left_mouse(event: InputEventMouseButton):
 		_time_click_start = null
 		_click_start_position = null
 				
-
-func _get_selected_item() -> Dictionary:
-	return item_templates[_currently_selected_idx]
+# Item placement and economy
+func _get_selected_item() -> SpawnableItem:
+	return item_templates.items[_currently_selected_idx]
 
 func select_item(idx: int):
 	_currently_selected_idx = idx
@@ -118,14 +119,19 @@ func _place_item(spawn_pos: Vector2):
 	obj.global_position = spawn_pos
 	$"%ObjectsRoot".add_child(obj)
 
-func _zoom_camera(zoom_mult):
-	var target_zoom = _camera.zoom * zoom_mult
-	get_tree().create_tween().tween_property(_camera, "zoom", target_zoom, zoom_time)
-
 func add_coins(delta: int):
 	_coins_current += delta
 	emit_signal("coins_updated", _coins_current, _coins_current - delta)
 	print("coins: %d, previous: %d" % [_coins_current, _coins_current - delta])
+
+func _on_enemy_killed(enemy: Actor):
+	print("Player received enemy killed %s" % enemy)
+	add_coins(12)
+
+# Camera
+func _zoom_camera(zoom_mult):
+	var target_zoom = _camera.zoom * zoom_mult
+	get_tree().create_tween().tween_property(_camera, "zoom", target_zoom, zoom_time)
 
 func set_zoom(zoom):
 	var target_zoom = Vector2(zoom, zoom)
@@ -134,6 +140,3 @@ func set_zoom(zoom):
 func _get_zoom_level():
 	return 1/_camera.zoom.x
 
-func _on_enemy_killed(enemy: Actor):
-	print("Player received enemy killed %s" % enemy)
-	add_coins(12)

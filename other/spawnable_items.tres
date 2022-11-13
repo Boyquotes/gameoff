@@ -1,0 +1,36 @@
+[gd_resource type="Resource" load_steps=11 format=3 uid="uid://cx87g2dy7gqkn"]
+
+[ext_resource type="Script" path="res://scripts/resources/spawnable_item.gd" id="1_ik5je"]
+[ext_resource type="Script" path="res://scripts/resources/spawnable_items.gd" id="1_lswm2"]
+[ext_resource type="PackedScene" uid="uid://bd17gabfwqslt" path="res://templates/items/barrel.tscn" id="2_a2d0p"]
+[ext_resource type="PackedScene" uid="uid://bisqy6xfmcp8j" path="res://templates/items/health_pickup.tscn" id="3_r4omm"]
+[ext_resource type="PackedScene" uid="uid://b6rxlb8kqpstf" path="res://templates/items/ammo_pickup.tscn" id="4_f2d4t"]
+[ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="5_0ypvu"]
+
+[sub_resource type="Resource" id="Resource_o6ctr"]
+script = ExtResource("1_ik5je")
+cost = 3
+name = "Barrel"
+template = ExtResource("2_a2d0p")
+
+[sub_resource type="Resource" id="Resource_4ievn"]
+script = ExtResource("1_ik5je")
+cost = 2
+name = "Health"
+template = ExtResource("3_r4omm")
+
+[sub_resource type="Resource" id="Resource_fs08w"]
+script = ExtResource("1_ik5je")
+cost = 1
+name = "Ammo"
+template = ExtResource("4_f2d4t")
+
+[sub_resource type="Resource" id="Resource_oy1ho"]
+script = ExtResource("1_ik5je")
+cost = 10
+name = "Enemy"
+template = ExtResource("5_0ypvu")
+
+[resource]
+script = ExtResource("1_lswm2")
+items = [SubResource("Resource_o6ctr"), SubResource("Resource_4ievn"), SubResource("Resource_fs08w"), SubResource("Resource_oy1ho")]

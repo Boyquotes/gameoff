@@ -20,7 +20,7 @@
 
 [node name="FakePlayer" groups=["character", "player"] instance=ExtResource("1_o86wx")]
 script = ExtResource("2_ya8b4")
-speed = null
+speed = 15000.0
 health_start = 1000
 
 [node name="VisibilityArea" parent="." index="0" node_paths=PackedStringArray("write_collision_polygon", "write_polygon2d")]

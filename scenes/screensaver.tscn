@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cb2fhpmiq4oug"]
+[gd_scene load_steps=16 format=3 uid="uid://cb2fhpmiq4oug"]
 
 [ext_resource type="PackedScene" uid="uid://c0uq30i4qlbph" path="res://scenes/tilemaps/screensaver_map.tscn" id="1_5el7x"]
 [ext_resource type="Script" path="res://scripts/screensaver.gd" id="1_lre4s"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://scripts/register_global.gd" id="6_rjuf1"]
 [ext_resource type="Script" path="res://scripts/singletons/spawner.gd" id="7_1q3f6"]
 [ext_resource type="PackedScene" uid="uid://dsy3qdj27vh6y" path="res://templates/fake_player.tscn" id="8_at8g1"]
-[ext_resource type="PackedScene" uid="uid://bpg4w41ymfcnd" path="res://templates/hit_particles_cpu.tscn" id="8_w5skx"]
 [ext_resource type="Resource" uid="uid://cx87g2dy7gqkn" path="res://other/spawnable_items.tres" id="10_kgg3l"]
 [ext_resource type="PackedScene" uid="uid://c1op6x2metmke" path="res://scenes/managers.tscn" id="12_spps6"]
 
@@ -66,8 +65,7 @@ variable_name = "objects_root"
 [node name="FakePlayer" parent="ObjectsRoot" instance=ExtResource("8_at8g1")]
 unique_name_in_owner = true
 position = Vector2(642, 364)
-speed = 15000.0
-particles_template = ExtResource("8_w5skx")
+ai_debug_visible = true
 
 [node name="TiggerVisionConeUpdate" parent="ObjectsRoot/FakePlayer" index="11"]
 wait_time = 0.5
@@ -80,7 +78,6 @@ player = NodePath("../../Player")
 metadata/_edit_lock_ = true
 
 [node name="Coins" parent="CanvasLayer/UI" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 190.0
@@ -88,13 +85,6 @@ offset_bottom = 52.0
 
 [node name="ItemUI" parent="CanvasLayer/UI" index="1"]
 visible = false
-layout_mode = 1
-
-[node name="ItemLabel" parent="CanvasLayer/UI/ItemUI" index="0"]
-layout_mode = 2
-
-[node name="ItemName" parent="CanvasLayer/UI/ItemUI" index="1"]
-layout_mode = 2
 
 [node name="Enemy Spawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_vxn0u")

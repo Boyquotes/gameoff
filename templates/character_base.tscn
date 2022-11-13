@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://b5k6jl4v0x6fj"]
+[gd_scene load_steps=21 format=3 uid="uid://b5k6jl4v0x6fj"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_6mh4t"]
+[ext_resource type="PackedScene" uid="uid://bpg4w41ymfcnd" path="res://templates/hit_particles_cpu.tscn" id="2_l1pve"]
 [ext_resource type="Texture2D" uid="uid://di0w12wutrt08" path="res://assets/Robot Warfare Asset Pack 22-11-24/Robots/Spider.png" id="2_sucmj"]
 [ext_resource type="PackedScene" path="res://templates/machine_gun_weapon.tscn" id="3_1ri7l"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_root.gd" id="4_4cykd"]
@@ -66,7 +67,8 @@ radius = 13.0
 [node name="Character" type="CharacterBody2D"]
 position = Vector2(493, 322)
 script = ExtResource("1_6mh4t")
-ai_debug_visible = true
+speed = 25000.0
+particles_template = ExtResource("2_l1pve")
 
 [node name="VisibilityArea" type="Area2D" parent="." node_paths=PackedStringArray("write_polygon2d")]
 collision_mask = 9
@@ -123,6 +125,8 @@ wait_time = 0.01
 one_shot = true
 autostart = true
 
+[connection signal="health_updated" from="." to="HealthBar" method="_on_character_health_updated"]
+[connection signal="received_damage" from="." to="." method="_on_received_damage"]
 [connection signal="area_entered" from="VisibilityArea" to="." method="_on_visibility_area_area_entered"]
 [connection signal="area_exited" from="VisibilityArea" to="." method="_on_visibility_area_area_exited"]
 [connection signal="body_entered" from="VisibilityArea" to="." method="_on_visibility_area_body_entered"]

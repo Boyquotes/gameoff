@@ -57,7 +57,8 @@ func _move_towards(direction: Vector2, delta: float):
 		direction = direction.normalized()
 	direction *= speed * delta
 	if direction.length() > 0:
-		_navigation.set_velocity(direction)
+		# _navigation.set_velocity(direction) # collision avoidance not wokring properly. disabling
+		_do_move(direction)
 	else: 
 		_sprite.animation = "idle"
 

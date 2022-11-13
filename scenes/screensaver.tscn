@@ -129,7 +129,7 @@ item_index = 1
 spawnable_items = ExtResource("10_kgg3l")
 
 [node name="Timer" type="Timer" parent="Health Spawn"]
-wait_time = 10.0
+wait_time = 20.0
 autostart = true
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Health Spawn"]

@@ -27,6 +27,9 @@ collision_layer_mask = 2
 write_collision_polygon = NodePath("CollisionPolygon2D")
 write_polygon2d = NodePath("VisualPolygon2D")
 
+[node name="VisualPolygon2D" parent="VisibilityArea" index="1"]
+color = Color(0.988235, 0.682353, 0.686275, 0.160784)
+
 [node name="Sprite" parent="." index="1"]
 frames = ExtResource("2_v0gpv")
 

@@ -2,16 +2,14 @@ extends ActionLeaf
 
 @export var wait_in_seconds: float = 1
 
-var _has_started = false
-var _start_time = -1
+var _timer = null
 
 func tick(actor: Character, blackboard: Blackboard):
-	if not _has_started:
-		_has_started = true
-		_start_time = Time.get_ticks_msec()
-
-	if Time.get_ticks_msec() - _start_time >= wait_in_seconds * 1000:
-		_has_started = false
+	if _timer == null:
+		_timer = get_tree().create_timer(wait_in_seconds)
+	
+	if _timer.time_left <= 0:
+		_timer = null
 		return SUCCESS
 	else:
 		actor.stop_movement()

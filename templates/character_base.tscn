@@ -59,7 +59,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]
-radius = 13.1529
+radius = 13.0
 
 [node name="Character" type="CharacterBody2D"]
 position = Vector2(493, 322)
@@ -110,6 +110,10 @@ shape = SubResource("CircleShape2D_cqmyh")
 wait_time = 0.01
 one_shot = true
 autostart = true
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+estimate_radius = false
+radius = 30.0
 
 [connection signal="health_updated" from="." to="HealthBar" method="_on_character_health_updated"]
 [connection signal="received_damage" from="." to="." method="_on_received_damage"]

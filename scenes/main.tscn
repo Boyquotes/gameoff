@@ -29,7 +29,7 @@ script = ExtResource("3_w3d6o")
 
 [node name="Player" parent="." instance=ExtResource("4_wckix")]
 pan_camera_factor = 1.3
-starting_coins = 40
+starting_coins = 400
 
 [node name="ObjectsRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -47,6 +47,7 @@ position = Vector2(857, 286)
 
 [node name="Enemy2" parent="ObjectsRoot" instance=ExtResource("9_vktja")]
 position = Vector2(583, 590)
+ai_debug_visible = true
 
 [node name="Enemy3" parent="ObjectsRoot" instance=ExtResource("9_vktja")]
 position = Vector2(1021, 530)
@@ -60,18 +61,7 @@ texture = SubResource("MeshTexture_uiips")
 [node name="UI" parent="CanvasLayer" instance=ExtResource("5_ohdqs")]
 mouse_filter = 1
 player = NodePath("../../Player")
-
-[node name="Coins" parent="CanvasLayer/UI" index="0"]
-layout_mode = 0
-
-[node name="ItemUI" parent="CanvasLayer/UI" index="1"]
-layout_mode = 1
-
-[node name="ItemLabel" parent="CanvasLayer/UI/ItemUI" index="0"]
-layout_mode = 2
-
-[node name="ItemName" parent="CanvasLayer/UI/ItemUI" index="1"]
-layout_mode = 2
+metadata/_edit_lock_ = true
 
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
 [connection signal="coins_updated" from="Player" to="CanvasLayer/UI" method="_on_player_coins_updated"]

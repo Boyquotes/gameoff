@@ -12,6 +12,7 @@ MID
   - particles
   - hit/death animations
   - placing items animation using tween
+- use vision collision to avoid placing items
 - draw own sprites. possible inspiration: brotato, broforce, serious sam bogus detour
 - UI for powerups
 - audio
@@ -19,7 +20,6 @@ MID
 - menu
 
 LOW
-- bug: enemies shuffle move while firing
 - fire priority: should shoot barrels first
 - fire animations (missing muzzle flash)
 - shots randomness and hitscan vision

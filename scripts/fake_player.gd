@@ -4,13 +4,23 @@ class_name FakePlayer
 
 func _ready() -> void:
 	change_target_destination(global_position)
-	
+
 func set_level_exit(target):
 	$"%MoveTowardsLevelEnd".destination = target.get_path()
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
-	queue_redraw()
+	update_path_renderer()
+	# queue_redraw()
+
+func update_path_renderer(): # TODO move line to parent so no need to redraw on every frame
+	var points = $NavigationAgent2D.get_nav_path()
+	if len(points) == 0:
+		return
+	var line_points = PackedVector2Array()
+	for point in points:
+		line_points.append(to_local(point))
+	$Line2D.points = line_points
 
 func _draw():
 	# draw full path

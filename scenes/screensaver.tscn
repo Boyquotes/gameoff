@@ -74,6 +74,7 @@ offset_right = 190.0
 offset_bottom = 52.0
 
 [node name="ItemUI" parent="CanvasLayer/UI" index="1"]
+visible = false
 layout_mode = 1
 
 [node name="ItemLabel" parent="CanvasLayer/UI/ItemUI" index="0"]
@@ -105,8 +106,8 @@ wait_time = 7.0
 autostart = true
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Ammo Spawn"]
-position = Vector2(-70, -87)
-rotation = -0.00205904
+position = Vector2(376, 236)
+rotation = -0.705194
 
 [node name="Health Spawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2ryk3")
@@ -118,8 +119,8 @@ wait_time = 10.0
 autostart = true
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Health Spawn"]
-position = Vector2(-70, -87)
-rotation = -0.00205904
+position = Vector2(443, 97)
+rotation = 0.590587
 
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
 [connection signal="coins_updated" from="Player" to="CanvasLayer/UI" method="_on_player_coins_updated"]

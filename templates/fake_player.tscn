@@ -165,6 +165,9 @@ fun_decay_per_second = 5.0
 [node name="Timer" type="Timer" parent="Fun" index="0"]
 autostart = true
 
+[node name="Line2D" type="Line2D" parent="." index="12"]
+default_color = Color(1, 0.635294, 1, 0.168627)
+
 [connection signal="shot_fired" from="Shooting/MachineGunWeapon" to="Fun" method="_on_machine_gun_weapon_shot_fired"]
 [connection signal="fun_updated" from="Fun" to="FunBar" method="_on_character_health_updated"]
 [connection signal="timeout" from="Fun/Timer" to="Fun" method="_on_timer_timeout"]

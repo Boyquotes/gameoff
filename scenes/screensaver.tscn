@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgtgiqc6lj1c8"]
+[gd_scene load_steps=16 format=3 uid="uid://bgtgiqc6lj1c8"]
 
 [ext_resource type="PackedScene" uid="uid://c0uq30i4qlbph" path="res://scenes/tilemaps/screensaver_map.tscn" id="1_5el7x"]
 [ext_resource type="Script" path="res://scripts/screensaver.gd" id="1_lre4s"]
@@ -6,13 +6,10 @@
 [ext_resource type="Script" path="res://scripts/level_exit.gd" id="3_w3d6o"]
 [ext_resource type="PackedScene" uid="uid://bxt15yjfx4xnd" path="res://templates/actual_player.tscn" id="4_wckix"]
 [ext_resource type="PackedScene" uid="uid://bqjqblwxlhadp" path="res://scenes/ui.tscn" id="5_ohdqs"]
+[ext_resource type="Script" path="res://scripts/register_global.gd" id="6_rjuf1"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="7_1q3f6"]
 [ext_resource type="PackedScene" uid="uid://ddkh7hj8etv2l" path="res://templates/fake_player.tscn" id="8_at8g1"]
-[ext_resource type="PackedScene" uid="uid://b6rxlb8kqpstf" path="res://templates/items/ammo_pickup.tscn" id="9_atx7g"]
-[ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="9_vktja"]
-[ext_resource type="PackedScene" uid="uid://bisqy6xfmcp8j" path="res://templates/items/health_pickup.tscn" id="10_k3131"]
 [ext_resource type="Resource" uid="uid://cx87g2dy7gqkn" path="res://other/spawnable_items.tres" id="10_kgg3l"]
-[ext_resource type="PackedScene" uid="uid://bd17gabfwqslt" path="res://templates/items/barrel.tscn" id="12_6pnhn"]
 [ext_resource type="PackedScene" uid="uid://b0iqmtmw45vj8" path="res://scenes/managers.tscn" id="12_spps6"]
 
 [sub_resource type="Curve2D" id="Curve2D_vxn0u"]
@@ -60,6 +57,8 @@ zoom = Vector2(0.616, 0.616)
 
 [node name="ObjectsRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
+script = ExtResource("6_rjuf1")
+variable_name = "objects_root"
 
 [node name="FakePlayer" parent="ObjectsRoot" instance=ExtResource("8_at8g1")]
 unique_name_in_owner = true
@@ -96,7 +95,6 @@ layout_mode = 2
 [node name="Enemy Spawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_vxn0u")
 script = ExtResource("7_1q3f6")
-spawn_template = ExtResource("9_vktja")
 item_index = 3
 spawnable_items = ExtResource("10_kgg3l")
 
@@ -111,7 +109,6 @@ rotation = -0.00205904
 [node name="Ammo Spawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_nlu7s")
 script = ExtResource("7_1q3f6")
-spawn_template = ExtResource("9_atx7g")
 item_index = 2
 spawnable_items = ExtResource("10_kgg3l")
 
@@ -126,7 +123,6 @@ rotation = -0.705194
 [node name="Health Spawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2ryk3")
 script = ExtResource("7_1q3f6")
-spawn_template = ExtResource("10_k3131")
 item_index = 1
 spawnable_items = ExtResource("10_kgg3l")
 
@@ -141,7 +137,6 @@ rotation = 0.590587
 [node name="Barrel Spawner" type="Path2D" parent="."]
 curve = SubResource("Curve2D_act0a")
 script = ExtResource("7_1q3f6")
-spawn_template = ExtResource("12_6pnhn")
 spawnable_items = ExtResource("10_kgg3l")
 
 [node name="Timer" type="Timer" parent="Barrel Spawner"]
@@ -174,3 +169,4 @@ rotation = 0.0224423
 [editable path="CanvasLayer/UI/Container/FunBar"]
 [editable path="CanvasLayer/UI/Container/AmmoBar"]
 [editable path="CanvasLayer/UI/Container/HealthBar"]
+[editable path="Managers"]

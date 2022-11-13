@@ -2,6 +2,7 @@ extends Node
 
 signal player_took_damage(damage: int, origin: Node2D)
 signal explosion_happened(position: Vector2)
+signal spawn_requested(position: Vector2, item: SpawnableItem)
 
 func _ready() -> void:
 	Globals.fake_player.connect("received_damage", _on_player_took_damage)

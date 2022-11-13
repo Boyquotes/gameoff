@@ -143,6 +143,11 @@ _global_script_classes=[{
 "class": &"SpawnableItems",
 "language": &"GDScript",
 "path": "res://scripts/resources/spawnable_items.gd"
+}, {
+"base": "Node",
+"class": &"SpawnerManager",
+"language": &"GDScript",
+"path": "res://scripts/spawner_manager.gd"
 }]
 _global_script_class_icons={
 "ActionLeaf": "res://addons/beehave/icons/action.svg",
@@ -171,7 +176,8 @@ _global_script_class_icons={
 "SequenceComposite": "res://addons/beehave/icons/sequencer.svg",
 "SequenceStarComposite": "res://addons/beehave/icons/sequencer_star.svg",
 "SpawnableItem": "",
-"SpawnableItems": ""
+"SpawnableItems": "",
+"SpawnerManager": ""
 }
 
 [application]

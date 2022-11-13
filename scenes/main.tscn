@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkmbrpp2kifyi"]
+[gd_scene load_steps=14 format=3 uid="uid://bkmbrpp2kifyi"]
 
 [ext_resource type="PackedScene" uid="uid://bpwf5w7sf8x0q" path="res://scenes/tilemaps/test_map.tscn" id="1_yixun"]
 [ext_resource type="Texture2D" uid="uid://djcpgwtrf8dhy" path="res://assets/rbetta.png" id="2_t4mw0"]
 [ext_resource type="Script" path="res://scripts/level_exit.gd" id="3_w3d6o"]
 [ext_resource type="PackedScene" uid="uid://bxt15yjfx4xnd" path="res://templates/actual_player.tscn" id="4_wckix"]
+[ext_resource type="Script" path="res://scripts/register_global.gd" id="5_ecr6t"]
 [ext_resource type="PackedScene" uid="uid://bqjqblwxlhadp" path="res://scenes/ui.tscn" id="5_ohdqs"]
 [ext_resource type="PackedScene" uid="uid://ddkh7hj8etv2l" path="res://templates/fake_player.tscn" id="8_at8g1"]
 [ext_resource type="PackedScene" uid="uid://b0iqmtmw45vj8" path="res://scenes/managers.tscn" id="8_pwh15"]
@@ -40,6 +41,8 @@ starting_coins = 400
 
 [node name="ObjectsRoot" type="Node2D" parent="."]
 unique_name_in_owner = true
+script = ExtResource("5_ecr6t")
+variable_name = "objects_root"
 
 [node name="FakePlayer" parent="ObjectsRoot" instance=ExtResource("8_at8g1")]
 unique_name_in_owner = true

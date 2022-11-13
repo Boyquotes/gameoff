@@ -115,9 +115,7 @@ func _place_item(spawn_pos: Vector2):
 		return
 
 	add_coins(-_get_selected_item()["cost"])
-	var obj = _get_selected_item()["template"].instantiate()
-	obj.global_position = spawn_pos
-	$"%ObjectsRoot".add_child(obj)
+	Globals.spawner.spawn(spawn_pos, _get_selected_item())
 
 func add_coins(delta: int):
 	_coins_current += delta

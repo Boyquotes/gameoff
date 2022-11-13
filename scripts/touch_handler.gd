@@ -25,10 +25,10 @@ func _process(_delta: float) -> void:
 	
 	if current_distance > start_distance:
 		# zoom in
-		$"..".set_zoom(_zoom_level_start + delta_zoom)
+		owner.set_zoom(_zoom_level_start + delta_zoom)
 	else:
 		# zoom out
-		$"..".set_zoom(_zoom_level_start * pow(2, -delta_zoom))
+		owner.set_zoom(_zoom_level_start * pow(2, -delta_zoom))
 	
 func _unhandled_input(event: InputEvent):
 	#InputEventScreenTouch: index=12418, pressed=false, position=((144.2133, 374.7244))

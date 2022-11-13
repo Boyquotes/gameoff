@@ -11,9 +11,11 @@ signal coins_updated(current_coins: int, previous_coins: int)
 @export var zoom_time: float = 0.1
 @export var single_click_tolerance_msec: int = 100
 @export var pan_camera_factor = 1.2
-@export var item_templates: Array[Dictionary]
+@export var item_templates: Array[Dictionary] # TODO replace Dictionary with Resource
 @export_flags_2d_physics var collision_layer_mask: int
 @export var starting_coins: int
+
+@onready var _camera = $Camera2D
 
 var _currently_selected_idx = 0
 var _time_click_start = null
@@ -117,22 +119,20 @@ func _place_item(spawn_pos: Vector2):
 	$"%ObjectsRoot".add_child(obj)
 
 func _zoom_camera(zoom_mult):
-	var target_zoom = $Camera2D.zoom * zoom_mult
-	get_tree().create_tween().tween_property($Camera2D, "zoom", target_zoom, zoom_time)
-	# $Camera2D.zoom *= zoom_mult
+	var target_zoom = _camera.zoom * zoom_mult
+	get_tree().create_tween().tween_property(_camera, "zoom", target_zoom, zoom_time)
 
 func add_coins(delta: int):
 	_coins_current += delta
 	emit_signal("coins_updated", _coins_current, _coins_current - delta)
 	print("coins: %d, previous: %d" % [_coins_current, _coins_current - delta])
-	# TODO connect UI
 
 func set_zoom(zoom):
 	var target_zoom = Vector2(zoom, zoom)
-	get_tree().create_tween().tween_property($Camera2D, "zoom", target_zoom, zoom_time)
+	get_tree().create_tween().tween_property(_camera, "zoom", target_zoom, zoom_time)
 
 func _get_zoom_level():
-	return 1/$Camera2D.zoom.x
+	return 1/_camera.zoom.x
 
 func _on_enemy_killed(enemy: Actor):
 	print("Player received enemy killed %s" % enemy)

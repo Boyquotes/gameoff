@@ -7,6 +7,9 @@ signal path_changed
 @export var ai_debug_visible = false
 @export var speed: float
 
+@onready var _sprite = $Sprite
+@onready var _navigation = $NavigationAgent2D
+
 var _things_in_range: Dictionary = {}
 
 var _moving_towards_target = false
@@ -22,14 +25,14 @@ func debug_ai_state(debug_text: String):
 
 func _on_sprite_animation_finished() -> void:
 	# using this instead of controller for simplicity
-	if $Sprite.animation == "fire":
-		$Sprite.play("idle")
+	if _sprite.animation == "fire":
+		_sprite.play("idle")
 	
 
 # NAVIGATION
 func change_target_destination(new_target: Vector2):
-	$NavigationAgent2D.set_target_location(new_target)
-	$NavigationAgent2D.get_next_location()
+	_navigation.set_target_location(new_target)
+	_navigation.get_next_location()
 	emit_signal("path_changed")
 
 func resume_movement():
@@ -39,14 +42,13 @@ func stop_movement():
 	_moving_towards_target = false
 
 func has_reached_target() -> bool:
-	# print($NavigationAgent2D.is_navigation_finished())
-	return $NavigationAgent2D.is_target_reached()
+	return _navigation.is_target_reached()
 
 func _navigate_towards_target(delta):
 	if has_reached_target():
-		$Sprite.animation = "idle"
+		_sprite.animation = "idle"
 		return
-	var next = $NavigationAgent2D.get_next_location()
+	var next = _navigation.get_next_location()
 	var towards_next = next - global_position
 	_move_towards(towards_next, delta)
 	
@@ -58,11 +60,11 @@ func _move_towards(direction: Vector2, delta: float):
 	if direction.length() > 0:
 		velocity = direction
 		move_and_slide()
-		$Sprite.flip_h = direction.x < 0
-		if $Sprite.animation != "walk":
-			$Sprite.animation = "walk"
+		_sprite.flip_h = direction.x < 0
+		if _sprite.animation != "walk":
+			_sprite.animation = "walk"
 	else: 
-		$Sprite.animation = "idle"
+		_sprite.animation = "idle"
 
 # TARGETING
 func get_item_in_range(item_type: String):

@@ -4,13 +4,14 @@ signal ammo_updated(current_ammo: int, previous_ammo: int, max_ammo: int)
 
 @export var ammo_start: int = 100
 @onready var _ammo_current = ammo_start
+@onready var _sprite = $"../Sprite"
 
 var _current_target: Node2D
 
 func _ready() -> void:
-	$"..".dynamic_fields["shoot"] = shoot
-	$"..".dynamic_fields["get_ammo"] = get_ammo
-	$"..".dynamic_fields["add_ammo"] = add_ammo
+	owner.dynamic_fields["shoot"] = shoot
+	owner.dynamic_fields["get_ammo"] = get_ammo
+	owner.dynamic_fields["add_ammo"] = add_ammo
 
 func add_ammo(value: int):
 	_ammo_current += value
@@ -27,14 +28,14 @@ func shoot():
 		_refresh_target()
 
 	if _current_target:
-		$"../Sprite".flip_h = _current_target.global_position.x - $"..".global_position.x < 0
+		_sprite.flip_h = _current_target.global_position.x - owner.global_position.x < 0
 		$MachineGunWeapon.shoot(_current_target)
 
 func _on_machine_gun_weapon_shot_fired() -> void:
-	if $"../Sprite".animation != "fire":
+	if _sprite.animation != "fire":
 		# print("changing animation to fire")
-		$"../Sprite".play("fire")
+		_sprite.play("fire")
 
 func _refresh_target():
 	# TODO choose closest
-	_current_target = $"..".get_item_in_range("enemy")
+	_current_target = owner.get_item_in_range("enemy")

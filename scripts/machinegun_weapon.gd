@@ -12,7 +12,7 @@ var _last_shot_time = 0
 func shoot(target: Node):
 	if Time.get_ticks_msec() - _last_shot_time < shoot_interval_msec:
 		return
-	if $"..".get_ammo() <= 0:
+	if get_parent().get_ammo() <= 0:
 		return
 
 	_last_shot_time = Time.get_ticks_msec()
@@ -24,8 +24,8 @@ func shoot(target: Node):
 
 	bullet.global_position = target.global_position + random_dir
 	get_node("../../..").add_child(bullet) # TODO rethink node structure
-	bullet.init(get_parent().global_position, damage, $"..")
+	bullet.init(get_parent().global_position, damage, get_parent())
 
-	$"..".add_ammo(-1)
+	get_parent().add_ammo(-1)
 
 	emit_signal("shot_fired")

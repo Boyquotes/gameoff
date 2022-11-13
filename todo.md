@@ -1,17 +1,21 @@
 HIGH
-- refactor: replace relative paths with NodePath
+- **design economy for powerups (gain resources while in flow state, use it to spend on items)**
+- **level design**
 
 MID
-- sprite render on vision cone
-- design economy for powerups (gain resources while in flow state, use it to spend on items)
-- view player path with line renderer
 - add dynamic object avoidance to characters
-- draw own sprites. possible inspiration: brotato, broforce
+- view player path with line renderer
 - juice (when placing items, when player does stuff)
-- level design
+  - projectiles with trails
+  - camera shake
+  - hitstop
+  - particles
+  - hit/death animations
+  - placing items animation using tween
+- draw own sprites. possible inspiration: brotato, broforce, serious sam bogus detour
 - UI for powerups
-- game over condition
 - audio
+- game over condition
 - menu
 
 LOW
@@ -22,9 +26,9 @@ LOW
 - try mobile version
 - different types of weapons
 - moving around corners
+- export vision cone as asset
 
 probably cut
-- export vision cone as asset
 - setup github CI to upload to itch
 - reimplement behaviour trees? (for fun mostly)
 

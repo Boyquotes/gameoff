@@ -53,18 +53,20 @@ func _navigate_towards_target(delta):
 	_move_towards(towards_next, delta)
 	
 func _move_towards(direction: Vector2, delta: float):
-	# print("_move_towards") # TODO bug shouldn't be called when firing
 	if direction.length() > 1:
 		direction = direction.normalized()
 	direction *= speed * delta
 	if direction.length() > 0:
-		velocity = direction
-		move_and_slide()
-		_sprite.flip_h = direction.x < 0
-		if _sprite.animation != "walk":
-			_sprite.animation = "walk"
+		_navigation.set_velocity(direction)
 	else: 
 		_sprite.animation = "idle"
+
+func _do_move(direction):
+	velocity = direction
+	move_and_slide()
+	_sprite.flip_h = direction.x < 0
+	if _sprite.animation != "walk":
+		_sprite.animation = "walk"
 
 # TARGETING
 func get_item_in_range(item_type: String):

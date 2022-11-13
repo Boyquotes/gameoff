@@ -3,7 +3,6 @@ HIGH
 - **level design**
 
 MID
-- add dynamic object avoidance to characters
 - view player path with line renderer
 - juice (when placing items, when player does stuff)
   - projectiles with trails

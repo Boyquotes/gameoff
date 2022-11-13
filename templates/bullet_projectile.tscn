@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bssvavtgwnnd2"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://scripts/bullet_projectile.gd" id="1_i6qsw"]
+[ext_resource type="Script" path="res://scripts/shooting/bullet_projectile.gd" id="1_i6qsw"]
 [ext_resource type="Texture2D" uid="uid://dxpth68sbbde6" path="res://assets/Robot Warfare Asset Pack 22-11-24/Projectiles/bullets+plasma.png" id="2_q62sl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]

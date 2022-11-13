@@ -1,16 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://bgtgiqc6lj1c8"]
+[gd_scene load_steps=17 format=3 uid="uid://cb2fhpmiq4oug"]
 
 [ext_resource type="PackedScene" uid="uid://c0uq30i4qlbph" path="res://scenes/tilemaps/screensaver_map.tscn" id="1_5el7x"]
 [ext_resource type="Script" path="res://scripts/screensaver.gd" id="1_lre4s"]
 [ext_resource type="Texture2D" uid="uid://djcpgwtrf8dhy" path="res://assets/rbetta.png" id="2_t4mw0"]
 [ext_resource type="Script" path="res://scripts/level_exit.gd" id="3_w3d6o"]
-[ext_resource type="PackedScene" uid="uid://bxt15yjfx4xnd" path="res://templates/actual_player.tscn" id="4_wckix"]
-[ext_resource type="PackedScene" uid="uid://bqjqblwxlhadp" path="res://scenes/ui.tscn" id="5_ohdqs"]
+[ext_resource type="PackedScene" uid="uid://h12xi0b5drdl" path="res://templates/actual_player.tscn" id="4_wckix"]
+[ext_resource type="PackedScene" uid="uid://n612qph35bxb" path="res://scenes/ui.tscn" id="5_ohdqs"]
 [ext_resource type="Script" path="res://scripts/register_global.gd" id="6_rjuf1"]
-[ext_resource type="Script" path="res://scripts/spawner.gd" id="7_1q3f6"]
-[ext_resource type="PackedScene" uid="uid://ddkh7hj8etv2l" path="res://templates/fake_player.tscn" id="8_at8g1"]
+[ext_resource type="Script" path="res://scripts/singletons/spawner.gd" id="7_1q3f6"]
+[ext_resource type="PackedScene" uid="uid://dsy3qdj27vh6y" path="res://templates/fake_player.tscn" id="8_at8g1"]
+[ext_resource type="PackedScene" uid="uid://bpg4w41ymfcnd" path="res://templates/hit_particles_cpu.tscn" id="8_w5skx"]
 [ext_resource type="Resource" uid="uid://cx87g2dy7gqkn" path="res://other/spawnable_items.tres" id="10_kgg3l"]
-[ext_resource type="PackedScene" uid="uid://b0iqmtmw45vj8" path="res://scenes/managers.tscn" id="12_spps6"]
+[ext_resource type="PackedScene" uid="uid://c1op6x2metmke" path="res://scenes/managers.tscn" id="12_spps6"]
 
 [sub_resource type="Curve2D" id="Curve2D_vxn0u"]
 _data = {
@@ -49,6 +50,8 @@ texture = ExtResource("2_t4mw0")
 script = ExtResource("3_w3d6o")
 
 [node name="Player" parent="." instance=ExtResource("4_wckix")]
+zoom_time = null
+single_click_tolerance_msec = null
 pan_camera_factor = 1.3
 starting_coins = 400
 
@@ -64,6 +67,7 @@ variable_name = "objects_root"
 unique_name_in_owner = true
 position = Vector2(642, 364)
 speed = 15000.0
+particles_template = ExtResource("8_w5skx")
 
 [node name="TiggerVisionConeUpdate" parent="ObjectsRoot/FakePlayer" index="11"]
 wait_time = 0.5

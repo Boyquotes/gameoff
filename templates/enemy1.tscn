@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ctrai1vn6u7hd"]
 
-[ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/character_base.tscn" id="1_eou82"]
+[ext_resource type="PackedScene" uid="uid://b5k6jl4v0x6fj" path="res://templates/character_base.tscn" id="1_eou82"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_vjg25"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="3_6oxtv"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/is_enemy_in_sight.gd" id="4_b6vxa"]

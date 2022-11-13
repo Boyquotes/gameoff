@@ -17,7 +17,7 @@ _global_script_classes=[{
 "base": "CharacterBody2D",
 "class": &"Actor",
 "language": &"GDScript",
-"path": "res://scripts/actor.gd"
+"path": "res://scripts/characters/actor.gd"
 }, {
 "base": "Decorator",
 "class": &"AlwaysFailDecorator",
@@ -62,7 +62,7 @@ _global_script_classes=[{
 "base": "Actor",
 "class": &"Character",
 "language": &"GDScript",
-"path": "res://scripts/character.gd"
+"path": "res://scripts/characters/character.gd"
 }, {
 "base": "BeehaveNode",
 "class": &"Composite",
@@ -82,12 +82,12 @@ _global_script_classes=[{
 "base": "Character",
 "class": &"Enemy",
 "language": &"GDScript",
-"path": "res://scripts/enemy.gd"
+"path": "res://scripts/characters/enemy.gd"
 }, {
 "base": "Character",
 "class": &"FakePlayer",
 "language": &"GDScript",
-"path": "res://scripts/fake_player.gd"
+"path": "res://scripts/characters/fake_player.gd"
 }, {
 "base": "CharacterBody2D",
 "class": &"HealthPickup",
@@ -112,7 +112,7 @@ _global_script_classes=[{
 "base": "RigidBody2D",
 "class": &"Player",
 "language": &"GDScript",
-"path": "res://scripts/player.gd"
+"path": "res://scripts/characters/player.gd"
 }, {
 "base": "Composite",
 "class": &"SelectorComposite",
@@ -147,7 +147,7 @@ _global_script_classes=[{
 "base": "Node",
 "class": &"SpawnerManager",
 "language": &"GDScript",
-"path": "res://scripts/spawner_manager.gd"
+"path": "res://scripts/singletons/spawner_manager.gd"
 }]
 _global_script_class_icons={
 "ActionLeaf": "res://addons/beehave/icons/action.svg",
@@ -190,8 +190,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://scripts/globals.gd"
-GlobalEvents="*res://scripts/global_events.gd"
+Globals="*res://scripts/singletons/globals.gd"
+GlobalEvents="*res://scripts/singletons/global_events.gd"
 
 [debug]
 

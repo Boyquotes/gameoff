@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqjqblwxlhadp"]
+[gd_scene load_steps=7 format=3 uid="uid://n612qph35bxb"]
 
 [ext_resource type="Theme" uid="uid://dfe3mctdeege7" path="res://other/ui_theme.tres" id="1_m6sju"]
-[ext_resource type="Script" path="res://scripts/ui.gd" id="2_sffo3"]
-[ext_resource type="PackedScene" uid="uid://66l0v7vali28" path="res://templates/health_bar.tscn" id="3_tj7s3"]
-[ext_resource type="PackedScene" uid="uid://dslkyq31p8hy7" path="res://templates/ui_item.tscn" id="3_xgr54"]
+[ext_resource type="Script" path="res://scripts/ui/ui.gd" id="2_i3bvl"]
+[ext_resource type="PackedScene" path="res://templates/health_bar.tscn" id="3_tj7s3"]
+[ext_resource type="PackedScene" path="res://templates/ui_item.tscn" id="3_xgr54"]
 [ext_resource type="SpriteFrames" uid="uid://xukc4wy64q54" path="res://other/player_sprite_frames.tres" id="4_iyeyj"]
 [ext_resource type="SpriteFrames" uid="uid://c1amnlhw7ny8" path="res://other/items_sprite_frames.tres" id="5_rx57f"]
 
@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_m6sju")
-script = ExtResource("2_sffo3")
+script = ExtResource("2_i3bvl")
 items_template = ExtResource("3_xgr54")
 
 [node name="Coins" type="Label" parent="."]

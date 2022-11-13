@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3]
 
-[ext_resource type="Script" path="res://scripts/bullet_spray.gd" id="1_78vrv"]
+[ext_resource type="Script" path="res://scripts/shooting/bullet_spray.gd" id="1_78vrv"]
 [ext_resource type="Texture2D" uid="uid://tb8qy5w0m643" path="res://assets/Robot Warfare Asset Pack 22-11-24/Effects/big-explosion.png" id="2_y3cs2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cqmyh"]

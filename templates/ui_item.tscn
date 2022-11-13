@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dslkyq31p8hy7"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="SpriteFrames" uid="uid://c1amnlhw7ny8" path="res://other/items_sprite_frames.tres" id="1_bd3tb"]
-[ext_resource type="Script" path="res://scripts/ui_item.gd" id="1_cxs8i"]
+[ext_resource type="Script" path="res://scripts/ui/ui_item.gd" id="1_cxs8i"]
 
 [node name="UIItem" type="Button"]
 offset_left = 277.0

@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://66l0v7vali28"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://scripts/healthbar.gd" id="1_27cdp"]
+[ext_resource type="Script" path="res://scripts/ui/healthbar.gd" id="1_27cdp"]
 [ext_resource type="Texture2D" uid="uid://c2gv6ppcyava1" path="res://assets/Robot Warfare Asset Pack 22-11-24/UI/overhead-health-bars.png" id="2_qwls7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mchpc"]

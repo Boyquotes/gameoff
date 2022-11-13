@@ -1,9 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://ddkh7hj8etv2l"]
+[gd_scene load_steps=18 format=3 uid="uid://dsy3qdj27vh6y"]
 
-[ext_resource type="PackedScene" uid="uid://ck0o1johp1beh" path="res://templates/character_base.tscn" id="1_o86wx"]
-[ext_resource type="Script" path="res://scripts/fake_player.gd" id="2_bnnhh"]
+[ext_resource type="PackedScene" uid="uid://b5k6jl4v0x6fj" path="res://templates/character_base.tscn" id="1_o86wx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_t6v0d"]
 [ext_resource type="SpriteFrames" uid="uid://xukc4wy64q54" path="res://other/player_sprite_frames.tres" id="2_v0gpv"]
+[ext_resource type="Script" path="res://scripts/characters/fake_player.gd" id="2_ya8b4"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="3_do5g3"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/is_enemy_in_sight.gd" id="4_pfc8f"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="5_ex2ls"]
@@ -15,11 +15,11 @@
 [ext_resource type="Script" path="res://scripts/behaviors/actions/move_towards_node.gd" id="9_u8kx3"]
 [ext_resource type="Script" path="res://scripts/behaviors/actions/go_to_target_item.gd" id="11_i7rhi"]
 [ext_resource type="Script" path="res://scripts/player_debug_controls.gd" id="12_vftbo"]
-[ext_resource type="PackedScene" uid="uid://66l0v7vali28" path="res://templates/health_bar.tscn" id="14_hu7u1"]
+[ext_resource type="PackedScene" path="res://templates/health_bar.tscn" id="14_hu7u1"]
 [ext_resource type="Script" path="res://scripts/fun.gd" id="17_opp3i"]
 
 [node name="FakePlayer" groups=["character", "player"] instance=ExtResource("1_o86wx")]
-script = ExtResource("2_bnnhh")
+script = ExtResource("2_ya8b4")
 speed = null
 health_start = 1000
 

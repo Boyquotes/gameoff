@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpg4w41ymfcnd"]
+
+[sub_resource type="Curve" id="Curve_fuo81"]
+_data = [Vector2(0, 1), 0.0, 0.0513636, 0, 0, Vector2(1, 0), -2.60092, 0.0, 0, 0]
+point_count = 2
+
+[node name="HitParticlesCPU" type="CPUParticles2D"]
+position = Vector2(219, 185)
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.85
+lifetime_randomness = 0.16
+emission_shape = 1
+emission_sphere_radius = 13.68
+spread = 62.16
+gravity = Vector2(0, 0)
+initial_velocity_min = 167.38
+initial_velocity_max = 262.71
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_fuo81")
+color = Color(0.909804, 0, 0, 0.72549)

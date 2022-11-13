@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkmbrpp2kifyi"]
+[gd_scene load_steps=13 format=3 uid="uid://bkmbrpp2kifyi"]
 
 [ext_resource type="PackedScene" uid="uid://bpwf5w7sf8x0q" path="res://scenes/tilemaps/test_map.tscn" id="1_yixun"]
 [ext_resource type="Texture2D" uid="uid://djcpgwtrf8dhy" path="res://assets/rbetta.png" id="2_t4mw0"]
@@ -6,8 +6,22 @@
 [ext_resource type="PackedScene" uid="uid://bxt15yjfx4xnd" path="res://templates/actual_player.tscn" id="4_wckix"]
 [ext_resource type="PackedScene" uid="uid://bqjqblwxlhadp" path="res://scenes/ui.tscn" id="5_ohdqs"]
 [ext_resource type="PackedScene" uid="uid://ddkh7hj8etv2l" path="res://templates/fake_player.tscn" id="8_at8g1"]
-[ext_resource type="Script" path="res://scripts/juice_manager.gd" id="8_veybb"]
+[ext_resource type="PackedScene" uid="uid://b0iqmtmw45vj8" path="res://scenes/managers.tscn" id="8_pwh15"]
+[ext_resource type="Texture2D" uid="uid://c5x3oohhpev17" path="res://assets/Robot Warfare Asset Pack 22-11-24/Effects/hit-spatters.png" id="9_2nh7i"]
 [ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="9_vktja"]
+[ext_resource type="PackedScene" uid="uid://bpg4w41ymfcnd" path="res://templates/hit_particles_cpu.tscn" id="10_hwrvm"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_62xyc"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 49.22
+initial_velocity_max = 219.24
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncaj2"]
+atlas = ExtResource("9_2nh7i")
+region = Rect2(0, 0, 8, 8)
 
 [node name="Main" type="Node2D"]
 
@@ -52,25 +66,22 @@ player = NodePath("../../Player")
 metadata/_edit_lock_ = true
 
 [node name="Coins" parent="CanvasLayer/UI" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 190.0
 offset_bottom = 52.0
 
-[node name="ItemUI" parent="CanvasLayer/UI" index="1"]
-layout_mode = 1
+[node name="Managers" parent="." instance=ExtResource("8_pwh15")]
 
-[node name="ItemLabel" parent="CanvasLayer/UI/ItemUI" index="0"]
-layout_mode = 2
+[node name="HitParticlesGPU" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 14
+one_shot = true
+explosiveness = 0.82
+process_material = SubResource("ParticleProcessMaterial_62xyc")
+texture = SubResource("AtlasTexture_ncaj2")
 
-[node name="ItemName" parent="CanvasLayer/UI/ItemUI" index="1"]
-layout_mode = 2
-
-[node name="Managers" type="Node2D" parent="."]
-
-[node name="Juice" type="Node" parent="Managers"]
-script = ExtResource("8_veybb")
+[node name="HitParticlesCPU" parent="." instance=ExtResource("10_hwrvm")]
 
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
 [connection signal="coins_updated" from="Player" to="CanvasLayer/UI" method="_on_player_coins_updated"]
@@ -86,3 +97,4 @@ script = ExtResource("8_veybb")
 [editable path="CanvasLayer/UI/Container/FunBar"]
 [editable path="CanvasLayer/UI/Container/AmmoBar"]
 [editable path="CanvasLayer/UI/Container/HealthBar"]
+[editable path="Managers"]

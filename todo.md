@@ -5,9 +5,6 @@ HIGH
 MID
 - juice (when placing items, when player does stuff)
   - projectiles with trails
-  - camera shake
-  - hitstop
-  - particles
   - hit/death animations
   - placing items animation using tween
 - use vision collision to avoid placing items

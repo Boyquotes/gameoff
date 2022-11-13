@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0iqmtmw45vj8"]
+
+[ext_resource type="Script" path="res://scripts/juice_manager.gd" id="1_jdsyp"]
+
+[node name="Managers" type="Node2D"]
+
+[node name="Juice" type="Node" parent="."]
+script = ExtResource("1_jdsyp")
+camera_shake_intensity = 3.0
+camera_shake_duration = 0.05
+hitstop_intensity = 0.5
+hitstop_duration = 0.05

@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://ck0o1johp1beh"]
+[gd_scene load_steps=21 format=3 uid="uid://ck0o1johp1beh"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ofepm"]
+[ext_resource type="PackedScene" uid="uid://bpg4w41ymfcnd" path="res://templates/hit_particles_cpu.tscn" id="2_l1pve"]
 [ext_resource type="Texture2D" uid="uid://di0w12wutrt08" path="res://assets/Robot Warfare Asset Pack 22-11-24/Robots/Spider.png" id="2_sucmj"]
 [ext_resource type="PackedScene" path="res://templates/machine_gun_weapon.tscn" id="3_1ri7l"]
 [ext_resource type="Script" path="res://scripts/shooting.gd" id="3_xky3w"]
@@ -68,6 +69,7 @@ position = Vector2(493, 322)
 script = ExtResource("1_ofepm")
 ai_debug_visible = true
 speed = 25000.0
+particles_template = ExtResource("2_l1pve")
 
 [node name="VisibilityArea" type="Area2D" parent="." node_paths=PackedStringArray("write_polygon2d")]
 collision_mask = 9

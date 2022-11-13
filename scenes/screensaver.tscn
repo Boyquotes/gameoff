@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bgtgiqc6lj1c8"]
+[gd_scene load_steps=18 format=3 uid="uid://bgtgiqc6lj1c8"]
 
 [ext_resource type="PackedScene" uid="uid://c0uq30i4qlbph" path="res://scenes/tilemaps/screensaver_map.tscn" id="1_5el7x"]
 [ext_resource type="Script" path="res://scripts/screensaver.gd" id="1_lre4s"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://b6rxlb8kqpstf" path="res://templates/items/ammo_pickup.tscn" id="9_atx7g"]
 [ext_resource type="PackedScene" uid="uid://ctrai1vn6u7hd" path="res://templates/enemy1.tscn" id="9_vktja"]
 [ext_resource type="PackedScene" uid="uid://bisqy6xfmcp8j" path="res://templates/items/health_pickup.tscn" id="10_k3131"]
+[ext_resource type="PackedScene" uid="uid://bd17gabfwqslt" path="res://templates/items/barrel.tscn" id="12_6pnhn"]
+[ext_resource type="PackedScene" uid="uid://b0iqmtmw45vj8" path="res://scenes/managers.tscn" id="12_spps6"]
 
 [sub_resource type="Curve2D" id="Curve2D_vxn0u"]
 _data = {
@@ -29,6 +31,12 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 443, 97, 0, 0, 0, 0, 710, 276, 0, 0, 0, 0, 746, 636, 0, 0, 0, 0, 577, 493, 0, 0, 0, 0, 354, 453, 0, 0, 0, 0, 612, 289)
 }
 point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_act0a"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 330, 91, 0, 0, 0, 0, 731, 100, 0, 0, 0, 0, 748, 640, 0, 0, 0, 0, 631, 672, 0, 0, 0, 0, 583, 544, 0, 0, 0, 0, 425, 544, 0, 0, 0, 0, 394, 635, 0, 0, 0, 0, 240, 608, 0, 0, 0, 0, 351, 517)
+}
+point_count = 9
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_lre4s")
@@ -68,6 +76,7 @@ player = NodePath("../../Player")
 metadata/_edit_lock_ = true
 
 [node name="Coins" parent="CanvasLayer/UI" index="0"]
+layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 190.0
@@ -75,6 +84,13 @@ offset_bottom = 52.0
 
 [node name="ItemUI" parent="CanvasLayer/UI" index="1"]
 visible = false
+layout_mode = 1
+
+[node name="ItemLabel" parent="CanvasLayer/UI/ItemUI" index="0"]
+layout_mode = 2
+
+[node name="ItemName" parent="CanvasLayer/UI/ItemUI" index="1"]
+layout_mode = 2
 
 [node name="Enemy Spawn" type="Path2D" parent="."]
 curve = SubResource("Curve2D_vxn0u")
@@ -115,6 +131,21 @@ autostart = true
 position = Vector2(443, 97)
 rotation = 0.590587
 
+[node name="Barrel Spawner" type="Path2D" parent="."]
+curve = SubResource("Curve2D_act0a")
+script = ExtResource("7_1q3f6")
+spawn_template = ExtResource("12_6pnhn")
+
+[node name="Timer" type="Timer" parent="Barrel Spawner"]
+wait_time = 6.0
+autostart = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Barrel Spawner"]
+position = Vector2(443, 97)
+rotation = 0.590587
+
+[node name="Managers" parent="." instance=ExtResource("12_spps6")]
+
 [connection signal="changed_item" from="Player" to="CanvasLayer/UI" method="changed_item"]
 [connection signal="coins_updated" from="Player" to="CanvasLayer/UI" method="_on_player_coins_updated"]
 [connection signal="items_ready" from="Player" to="CanvasLayer/UI" method="_on_player_items_ready"]
@@ -125,6 +156,7 @@ rotation = 0.590587
 [connection signal="timeout" from="Enemy Spawn/Timer" to="Enemy Spawn" method="_on_timer_timeout"]
 [connection signal="timeout" from="Ammo Spawn/Timer" to="Ammo Spawn" method="_on_timer_timeout"]
 [connection signal="timeout" from="Health Spawn/Timer" to="Health Spawn" method="_on_timer_timeout"]
+[connection signal="timeout" from="Barrel Spawner/Timer" to="Barrel Spawner" method="_on_timer_timeout"]
 
 [editable path="Player"]
 [editable path="ObjectsRoot/FakePlayer"]

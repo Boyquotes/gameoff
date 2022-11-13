@@ -34,6 +34,7 @@ point_count = 6
 script = ExtResource("1_lre4s")
 
 [node name="TileMap" parent="." instance=ExtResource("1_5el7x")]
+navigation_visibility_mode = 0
 
 [node name="LevelExit" type="Sprite2D" parent="."]
 position = Vector2(639, 371)

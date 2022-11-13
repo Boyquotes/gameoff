@@ -41,6 +41,10 @@ shoot_interval_msec = 50.0
 shoot_randomness = 50.0
 damage = 10
 
+[node name="ProjectileWeapon" parent="Shooting" index="1"]
+shoot_interval_msec = 50.0
+shoot_randomness = 50.0
+
 [node name="Either" type="Node" parent="BehaviourAI" index="0"]
 script = ExtResource("2_t6v0d")
 

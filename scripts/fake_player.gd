@@ -45,3 +45,6 @@ func _map_type(type_name):
 	if type_name == "barrel":
 		return "enemy"
 	return type_name
+
+func _remember_type(type: String) -> bool:
+	return type == "ammo" or type == "health"

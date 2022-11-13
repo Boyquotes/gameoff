@@ -25,6 +25,9 @@ shoot_interval_msec = 150.0
 shoot_randomness = 70.0
 damage = 20
 
+[node name="ProjectileWeapon" parent="Shooting" index="1"]
+color = Color(1, 0.329412, 0.329412, 1)
+
 [node name="Either" type="Node" parent="BehaviourAI" index="0"]
 script = ExtResource("2_vjg25")
 

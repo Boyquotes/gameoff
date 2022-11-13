@@ -71,8 +71,13 @@ func _do_move(direction):
 # TARGETING
 func get_item_in_range(item_type: String):
 	if _things_in_range.has(item_type):
-		var values = _things_in_range.get(item_type).values()
-		return values[0] if len(values) > 0 else null
+		for k in _things_in_range.get(item_type).keys():
+			var value = _things_in_range.get(item_type)[k]
+			if is_instance_valid(value):
+				return value
+			else:
+				_things_in_range.get(item_type).erase(k)
+		return null
 
 func _node_to_type(node: Node2D):
 	if node.is_in_group("player"):
@@ -102,7 +107,11 @@ func _on_visibility_area_body_exited(body: Node2D) -> void:
 	var type = _map_type(_node_to_type(body))
 	if type == null:
 		return
-	_things_in_range[type].erase(body.get_instance_id())
+	if not _remember_type(type):
+		_things_in_range[type].erase(body.get_instance_id())
+
+func _remember_type(type: String) -> bool:
+	return false
 
 func _on_visibility_area_area_exited(area:Area2D) -> void:
 	_on_visibility_area_body_exited(area.get_parent())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ck0o1johp1beh"]
+[gd_scene load_steps=20 format=3 uid="uid://ck0o1johp1beh"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ofepm"]
 [ext_resource type="Texture2D" uid="uid://di0w12wutrt08" path="res://assets/Robot Warfare Asset Pack 22-11-24/Robots/Spider.png" id="2_sucmj"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_root.gd" id="4_4cykd"]
 [ext_resource type="PackedScene" uid="uid://66l0v7vali28" path="res://templates/health_bar.tscn" id="5_2ngo1"]
 [ext_resource type="Script" path="res://scripts/vision_cone.gd" id="6_kbaj7"]
+[ext_resource type="Script" path="res://scripts/projectile_weapon.gd" id="6_mvux1"]
+[ext_resource type="PackedScene" uid="uid://bssvavtgwnnd2" path="res://templates/bullet_projectile.tscn" id="7_2orw3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7bfjn"]
 atlas = ExtResource("2_sucmj")
@@ -91,13 +93,22 @@ path_max_distance = 30.0
 avoidance_enabled = true
 radius = 30.0
 
-[node name="Shooting" type="Node2D" parent="."]
+[node name="Shooting" type="Node2D" parent="." node_paths=PackedStringArray("selected_weapon")]
 script = ExtResource("3_xky3w")
+selected_weapon = NodePath("ProjectileWeapon")
 
 [node name="MachineGunWeapon" parent="Shooting" instance=ExtResource("3_1ri7l")]
 shoot_interval_msec = 200.0
 shoot_randomness = 100.0
 damage = 1
+
+[node name="ProjectileWeapon" type="Node" parent="Shooting"]
+script = ExtResource("6_mvux1")
+shoot_interval_msec = 100.0
+shoot_randomness = 100.0
+bullet_template = ExtResource("7_2orw3")
+damage = 10
+projectile_speed = 1000.0
 
 [node name="BehaviourAI" type="Node" parent="."]
 script = ExtResource("4_4cykd")

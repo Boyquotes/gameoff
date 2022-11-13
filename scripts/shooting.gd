@@ -3,6 +3,7 @@ extends Node
 signal ammo_updated(current_ammo: int, previous_ammo: int, max_ammo: int)
 
 @export var ammo_start: int = 100
+@export var selected_weapon: Node
 @onready var _ammo_current = ammo_start
 @onready var _sprite = $"../Sprite"
 
@@ -29,7 +30,7 @@ func shoot():
 
 	if _current_target:
 		_sprite.flip_h = _current_target.global_position.x - owner.global_position.x < 0
-		$MachineGunWeapon.shoot(_current_target)
+		selected_weapon.shoot(_current_target)
 
 func _on_machine_gun_weapon_shot_fired() -> void:
 	if _sprite.animation != "fire":

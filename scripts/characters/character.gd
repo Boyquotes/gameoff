@@ -78,7 +78,7 @@ func get_item_in_range(item_type: String):
 				return value
 			else:
 				_things_in_range.get(item_type).erase(k)
-		return null
+	return null
 
 func _node_to_type(node: Node2D):
 	if node.is_in_group("player"):

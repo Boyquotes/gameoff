@@ -1,5 +1,4 @@
 HIGH
-- remove coins. add timers/counts to each item placement.
 - **level design**
 
 MID

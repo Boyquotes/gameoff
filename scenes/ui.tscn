@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://dfe3mctdeege7" path="res://other/ui_theme.tres" id="1_m6sju"]
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="2_i3bvl"]
 [ext_resource type="PackedScene" path="res://templates/health_bar.tscn" id="3_tj7s3"]
-[ext_resource type="PackedScene" path="res://templates/ui_item.tscn" id="3_xgr54"]
+[ext_resource type="PackedScene" uid="uid://dw1nw08wbx0wj" path="res://templates/ui_item.tscn" id="3_xgr54"]
 [ext_resource type="SpriteFrames" uid="uid://xukc4wy64q54" path="res://other/player_sprite_frames.tres" id="4_iyeyj"]
 [ext_resource type="SpriteFrames" uid="uid://c1amnlhw7ny8" path="res://other/items_sprite_frames.tres" id="5_rx57f"]
 
@@ -19,14 +19,16 @@ script = ExtResource("2_i3bvl")
 items_template = ExtResource("3_xgr54")
 
 [node name="Coins" type="Label" parent="."]
+layout_mode = 0
 offset_left = 146.0
 offset_top = 495.0
 offset_right = 336.0
 offset_bottom = 547.0
-text = "Coins"
+text = "XP"
 horizontal_alignment = 2
 
 [node name="ItemUI" type="HBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -37,25 +39,6 @@ offset_right = -123.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="ItemLabel" type="Label" parent="ItemUI"]
-visible = false
-offset_top = 27.0
-offset_right = 125.0
-offset_bottom = 82.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Item: "
-
-[node name="ItemName" type="Label" parent="ItemUI"]
-visible = false
-offset_top = 27.0
-offset_right = 144.0
-offset_bottom = 82.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "NAME
-"
 
 [node name="Container" type="Node2D" parent="."]
 position = Vector2(54, 628)

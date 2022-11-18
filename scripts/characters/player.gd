@@ -110,13 +110,14 @@ func _try_place_item(pos: Vector2):
 	_place_item(pos)
 
 func _place_item(spawn_pos: Vector2):
-	if _get_selected_item()["cost"] > _coins_current:
+	if _get_selected_item().count <= 0:
 		print("Cannot spawn due to cost")
 		return
-
-	add_coins(-_get_selected_item()["cost"])
+	_get_selected_item().count -= 1
+	emit_signal("items_ready", item_templates)
 	Globals.spawner.spawn(spawn_pos, _get_selected_item())
 
+# coins are now actually XP, should be moved to fake_player
 func add_coins(delta: int):
 	_coins_current += delta
 	emit_signal("coins_updated", _coins_current, _coins_current - delta)
@@ -124,7 +125,7 @@ func add_coins(delta: int):
 
 func _on_enemy_killed(enemy: Actor):
 	print("Player received enemy killed %s" % enemy)
-	add_coins(12)
+	add_coins(enemy.get_xp_value())
 
 # Camera
 func _zoom_camera(zoom_mult):

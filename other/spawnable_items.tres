@@ -12,24 +12,28 @@ script = ExtResource("1_ik5je")
 cost = 3
 name = "Barrel"
 template = ExtResource("2_a2d0p")
+count = 10
 
 [sub_resource type="Resource" id="Resource_4ievn"]
 script = ExtResource("1_ik5je")
 cost = 2
 name = "Health"
 template = ExtResource("3_r4omm")
+count = 5
 
 [sub_resource type="Resource" id="Resource_fs08w"]
 script = ExtResource("1_ik5je")
 cost = 1
 name = "Ammo"
 template = ExtResource("4_f2d4t")
+count = 5
 
 [sub_resource type="Resource" id="Resource_oy1ho"]
 script = ExtResource("1_ik5je")
 cost = 10
 name = "Enemy"
 template = ExtResource("5_0ypvu")
+count = 100
 
 [resource]
 script = ExtResource("1_lswm2")

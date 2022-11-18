@@ -2,6 +2,8 @@ extends Character
 
 class_name Enemy
 
+@export var xp_value: int = 1
+
 func _ready() -> void:
 	change_target_destination(global_position)
 	connect("just_died", Globals.player._on_enemy_killed)
@@ -26,3 +28,6 @@ func _map_type(type_name):
 	if type_name == "enemy":
 		return "friendly"
 	return null
+
+func get_xp_value() -> int:
+	return xp_value

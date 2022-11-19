@@ -12,7 +12,7 @@ script = ExtResource("1_camxd")
 speed = 400000.0
 zoom_speed_multiplier = 0.3
 item_templates = ExtResource("6_pib1g")
-collision_layer_mask = 15
+collision_layer_mask = 31
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

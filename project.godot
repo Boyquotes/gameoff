@@ -282,6 +282,8 @@ item_select_4={
 2d_physics/layer_2="obstacles"
 2d_physics/layer_3="cliffs"
 2d_physics/layer_4="items"
+2d_physics/layer_5="vision_areas"
+2d_physics/layer_6="vision_area_player"
 
 [rendering]
 

@@ -101,11 +101,19 @@ func select_item(idx: int):
 func _try_place_item(pos: Vector2):
 	var query = PhysicsRayQueryParameters2D.create(pos, pos + Vector2(1,0), collision_layer_mask)
 	query.hit_from_inside = true
+	query.collide_with_areas = true
 	var collision = get_world_2d().direct_space_state.intersect_ray(query) # TODO should do a shapecast with a circle for better precision
 
-	if "position" in collision:
-		print("not spawning item because colliding")
-		return
+	print("Ray intersected with %s" % collision)
+	var collided_with = collision.get("collider")
+	if collided_with != null:
+		print(collided_with.get_groups())
+		if collided_with.is_in_group("vision_area_player"):
+			print("not spawning item because in player vision")
+			return
+		if not collided_with is Area2D:
+			print("not spawning item because colliding")
+			return
 		
 	_place_item(pos)
 

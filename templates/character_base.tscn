@@ -71,6 +71,7 @@ speed = 25000.0
 particles_template = ExtResource("2_l1pve")
 
 [node name="VisibilityArea" type="Area2D" parent="." node_paths=PackedStringArray("write_polygon2d")]
+collision_layer = 16
 collision_mask = 9
 monitorable = false
 script = ExtResource("6_kbaj7")

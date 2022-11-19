@@ -19,7 +19,6 @@ script = ExtResource("2_i3bvl")
 items_template = ExtResource("3_xgr54")
 
 [node name="Coins" type="Label" parent="."]
-layout_mode = 0
 offset_left = 146.0
 offset_top = 495.0
 offset_right = 336.0
@@ -28,7 +27,6 @@ text = "XP"
 horizontal_alignment = 2
 
 [node name="ItemUI" type="HBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0

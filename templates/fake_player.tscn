@@ -57,6 +57,7 @@ script = ExtResource("5_ex2ls")
 script = ExtResource("9_4gr7y")
 property_getter = "get_health"
 compare_value = 250
+signal_name_succes = "player_health_critical"
 
 [node name="GoToHealth" type="Node" parent="BehaviourAI/Either/MoveToHealthCritical" index="1"]
 script = ExtResource("11_i7rhi")
@@ -69,6 +70,7 @@ script = ExtResource("5_ex2ls")
 script = ExtResource("9_4gr7y")
 property_getter = "get_ammo"
 compare_value = 0
+signal_name_succes = "player_ammo_critical"
 
 [node name="GoToAmmo" type="Node" parent="BehaviourAI/Either/MoveToAmmoCritical" index="1"]
 script = ExtResource("11_i7rhi")
@@ -174,6 +176,7 @@ autostart = true
 [node name="Line2D" type="Line2D" parent="." index="12"]
 default_color = Color(1, 0.635294, 1, 0.168627)
 
+[connection signal="just_died" from="." to="." method="_on_just_died"]
 [connection signal="shot_fired" from="Shooting/MachineGunWeapon" to="Fun" method="_on_machine_gun_weapon_shot_fired"]
 [connection signal="fun_updated" from="Fun" to="FunBar" method="_on_character_health_updated"]
 [connection signal="timeout" from="Fun/Timer" to="Fun" method="_on_timer_timeout"]

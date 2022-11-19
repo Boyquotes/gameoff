@@ -1,7 +1,14 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dfe3mctdeege7"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dfe3mctdeege7"]
 
 [ext_resource type="FontFile" uid="uid://dwojw6ouxc7wy" path="res://assets/Xolonium-Regular.ttf" id="1_5jfgn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nalig"]
+bg_color = Color(0.0862745, 0.0823529, 0.0784314, 1)
 
 [resource]
 default_font = ExtResource("1_5jfgn")
 default_font_size = 43
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0.698039, 0.764706, 1, 1)
+Label/constants/outline_size = 1
+Panel/styles/panel = SubResource("StyleBoxFlat_nalig")

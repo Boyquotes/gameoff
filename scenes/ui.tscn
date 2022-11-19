@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://n612qph35bxb"]
+[gd_scene load_steps=8 format=3 uid="uid://n612qph35bxb"]
 
 [ext_resource type="Theme" uid="uid://dfe3mctdeege7" path="res://other/ui_theme.tres" id="1_m6sju"]
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="2_i3bvl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dw1nw08wbx0wj" path="res://templates/ui_item.tscn" id="3_xgr54"]
 [ext_resource type="SpriteFrames" uid="uid://xukc4wy64q54" path="res://other/player_sprite_frames.tres" id="4_iyeyj"]
 [ext_resource type="SpriteFrames" uid="uid://c1amnlhw7ny8" path="res://other/items_sprite_frames.tres" id="5_rx57f"]
+[ext_resource type="Script" path="res://scripts/ui/dialog_control.gd" id="7_e6rtb"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -88,6 +89,42 @@ position = Vector2(311, -105)
 scale = Vector2(2, 2)
 frames = ExtResource("5_rx57f")
 animation = &"coins"
+
+[node name="DialogControl" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -233.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("7_e6rtb")
+
+[node name="Panel" type="Panel" parent="DialogControl"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 141.0
+offset_right = -38.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogLabel" type="Label" parent="DialogControl/Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 23.0
+offset_right = -30.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+autowrap_mode = 2
+text_overrun_behavior = 4
 
 [editable path="Container/FunBar"]
 [editable path="Container/AmmoBar"]

@@ -51,3 +51,6 @@ func _map_type(type_name):
 
 func _remember_type(type: String) -> bool:
 	return type == "ammo" or type == "health"
+
+func _on_just_died(actor) -> void:
+	GlobalEvents.emit_signal("player_died")

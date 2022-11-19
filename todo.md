@@ -4,9 +4,7 @@ HIGH
 MID
 - draw own sprites. possible inspiration: brotato, broforce, serious sam bogus detour. size 64x64
 - if in flow state of fun, items recharge faster. how does it work with counters? maybe should think of flow as difficulty. increases when shot at, player level increases when killing enemies, and will need more enemies to be entertained. ie. lvl1 = 2 enemies, lvl2 = 4 enemies etc
-- add dialog messages
 - audio
-- game over condition
 - menu
 - more items:
   - melee enemies
@@ -16,14 +14,14 @@ MID
   - shotgun weapon/ different weapons
   - cover based shooting
 - remove or merge one of the other resources
-- bug: characters moving through walls at times. maybe solved by removing collision avoidance
 - UI for powerups
 
 LOW
+- more dialog messages
 - juice (when placing items, when player does stuff)
   - projectiles with trails
   - hit/death animations
-- destructible terrain
+  - destructible terrain
 - ai tweaks:
   - move to ending if no ammo and no ammo in sight
   - only move to distant items if in critical condition

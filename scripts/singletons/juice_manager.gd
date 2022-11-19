@@ -19,9 +19,11 @@ func shake_camera(intensity: float, duration: float):
 	tween.tween_property(_camera, "offset", Vector2(0, 0), duration/2)
 
 func hit_stop(intensity: float, duration: float):
-	Engine.time_scale = intensity
+	Globals.change_timescale(intensity)
 	await get_tree().create_timer(duration, true, false, true).timeout
-	Engine.time_scale = 1
+	if DialogManager._is_playing:
+		await DialogManager.dialog_ended
+	Globals.change_timescale(1)
 
 func _on_player_took_damage(damage: int, origin: Node2D):
 	shake_camera(camera_shake_intensity, camera_shake_duration)

@@ -4,6 +4,7 @@ var _player: Player
 var fake_player: FakePlayer
 var objects_root: Node2D
 var spawner: SpawnerManager
+var is_game_paused = false
 
 var player: Player:
 	get:
@@ -11,3 +12,17 @@ var player: Player:
 	set(value):
 		_player = value
 
+func pause_game():
+	Engine.time_scale = 0
+	is_game_paused = true
+	GlobalEvents.emit_signal("game_paused")
+
+func resume_game():
+	Engine.time_scale = 1
+	is_game_paused = false
+	GlobalEvents.emit_signal("game_resumed")
+
+func change_timescale(value: float):
+	if Globals.is_game_paused:
+		await GlobalEvents.game_resumed
+	Engine.time_scale = value

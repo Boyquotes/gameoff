@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkmbrpp2kifyi"]
+[gd_scene load_steps=15 format=3 uid="uid://bkmbrpp2kifyi"]
 
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_jr32r"]
 [ext_resource type="PackedScene" uid="uid://bpwf5w7sf8x0q" path="res://scenes/tilemaps/test_map.tscn" id="1_yixun"]
 [ext_resource type="Texture2D" uid="uid://djcpgwtrf8dhy" path="res://assets/rbetta.png" id="2_t4mw0"]
 [ext_resource type="Script" path="res://scripts/level_exit.gd" id="3_w3d6o"]
@@ -25,6 +26,7 @@ atlas = ExtResource("9_2nh7i")
 region = Rect2(0, 0, 8, 8)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_jr32r")
 
 [node name="TileMap" parent="." instance=ExtResource("1_yixun")]
 navigation_visibility_mode = 0

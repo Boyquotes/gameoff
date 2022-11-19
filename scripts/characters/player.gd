@@ -14,6 +14,7 @@ signal coins_updated(current_coins: int, previous_coins: int)
 @export var item_templates: SpawnableItems
 @export_flags_2d_physics var collision_layer_mask: int
 @export var starting_coins: int
+@export var nope_icon_template: PackedScene
 
 @onready var _camera = $Camera2D
 
@@ -109,21 +110,26 @@ func _try_place_item(pos: Vector2):
 	if collided_with != null:
 		print(collided_with.get_groups())
 		if collided_with.is_in_group("vision_area_player"):
-			print("not spawning item because in player vision")
+			action_invalid(pos)
 			return
 		if not collided_with is Area2D:
-			print("not spawning item because colliding")
+			action_invalid(pos)
 			return
 		
 	_place_item(pos)
 
 func _place_item(spawn_pos: Vector2):
 	if _get_selected_item().count <= 0:
-		print("Cannot spawn due to cost")
+		action_invalid(spawn_pos)
 		return
 	_get_selected_item().count -= 1
 	emit_signal("items_ready", item_templates)
 	Globals.spawner.spawn(spawn_pos, _get_selected_item())
+
+func action_invalid(pos: Vector2):
+	var nope = nope_icon_template.instantiate()
+	nope.global_position = pos
+	Globals.objects_root.add_child(nope)
 
 # coins are now actually XP, should be moved to fake_player
 func add_coins(delta: int):

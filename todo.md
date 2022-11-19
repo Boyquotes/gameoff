@@ -2,7 +2,7 @@ HIGH
 - **level design**
 
 MID
-- draw own sprites. possible inspiration: brotato, broforce, serious sam bogus detour
+- draw own sprites. possible inspiration: brotato, broforce, serious sam bogus detour. size 64x64
 - if in flow state of fun, items recharge faster. how does it work with counters? maybe should think of flow as difficulty. increases when shot at, player level increases when killing enemies, and will need more enemies to be entertained. ie. lvl1 = 2 enemies, lvl2 = 4 enemies etc
 - add dialog messages
 - audio

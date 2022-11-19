@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://c1amnlhw7ny8"]
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://c1amnlhw7ny8"]
 
 [ext_resource type="Texture2D" uid="uid://wkqsbisrrplb" path="res://assets/Robot Warfare Asset Pack 22-11-24/Obstacles and Objects/obstacles-and-objects.png" id="1_s1lmw"]
 [ext_resource type="Texture2D" uid="uid://c0d7ackb06t7x" path="res://assets/Robot Warfare Asset Pack 22-11-24/UI/icon-set.png" id="2_3k8lq"]
@@ -22,6 +22,10 @@ region = Rect2(32, 32, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rq28a"]
 atlas = ExtResource("2_3k8lq")
 region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb6ux"]
+atlas = ExtResource("2_3k8lq")
+region = Rect2(32, 48, 16, 16)
 
 [resource]
 animations = [{
@@ -48,5 +52,10 @@ animations = [{
 "frames": [SubResource("AtlasTexture_rq28a")],
 "loop": true,
 "name": &"health",
+"speed": 5.0
+}, {
+"frames": [SubResource("AtlasTexture_hb6ux")],
+"loop": true,
+"name": &"nope",
 "speed": 5.0
 }]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://h12xi0b5drdl"]
+[gd_scene load_steps=5 format=3 uid="uid://h12xi0b5drdl"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_camxd"]
+[ext_resource type="PackedScene" uid="uid://b3lc06bv5afx4" path="res://templates/ui/action_invalid.tscn" id="3_b4508"]
 [ext_resource type="Script" path="res://scripts/touch_handler.gd" id="6_ke1h2"]
 [ext_resource type="Resource" uid="uid://cx87g2dy7gqkn" path="res://other/spawnable_items.tres" id="6_pib1g"]
 
@@ -13,6 +14,7 @@ speed = 400000.0
 zoom_speed_multiplier = 0.3
 item_templates = ExtResource("6_pib1g")
 collision_layer_mask = 31
+nope_icon_template = ExtResource("3_b4508")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

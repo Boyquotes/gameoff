@@ -22,6 +22,10 @@ func resume_game():
 	is_game_paused = false
 	GlobalEvents.emit_signal("game_resumed")
 
+func restart_game():
+	Globals.change_timescale(1)
+	get_tree().reload_current_scene()
+
 func change_timescale(value: float):
 	if Globals.is_game_paused:
 		await GlobalEvents.game_resumed

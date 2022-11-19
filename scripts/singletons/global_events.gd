@@ -6,6 +6,8 @@ signal explosion_happened(position: Vector2)
 signal spawn_requested(position: Vector2, item: SpawnableItem)
 signal spawn_completed(position: Vector2, item: SpawnableItem)
 
+signal enemy_died()
+
 signal player_health_critical()
 signal player_ammo_critical()
 

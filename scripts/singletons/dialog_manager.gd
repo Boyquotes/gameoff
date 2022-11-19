@@ -43,7 +43,6 @@ func play(topic: String):
 		selected_lines = [selected_lines.lines.pick_random()]
 
 	for line in selected_lines:
-		print("playing line: %s" % line)
 		emit_signal("line_changed", line)
 		await advance_dialog
 	_is_playing = false

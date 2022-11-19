@@ -19,4 +19,4 @@ func _on_player_health_critical():
 
 func _on_player_died():
 	await DialogManager.play("player_died")
-	get_tree().reload_current_scene()
+	Globals.restart_game()

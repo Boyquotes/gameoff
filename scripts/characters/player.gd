@@ -28,6 +28,7 @@ func _init() -> void:
 	Globals.player = self
 
 func _ready() -> void:
+	item_templates = item_templates.duplicate() # TODO not working. should use counts somewhere else
 	emit_signal("items_ready", item_templates)
 	add_coins(0)
 
@@ -105,7 +106,6 @@ func _try_place_item(pos: Vector2):
 	query.collide_with_areas = true
 	var collision = get_world_2d().direct_space_state.intersect_ray(query) # TODO should do a shapecast with a circle for better precision
 
-	print("Ray intersected with %s" % collision)
 	var collided_with = collision.get("collider")
 	if collided_with != null:
 		print(collided_with.get_groups())
@@ -135,10 +135,8 @@ func action_invalid(pos: Vector2):
 func add_coins(delta: int):
 	_coins_current += delta
 	emit_signal("coins_updated", _coins_current, _coins_current - delta)
-	print("coins: %d, previous: %d" % [_coins_current, _coins_current - delta])
 
 func _on_enemy_killed(enemy: Actor):
-	print("Player received enemy killed %s" % enemy)
 	add_coins(enemy.get_xp_value())
 
 # Camera

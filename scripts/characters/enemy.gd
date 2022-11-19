@@ -31,3 +31,6 @@ func _map_type(type_name):
 
 func get_xp_value() -> int:
 	return xp_value
+
+func _on_just_died(actor) -> void:
+	GlobalEvents.emit_signal("enemy_died", self)

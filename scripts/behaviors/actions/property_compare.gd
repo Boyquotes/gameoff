@@ -2,7 +2,8 @@ extends ConditionLeaf
 
 @export var property_getter: String = ""
 @export var compare_value: int
-@export var signal_name_succes: String = "" # signal name to call on GlobalEvents when the condition is true
+## signal name to call on GlobalEvents when the condition is true
+@export var signal_name_succes: String = "" 
 
 
 func tick(actor: Character, blackboard: Blackboard):

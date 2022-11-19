@@ -134,4 +134,5 @@ autostart = true
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_do_move"]
 [connection signal="shot_fired" from="Shooting/MachineGunWeapon" to="Shooting" method="_on_machine_gun_weapon_shot_fired"]
+[connection signal="shot_fired" from="Shooting/ProjectileWeapon" to="Shooting" method="_on_machine_gun_weapon_shot_fired"]
 [connection signal="timeout" from="TiggerVisionConeUpdate" to="VisibilityArea" method="_recalculate_vision" binds= [true]]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bejrhu5tcpnli"]
+
+[ext_resource type="Texture2D" uid="uid://uie0eley80cj" path="res://assets/drawings/atlas.png" id="1_tuc58"]
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(32, 34)
+texture = ExtResource("1_tuc58")
+hframes = 27
+vframes = 19
+frame = 278
+region_rect = Rect2(717, 1241, 274, 169)

@@ -70,23 +70,10 @@ player = NodePath("../../Player")
 metadata/_edit_lock_ = true
 
 [node name="Coins" parent="CanvasLayer/UI" index="0"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 190.0
 offset_bottom = 52.0
-
-[node name="ItemUI" parent="CanvasLayer/UI" index="1"]
-layout_mode = 1
-
-[node name="DialogControl" parent="CanvasLayer/UI" index="3"]
-layout_mode = 1
-
-[node name="Panel" parent="CanvasLayer/UI/DialogControl" index="0"]
-layout_mode = 1
-
-[node name="DialogLabel" parent="CanvasLayer/UI/DialogControl/Panel" index="0"]
-layout_mode = 1
 
 [node name="Managers" parent="." instance=ExtResource("8_pwh15")]
 

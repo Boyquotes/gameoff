@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsy3qdj27vh6y"]
+[gd_scene load_steps=19 format=3 uid="uid://dsy3qdj27vh6y"]
 
 [ext_resource type="PackedScene" uid="uid://b5k6jl4v0x6fj" path="res://templates/character_base.tscn" id="1_o86wx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_t6v0d"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://scripts/player_debug_controls.gd" id="12_vftbo"]
 [ext_resource type="PackedScene" path="res://templates/health_bar.tscn" id="14_hu7u1"]
 [ext_resource type="Script" path="res://scripts/fun.gd" id="17_opp3i"]
+[ext_resource type="PackedScene" uid="uid://bejrhu5tcpnli" path="res://templates/sprite_part.tscn" id="18_ov8p6"]
 
 [node name="FakePlayer" groups=["character", "player"] instance=ExtResource("1_o86wx")]
 script = ExtResource("2_ya8b4")
@@ -175,6 +176,24 @@ autostart = true
 
 [node name="Line2D" type="Line2D" parent="." index="12"]
 default_color = Color(1, 0.635294, 1, 0.168627)
+
+[node name="SpriteParts" type="Node2D" parent="." index="13"]
+scale = Vector2(0.5, 0.5)
+
+[node name="Body" parent="SpriteParts" index="0" instance=ExtResource("18_ov8p6")]
+position = Vector2(0, -36)
+
+[node name="Head" parent="SpriteParts" index="1" instance=ExtResource("18_ov8p6")]
+position = Vector2(0, -36)
+frame = 279
+
+[node name="Gun" parent="SpriteParts" index="2" instance=ExtResource("18_ov8p6")]
+position = Vector2(0, -36)
+frame = 280
+
+[node name="Flash" parent="SpriteParts/Gun" index="0" instance=ExtResource("18_ov8p6")]
+position = Vector2(58, 2)
+frame = 281
 
 [connection signal="just_died" from="." to="." method="_on_just_died"]
 [connection signal="shot_fired" from="Shooting/MachineGunWeapon" to="Fun" method="_on_machine_gun_weapon_shot_fired"]

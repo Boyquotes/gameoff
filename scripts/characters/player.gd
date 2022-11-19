@@ -77,6 +77,8 @@ func _is_short_click():
 		return Time.get_ticks_msec() - _time_click_start < single_click_tolerance_msec
 
 func _handle_left_mouse(event: InputEventMouseButton):
+	if Globals.is_game_paused or Time.get_ticks_msec() - Globals.last_unpause < 100:
+		return
 	if event.button_index != MOUSE_BUTTON_LEFT:
 		return
 

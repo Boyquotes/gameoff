@@ -5,6 +5,7 @@ var fake_player: FakePlayer
 var objects_root: Node2D
 var spawner: SpawnerManager
 var is_game_paused = false
+var last_unpause = null
 
 var player: Player:
 	get:
@@ -20,6 +21,7 @@ func pause_game():
 func resume_game():
 	Engine.time_scale = 1
 	is_game_paused = false
+	last_unpause = Time.get_ticks_msec()
 	GlobalEvents.emit_signal("game_resumed")
 
 func restart_game():

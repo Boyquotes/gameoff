@@ -51,5 +51,8 @@ func play(topic: String):
 	
 
 func _input(event: InputEvent) -> void:
-	if _is_playing and event is InputEventKey and event.keycode == KEY_SPACE and not event.pressed:
-		emit_signal("advance_dialog")
+	if _is_playing:
+		var space_pressed = event is InputEventKey and event.keycode == KEY_SPACE and not event.pressed
+		var mouse_clicked = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false
+		if space_pressed or mouse_clicked:
+			emit_signal("advance_dialog")
